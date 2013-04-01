@@ -1,0 +1,13 @@
+create instructions state
+animations with wand
+three spells, stop snake, killing spell, slow down snake
+harry and snake -- health bar
+timer for two mins
+Character class change. 
+
+
+Character - change statements in isCollide()
+CharList 
+-Add the enemies needed
+-Change where the enemies are located at
+

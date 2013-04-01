@@ -1,0 +1,73 @@
+package finalHPGame;
+
+import java.util.ArrayList;
+
+import org.newdawn.slick.SlickException;
+
+public class CharList {
+
+	ArrayList<Character> characters;
+
+	public CharList(int level) throws SlickException{
+
+		characters = new ArrayList<Character>();
+
+		
+
+		//add the characters we would have in level one.
+		if(level==1){
+			/*The first character is always the playable character
+			  in this level it is Harry*/
+			characters.add(new Magician(200,300,"hp",level));
+			for(int x = 1; x<10; x++){
+				// to make sure the objects don't 
+				//have the same x and y coordinates to begin with.
+				float randx = (float)Math.random()*200;
+				float randy = (float)Math.random()*300;
+				characters.add(new Enemy(250+randx,300+randy,"snake",level));
+			}
+		}
+		else if(level==2){
+			characters.add(new Magician(200,300,"ron",level));
+		}
+	}
+
+	//Draws every character in the list
+	public void drawEveryone(){
+		for(Character c: characters){
+			c.draw();
+		}
+	}
+
+	//Prints every character in the list
+	public void printEveryone(){
+		for(Character c: characters){
+			System.out.println(c);
+		}
+	}
+
+	//Gets the list of characters
+	public ArrayList<Character> getCharacterList(){
+		return characters;
+	}
+
+	//gets the main character in the list
+	public Magician getMainCharacter(){
+		return (Magician) characters.get(0);
+	}
+
+	//Calls the moveRandom() by all the enemies
+	//in the list
+	public void moveEnemies(int delta){
+		for(Character c: characters){
+			if(c instanceof Enemy){
+				((Enemy) c).moveToward(characters.get(0),((Magician)characters.get(0)).isInvisble());
+				
+				if( ((Enemy) c).intersectMainCharacter(getMainCharacter())){
+					getMainCharacter().decreaseHealth(delta);
+				}
+			}
+		}
+	}
+}
+
