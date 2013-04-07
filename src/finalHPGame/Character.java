@@ -14,7 +14,8 @@ public class Character {
 	private String name;
 	private int level;
 
-	private Shape personalSpace;
+	//the shape that outlines the character
+	private Shape personal;
 
 
 	Animation mainChar, movingLeft, movingRight, movingDown, movingUp;
@@ -22,7 +23,8 @@ public class Character {
 	private boolean isDead;
 
 
-	public Character(float mypositionX, float mypositionY,String myname, int currentlevel) throws SlickException{
+	public Character(float mypositionX, float mypositionY,String myname, int currentlevel) 
+			throws SlickException{
 		//names that can be used now are : harry, harry potter, hp
 		positionX=mypositionX;
 		positionY=mypositionY;
@@ -32,7 +34,7 @@ public class Character {
 
 		/*if the names equals to harry etc. then the animations variables will be set 
 		for him.*/
-		if(name.toLowerCase().equals("harry")||name.toLowerCase().equals("harry potter")||name.toLowerCase().equals("hp")){
+		if(name.toLowerCase().equals("harry")||name.toLowerCase().equals("hp")){
 			Image[] left = {new Image("res/HarryLeft.png"), 
 					new Image("res/HarryLeft_1.png"), 
 					new Image("res/HarryLeft_2.png")};
@@ -53,17 +55,19 @@ public class Character {
 			movingDown=new Animation(down,duration,false);
 			movingUp = new Animation(up,duration,false);
 			mainChar = new Animation(down,duration,false);
-			personalSpace =  new Rectangle(positionX+40,positionY+20,20,55);
+			personal= new Rectangle(getPositionX()+40,getPositionY()+20,20,55);
 		}
 
 		else if (name.toLowerCase().equals("snake") || name.toLowerCase().equals("snakes")){
-			Image[] down = {new Image("res/Basilisk.png"), new Image("res/Basilisk.png"), new Image("res/Basilisk.png")};
+			Image[] down = {new Image("res/Basilisk.png"), 
+					new Image("res/Basilisk.png"), 
+					new Image("res/Basilisk.png")};
 			movingDown = new Animation(down,duration,false);
 			movingLeft = movingDown;
 			movingRight = movingDown;
 			movingUp = movingDown;
 			mainChar = movingDown;
-			personalSpace =  new Rectangle(positionX+35,positionY+5,25,80);
+			personal= new Rectangle(getPositionX()+40,getPositionY()+8,16,73);
 		}
 
 		else if (name.toLowerCase().equals("spider") || name.toLowerCase().equals("spiders")){
@@ -71,7 +75,7 @@ public class Character {
 
 		else if (name.toLowerCase().equals("dementor") || name.toLowerCase().equals("dementors")){
 		}
-		
+
 		else if(name.toLowerCase().equals("ron")){
 
 			Image[] left = {new Image("res/RonDefault.png"), 
@@ -103,8 +107,9 @@ public class Character {
 		mainChar=null;
 	}
 
+	//Returns the personal shape
 	public Shape getPersonalSpace(){
-		return personalSpace;
+		return personal;
 	}
 
 	//is the character dead?
@@ -173,7 +178,7 @@ public class Character {
 		return true;
 	}
 
-
+	//returns the name of the Character
 	public String getName(){
 		return name;
 	}
@@ -193,17 +198,57 @@ public class Character {
 		return true;
 	}
 
+	//Character is drawn with given x and y
 	public void draw(float x, float y){
 		mainChar.draw(x, y, 100, 100);
 	}
 
+	//Character is drawn
 	public void draw(){
 		mainChar.draw(positionX, positionY, 100, 100);
 	}
 
+	//returns the id of the Character
 	public String toString(){
 		return "Name: "+name
 				+"/nX: "+positionX
 				+"/nY:"+positionY;
+	}
+
+	/*returns an int that represents the direction of character
+	12-up, 3-right, 6-down, 9-left */
+	public int direction(){
+		if(mainChar==movingLeft)return 9;
+		if(mainChar==movingUp)return 12;
+		if(mainChar==movingDown)return 6;
+		return 6;
+	}
+
+	//Draws a red outline of the personal shape
+	public void drawPersonal(Graphics g){
+		org.newdawn.slick.Color r = new org.newdawn.slick.Color(255, 0, 0);
+		g.setColor(r);
+		updatePersonal();
+		g.draw(personal);
+	}
+
+	//Updates the rectangle
+	public void updatePersonal(){
+		//Checks if the character is harry
+		if(name.equals("harry potter")||name.equals("hp")){
+			//Checks the direction harry is in
+			if(mainChar==movingRight||mainChar==movingDown){
+				//updates rectangle
+				personal= new Rectangle(getPositionX()+40,getPositionY()+20,20,55);
+			}
+			else{
+				personal = new Rectangle(getPositionX()+33,getPositionY()+20,20,55);
+			}
+		}
+		//if not harry, it is a snake
+		else if(name.equals("snake")){
+			//update rectangle
+			personal= new Rectangle(getPositionX()+40,getPositionY()+8,16,73);
+		}
 	}
 }

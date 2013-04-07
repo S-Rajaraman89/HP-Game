@@ -8,9 +8,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Circle;
-import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.imageout.ImageOut;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -28,10 +25,6 @@ public class Play extends BasicGameState {
 	float moveEnemyTimer=0;
 
 
-	/*Circle power = null;
-	int circleExpanding=30;
-
-	Enemy a;*/
 
 
 	public void init(GameContainer arg0, StateBasedGame arg1)
@@ -66,17 +59,13 @@ public class Play extends BasicGameState {
 		System.out.println(intersectswithCircle(rr));*/
 	}
 
-	/*	public boolean intersectswithCircle(Shape s){
-		return power.intersects(s);
-	}*/
 
 	public void update(GameContainer gc, StateBasedGame arg1, int delta)
 			throws SlickException {
 
 
 		moveEnemyTimer+=delta;
-		if(moveEnemyTimer>500){
-			//a.moveToward(list.getMainCharacter(), false);
+		if(moveEnemyTimer>200){
 			list.moveEnemies(delta);
 
 			moveEnemyTimer=0;
@@ -104,14 +93,12 @@ public class Play extends BasicGameState {
 			list.getMainCharacter().setInvisibleTrue(delta);
 		}
 
-		/*	if(input.isKeyDown(Input.KEY_F)){
-			circleExpanding+=delta;
-		}*/
-		/*
+			if(input.isKeyDown(Input.KEY_F)){
+		}
+		
 		if(!input.isKeyDown(Input.KEY_F)){
-			drawCircle(-circleExpanding);
-			power = null;
-		}*/
+
+		}
 
 		if(!input.isKeyDown(Input.KEY_SPACE)){
 			list.getMainCharacter().setInvisibleFalse();
