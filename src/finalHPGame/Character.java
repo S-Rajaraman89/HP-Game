@@ -31,6 +31,8 @@ public class Character {
 		isDead =false;
 		name = myname.toLowerCase();
 		level = currentlevel;
+		
+		
 
 		/*if the names equals to harry etc. then the animations variables will be set 
 		for him.*/

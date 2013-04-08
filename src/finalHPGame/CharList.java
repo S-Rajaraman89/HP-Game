@@ -3,6 +3,7 @@ package finalHPGame;
 import java.util.ArrayList;
 
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Shape;
 
 public class CharList {
 
@@ -12,7 +13,7 @@ public class CharList {
 
 		characters = new ArrayList<Character>();
 
-		
+
 
 		//add the characters we would have in level one.
 		if(level==1){
@@ -55,6 +56,21 @@ public class CharList {
 	public Magician getMainCharacter(){
 		return (Magician) characters.get(0);
 	}
+	
+	//The enemies will be removed from the list if they intersect Harry's circle spell
+	//and the user is click F
+	public void killEnemies(Shape spellBound, boolean isUsing){
+		if(isUsing){
+			for(int x = 0; x<characters.size();x++){
+				if(characters.get(x) instanceof Enemy){
+					if(spellBound.intersects(characters.get(x).getPersonalSpace())){
+						characters.remove(x);
+						--x;
+					}
+				}
+			}
+		}
+	}
 
 	//Calls the moveRandom() by all the enemies
 	//in the list
@@ -62,7 +78,7 @@ public class CharList {
 		for(Character c: characters){
 			if(c instanceof Enemy){
 				((Enemy) c).moveToward(characters.get(0),((Magician)characters.get(0)).isInvisble());
-				
+
 				if( ((Enemy) c).intersectMainCharacter(getMainCharacter())){
 					getMainCharacter().decreaseHealth(delta);
 				}

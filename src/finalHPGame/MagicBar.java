@@ -44,6 +44,13 @@ public class MagicBar {
 
 	}
 	
+	public boolean isFull(){
+		return(spellBarX>=65);
+	}
+	public boolean isEmpty(){
+		return(spellBarX<5);
+	}
+	
 	//Draws the magicbar
 	public void drawBar(Graphics g){
 		org.newdawn.slick.Color r = new org.newdawn.slick.Color(255, 0, 0);
