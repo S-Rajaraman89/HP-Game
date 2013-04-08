@@ -40,7 +40,8 @@ public class Enemy extends Character {
 				super.setPositionY(-10);
 			}
 		}
-
+		super.updatePersonal();
+		
 	}
 	
 	public boolean intersectMainCharacter(Character target){

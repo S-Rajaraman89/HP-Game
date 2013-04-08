@@ -26,6 +26,7 @@ public class Play extends BasicGameState {
 	Enemy a;
 
 	int timer = 0;
+	CharList list;
 
 
 	public void init(GameContainer arg0, StateBasedGame arg1)
@@ -37,7 +38,7 @@ public class Play extends BasicGameState {
 		if(level==2)worldMap = new Image("res/Quiddich.jpg");
 
 		a = new Enemy(400,200,"snake",1);
-
+		list = new CharList(level);
 	}
 
 
@@ -45,15 +46,16 @@ public class Play extends BasicGameState {
 			throws SlickException {
 
 		worldMap.draw(0,0);
+		
+		list.drawEveryone();
+		list.getMainCharacter().getMagicBar().drawBar(g);
+		list.getMainCharacter().getHealthBar().draw(g);
 
-		hp.draw();
-		hp.getHealthBar().draw(g);
-		hp.getMagicBar().drawBar(g);
+		list.getMainCharacter().drawPowerCircle(g);
 
 		/*org.newdawn.slick.Color r = new org.newdawn.slick.Color(255, 0, 0);
 		g.setColor(r);*/
 
-		hp.drawPowerCircle(g);
 
 
 	}
@@ -61,66 +63,64 @@ public class Play extends BasicGameState {
 
 	public void update(GameContainer gc, StateBasedGame arg1, int delta)
 			throws SlickException {
+		list.killEnemies(list.getMainCharacter().getPowerCircle(), list.getMainCharacter().isPowerOn());
 		timer+=delta;
 		if(timer>=500){
-			System.out.println("is Power on: "+hp.isPowerOn());
-			System.out.println("is invisible on: "+hp.isInvisble());
+			list.moveEnemies(delta);
 			timer=0;
 		}
 
 		Input input = gc.getInput();
 
 		if(input.isKeyDown(Input.KEY_UP)){
-			hp.setPositionY(-delta * hp.getSpeed());
-
+			list.getMainCharacter().setPositionY(-delta*list.getMainCharacter().getSpeed());
 		}
 
 		if(input.isKeyDown(Input.KEY_DOWN)){
-			hp.setPositionY(delta*hp.getSpeed());
+			list.getMainCharacter().setPositionY(delta*list.getMainCharacter().getSpeed());
 		}
 
 		if(input.isKeyDown(Input.KEY_LEFT)){
-			hp.setPositionX(-delta*hp.getSpeed());
+			list.getMainCharacter().setPositionX(-delta*list.getMainCharacter().getSpeed());
 		}
 
 		if(input.isKeyDown(Input.KEY_RIGHT)){
-			hp.setPositionX(delta*hp.getSpeed());
+			list.getMainCharacter().setPositionX(delta*list.getMainCharacter().getSpeed());
 		}
 
 		if(input.isKeyDown(Input.KEY_SPACE)){
-			hp.setInvisibleTrue(delta);
+			list.getMainCharacter().setInvisibleTrue(delta);
 		}
 
 		if(input.isKeyDown(Input.KEY_F)){
-			hp.powerCircleOn(delta);
+			list.getMainCharacter().powerCircleOn(delta);
 		}
 
 		if(!input.isKeyDown(Input.KEY_F)){
-			hp.powerCircleOff(delta);
+			list.getMainCharacter().powerCircleOff(delta);
 		}
 
 		if(!input.isKeyDown(Input.KEY_SPACE)){
-			hp.setInvisibleFalse();
+			list.getMainCharacter().setInvisibleFalse();
 		}
 
 		//if the user is pressing down a,
 		//then the speed of main character increases
 		if(input.isKeyDown(Input.KEY_A)){
-			hp.setSpeedFast(delta);
+			list.getMainCharacter().setSpeedFast(delta);
 		}
 
 		//if the user is not pressing a,
 		//the speed is back to normal
 		if(!input.isKeyDown(Input.KEY_A)){
-			hp.setSpeedNormal();
+			list.getMainCharacter().setSpeedNormal();
 		}
 
 		//IF the user is not using any of the powers, then load the magicbar
 		if(! input.isKeyDown(Input.KEY_A) 
 			&& ! input.isKeyDown(Input.KEY_SPACE) 
 			&& ! input.isKeyDown(Input.KEY_F)){
-			
-					hp.getMagicBar().reviveMagicBar(delta);
+			list.getMainCharacter().getMagicBar().reviveMagicBar(delta);
 		}
 
 		//When the user press s, then it takes a screenshoot

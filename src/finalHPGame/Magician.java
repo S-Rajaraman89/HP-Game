@@ -3,6 +3,7 @@ package finalHPGame;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
+import org.newdawn.slick.geom.Shape;
 
 
 
@@ -145,6 +146,10 @@ public class Magician extends Character {
 			power.setRadius(powerRadius);
 		}
 
+	}
+	
+	public Shape getPowerCircle(){
+		return power;
 	}
 	
 	//Draws the circle power up
