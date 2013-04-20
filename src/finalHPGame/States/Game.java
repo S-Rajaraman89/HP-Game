@@ -1,4 +1,4 @@
-package finalHPGame;
+package finalHPGame.States;
 
 
 
@@ -10,7 +10,8 @@ public class Game extends StateBasedGame{
    public static final String gamename = "Harry Potter";
    public static final int menu = 0;
    public static final int play = 1;
-   
+   public static final int level2 = 2
+		   ;
    public Game(String gamename) throws SlickException{
       super(gamename);
       this.addState(new Menu(menu));
@@ -20,6 +21,7 @@ public class Game extends StateBasedGame{
    public void initStatesList(GameContainer gc) throws SlickException{
       this.getState(menu).init(gc, this);
       this.getState(play).init(gc, this);
+      
       this.enterState(play);
    }
    

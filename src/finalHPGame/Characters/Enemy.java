@@ -1,7 +1,7 @@
-package finalHPGame;
+package finalHPGame.Characters;
 
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Rectangle;
+
 
 public class Enemy extends Character {
 	
@@ -44,9 +44,5 @@ public class Enemy extends Character {
 		
 	}
 	
-	public boolean intersectMainCharacter(Character target){
-		Rectangle enemy = new Rectangle(super.getPositionX()+35,super.getPositionY(),25,80);
-		Rectangle targetRect = new Rectangle(target.getPositionX()+40,target.getPositionY()+20,20,55);
-		return enemy.intersects(targetRect);
-	}
+	
 }

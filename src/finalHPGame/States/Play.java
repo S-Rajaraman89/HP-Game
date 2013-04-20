@@ -1,4 +1,4 @@
-package finalHPGame;
+package finalHPGame.States;
 
 
 
@@ -11,6 +11,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.imageout.ImageOut;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+
+import finalHPGame.CharList;
+import finalHPGame.Characters.Enemy;
+import finalHPGame.Characters.Magician;
 
 public class Play extends BasicGameState {
 

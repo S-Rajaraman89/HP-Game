@@ -1,4 +1,4 @@
-package finalHPGame;
+package finalHPGame.Bar;
 
 import org.newdawn.slick.Graphics;
 

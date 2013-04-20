@@ -1,4 +1,4 @@
-package finalHPGame;
+package finalHPGame.States;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

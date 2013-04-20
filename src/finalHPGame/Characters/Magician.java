@@ -1,9 +1,12 @@
-package finalHPGame;
+package finalHPGame.Characters;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Shape;
+
+import finalHPGame.Bar.HealthBar;
+import finalHPGame.Bar.MagicBar;
 
 
 
@@ -95,9 +98,6 @@ public class Magician extends Character {
 	  And if the heatlh is 0, then isDead = true */
 	public void decreaseHealth(float delta){
 		hp.decreaseHealthBar(delta);
-		if(hp.getHealthBarX()==0){
-			super.setisDead(true);
-		}
 	}
 
 	//Changes isPowerOn based on few conditions
@@ -163,10 +163,10 @@ public class Magician extends Character {
 	 * else he is normally drawn */
 	public void draw(){
 		if(!isInvisible){
-			mainChar.draw(super.getPositionX(), super.getPositionY(), 100, 100);
+			super.draw();
 		}
 		else{
-			mainChar.draw(super.getPositionX(), super.getPositionY(), 1, 1);
+			super.getAnimationHolder().drawSmall(super.getLocation());
 		}
 	}
 

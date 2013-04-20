@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Shape;
 
+import finalHPGame.Characters.Character;
+import finalHPGame.Characters.Enemy;
+import finalHPGame.Characters.Magician;
+
 public class CharList {
 
 	ArrayList<Character> characters;
@@ -79,7 +83,7 @@ public class CharList {
 			if(c instanceof Enemy){
 				((Enemy) c).moveToward(characters.get(0),((Magician)characters.get(0)).isInvisble());
 
-				if( ((Enemy) c).intersectMainCharacter(getMainCharacter())){
+				if( ((Enemy) c).getPersonalSpace().intersects(this.getMainCharacter().getPersonalSpace())){
 					getMainCharacter().decreaseHealth(delta);
 				}
 			}
