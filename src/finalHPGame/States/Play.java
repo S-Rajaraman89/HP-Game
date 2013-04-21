@@ -20,10 +20,12 @@ public class Play extends BasicGameState {
 
 
 	int level;
+	static int playLevel;
 	public Play(int play1) throws SlickException {
 		level = play1;
+		playLevel = level;
 	}
-
+	
 	Magician hp;
 	Image worldMap;
 
@@ -50,7 +52,7 @@ public class Play extends BasicGameState {
 			throws SlickException {
 
 		worldMap.draw(0,0);
-		
+
 		list.drawEveryone();
 		list.getMainCharacter().getMagicBar().drawBar(g);
 		list.getMainCharacter().getHealthBar().draw(g);
@@ -67,12 +69,22 @@ public class Play extends BasicGameState {
 
 	public void update(GameContainer gc, StateBasedGame arg1, int delta)
 			throws SlickException {
+		
+		if(list.getMainCharacter().getHealthBar().getHealthBarX()==0){
+            arg1.enterState(200);
+         }
+         else if(list.getCharacterList().size()==1){
+            arg1.enterState(300);
+         }
+
+		
 		list.killEnemies(list.getMainCharacter().getPowerCircle(), list.getMainCharacter().isPowerOn());
 		timer+=delta;
 		if(timer>=500){
 			list.moveEnemies(delta);
 			timer=0;
 		}
+		
 
 		Input input = gc.getInput();
 
@@ -122,8 +134,8 @@ public class Play extends BasicGameState {
 
 		//IF the user is not using any of the powers, then load the magicbar
 		if(! input.isKeyDown(Input.KEY_A) 
-			&& ! input.isKeyDown(Input.KEY_SPACE) 
-			&& ! input.isKeyDown(Input.KEY_F)){
+				&& ! input.isKeyDown(Input.KEY_SPACE) 
+				&& ! input.isKeyDown(Input.KEY_F)){
 			list.getMainCharacter().getMagicBar().reviveMagicBar(delta);
 		}
 
@@ -138,7 +150,11 @@ public class Play extends BasicGameState {
 	}
 
 	//returns level which is the ID of this GameState
+	public static int getPlayLevel(){
+		return playLevel;
+	}
 
+	//returns level which is the ID of this GameState
 	public int getID() {
 		return level;
 	}

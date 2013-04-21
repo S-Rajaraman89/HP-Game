@@ -154,6 +154,8 @@ public class Magician extends Character {
 	
 	//Draws the circle power up
 	public void drawPowerCircle(Graphics g){
+		org.newdawn.slick.Color r = new org.newdawn.slick.Color(0, 0, 100);
+		g.setColor(r);
 		g.draw(power);
 	}
 
