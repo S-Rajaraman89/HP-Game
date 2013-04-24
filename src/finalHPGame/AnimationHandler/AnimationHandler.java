@@ -60,7 +60,28 @@ public class AnimationHandler {
 		else if (name.toLowerCase().equals("spider") || name.toLowerCase().equals("spiders")){
 		}
 
-		else if (name.toLowerCase().equals("dementor") || name.toLowerCase().equals("dementors")){
+		else if (name.toLowerCase().equals("dementor") || name.toLowerCase().equals("dementors")||name.equalsIgnoreCase("d")){
+			Image[] left = {new Image("res/dementor/dem_left.png"), 
+					new Image("res/dementor/dem_left.png"), 
+					new Image("res/dementor/dem_left.png")};
+
+			Image[] right = {new Image("res/dementor/dem_right.png"), 
+					new Image("res/dementor/dem_right.png"), 
+					new Image("res/dementor/dem_right.png")};
+
+			Image[] up = {new Image("res/dementor/dem_up.png"),
+					new Image("res/dementor/dem_up.png"),
+					new Image("res/dementor/dem_up.png")};
+			
+			Image[] down = {new Image("res/dementor/dem_down.png"),
+					new Image("res/dementor/dem_down.png"), 
+					new Image("res/dementor/dem_down.png")};
+
+			movingLeft = new Animation(left,duration,false);
+			movingRight = new Animation(right,duration,false);
+			movingDown=new Animation(down,duration,false);
+			movingUp = new Animation(up,duration,false);
+			mainChar = new Animation(down,duration,false);
 		}
 
 		else if(name.toLowerCase().equals("ron")){

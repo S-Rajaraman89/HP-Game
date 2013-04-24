@@ -42,6 +42,7 @@ public class Menu extends BasicGameState{
 
 
    public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
+
       int posX = Mouse.getX();
       int posY = Mouse.getY();
       //play now button

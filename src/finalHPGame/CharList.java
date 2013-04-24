@@ -21,9 +21,14 @@ public class CharList {
 
 		//add the characters we would have in level one.
 		if(level==1){
+
 			/*The first character is always the playable character
 			  in this level it is Harry*/
-			characters.add(new Magician(200,300,"hp",level));
+
+			//characters.add(new Magician(200,300,"hp",level));
+			characters.add(new Magician(400,300,"hp",level));
+			characters.add(new Enemy(300,400,"d",level));
+			
 			for(int x = 1; x<10; x++){
 				// to make sure the objects don't 
 				//have the same x and y coordinates to begin with.
@@ -60,7 +65,7 @@ public class CharList {
 	public Magician getMainCharacter(){
 		return (Magician) characters.get(0);
 	}
-	
+
 	//The enemies will be removed from the list if they intersect Harry's circle spell
 	//and the user is click F
 	public void killEnemies(Shape spellBound, boolean isUsing){
@@ -81,7 +86,7 @@ public class CharList {
 	public void moveEnemies(int delta){
 		for(Character c: characters){
 			if(c instanceof Enemy){
-				((Enemy) c).moveToward(characters.get(0),((Magician)characters.get(0)).isInvisble());
+				((Enemy) c).moveToward(this.getMainCharacter());
 
 				if( ((Enemy) c).getPersonalSpace().intersects(this.getMainCharacter().getPersonalSpace())){
 					getMainCharacter().decreaseHealth(delta);

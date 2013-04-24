@@ -3,6 +3,7 @@ package finalHPGame.States;
 
 
 
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -11,10 +12,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.imageout.ImageOut;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-
 import finalHPGame.CharList;
-import finalHPGame.Characters.Enemy;
-import finalHPGame.Characters.Magician;
+
 
 public class Play extends BasicGameState {
 
@@ -25,25 +24,22 @@ public class Play extends BasicGameState {
 		level = play1;
 		playLevel = level;
 	}
-	
-	Magician hp;
+
+
 	Image worldMap;
 
-	Enemy a;
+	//Enemy a;
 
 	int timer = 0;
 	CharList list;
 
-
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-
-		hp = new Magician(200,300,"hp",1);
 
 		if(level==1)worldMap = new Image("res/chamberColor.jpg");
 		if(level==2)worldMap = new Image("res/Quiddich.jpg");
 
-		a = new Enemy(400,200,"snake",1);
+		
 		list = new CharList(level);
 	}
 
@@ -52,56 +48,54 @@ public class Play extends BasicGameState {
 			throws SlickException {
 
 		worldMap.draw(0,0);
-
+		
 		list.drawEveryone();
 		list.getMainCharacter().getMagicBar().drawBar(g);
 		list.getMainCharacter().getHealthBar().draw(g);
-
 		list.getMainCharacter().drawPowerCircle(g);
-
-		/*org.newdawn.slick.Color r = new org.newdawn.slick.Color(255, 0, 0);
-		g.setColor(r);*/
-
-
 
 	}
 
 
 	public void update(GameContainer gc, StateBasedGame arg1, int delta)
 			throws SlickException {
-		
+
 		if(list.getMainCharacter().getHealthBar().getHealthBarX()==0){
             arg1.enterState(200);
          }
          else if(list.getCharacterList().size()==1){
             arg1.enterState(300);
          }
+		 
 
-		
 		list.killEnemies(list.getMainCharacter().getPowerCircle(), list.getMainCharacter().isPowerOn());
 		timer+=delta;
 		if(timer>=500){
 			list.moveEnemies(delta);
 			timer=0;
 		}
-		
+
 
 		Input input = gc.getInput();
 
 		if(input.isKeyDown(Input.KEY_UP)){
 			list.getMainCharacter().setPositionY(-delta*list.getMainCharacter().getSpeed());
+			
 		}
 
 		if(input.isKeyDown(Input.KEY_DOWN)){
 			list.getMainCharacter().setPositionY(delta*list.getMainCharacter().getSpeed());
+			
 		}
 
 		if(input.isKeyDown(Input.KEY_LEFT)){
 			list.getMainCharacter().setPositionX(-delta*list.getMainCharacter().getSpeed());
+		
 		}
 
 		if(input.isKeyDown(Input.KEY_RIGHT)){
 			list.getMainCharacter().setPositionX(delta*list.getMainCharacter().getSpeed());
+	
 		}
 
 		if(input.isKeyDown(Input.KEY_SPACE)){
@@ -113,7 +107,7 @@ public class Play extends BasicGameState {
 		}
 
 		if(!input.isKeyDown(Input.KEY_F)){
-			list.getMainCharacter().powerCircleOff(delta);
+		list.getMainCharacter().powerCircleOff(delta);
 		}
 
 		if(!input.isKeyDown(Input.KEY_SPACE)){
@@ -133,7 +127,7 @@ public class Play extends BasicGameState {
 		}
 
 		//IF the user is not using any of the powers, then load the magicbar
-		if(! input.isKeyDown(Input.KEY_A) 
+		if(!input.isKeyDown(Input.KEY_A) 
 				&& ! input.isKeyDown(Input.KEY_SPACE) 
 				&& ! input.isKeyDown(Input.KEY_F)){
 			list.getMainCharacter().getMagicBar().reviveMagicBar(delta);

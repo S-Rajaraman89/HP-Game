@@ -4,8 +4,10 @@ package finalHPGame.Characters;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.*;
+
 import finalHPGame.AnimationHandler.AnimationHandler;
 import finalHPGame.Location.Location;
+import finalHPGame.ShapeUpdater.*;
 
 
 
@@ -14,14 +16,10 @@ public class Character {
 
 	private Location loc;
 	private AnimationHandler anim;
-	
 	private String name;
-	
-
 	//the shape that outlines the character
-	private Shape personal;
-	
-
+	private Rectangle personal;
+	ShapeUpdater updater;
 
 	public Character(float mypositionX, float mypositionY,String myname, int currentlevel) 
 			throws SlickException{
@@ -36,16 +34,20 @@ public class Character {
 		for him.*/
 		if(name.toLowerCase().equals("harry")||name.toLowerCase().equals("hp")){
 			personal= new Rectangle(getPositionX()+40,getPositionY()+20,20,55);
+			updater = new HarryPotterUpdater();
 		}
 
 		else if (name.toLowerCase().equals("snake") || name.toLowerCase().equals("snakes")){
 			personal= new Rectangle(getPositionX()+40,getPositionY()+8,16,73);
+			updater = new SnakeUpdater();
 		}
 
 		else if (name.toLowerCase().equals("spider") || name.toLowerCase().equals("spiders")){
 		}
 
-		else if (name.toLowerCase().equals("dementor") || name.toLowerCase().equals("dementors")){
+		else if (name.toLowerCase().equals("d") || name.toLowerCase().equals("dementor")){
+			personal = new Rectangle(loc.getX()+30,loc.getY()+5,41,85);
+			updater = new DementorUpdater();
 		}
 
 		else if(name.toLowerCase().equals("ron")){
@@ -122,21 +124,6 @@ public class Character {
 
 	//Updates the rectangle
 	public void updatePersonal(){
-		//Checks if the character is harry
-		if(name.equals("harry potter")||name.equals("hp")){
-			//Checks the direction harry is in
-			if(anim.getDirection()==3||anim.getDirection()==6){
-				//updates rectangle
-				personal= new Rectangle(getPositionX()+40,getPositionY()+20,20,55);
-			}
-			else{
-				personal = new Rectangle(getPositionX()+33,getPositionY()+20,20,55);
-			}
-		}
-		//if not harry, it is a snake
-		else if(name.equals("snake")){
-			//update rectangle
-			personal= new Rectangle(getPositionX()+40,getPositionY()+8,16,73);
-		}
+		updater.update(personal, anim.getDirection(), loc);
 	}
 }

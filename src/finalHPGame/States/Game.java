@@ -32,7 +32,7 @@ public class Game extends StateBasedGame{
 	      this.getState(loser).init(gc, this);
 	      this.getState(winner).init(gc, this);
 	      this.getState(play2).init(gc,this);
-	      this.enterState(menu);
+	      this.enterState(play);
    }
    
    public static void main(String[] args) {

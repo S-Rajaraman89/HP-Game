@@ -39,7 +39,7 @@ public class Magician extends Character {
 	}
 
 	//Returns invisible
-	public boolean isInvisble() {
+	public boolean isInvisible() {
 		return isInvisible;
 	}
 	//sets invisible false
