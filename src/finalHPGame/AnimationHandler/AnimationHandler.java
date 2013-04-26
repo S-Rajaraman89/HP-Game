@@ -8,10 +8,14 @@ import org.newdawn.slick.SlickException;
 
 import finalHPGame.Location.Location;
 
+/**Contains the animations for displayed objects*/
 public class AnimationHandler {
-
+	
+	/**The direction the character is facing. 12-up, 6-down*/
 	private int direction;
+	/**Contains the specific integers with has specific animations*/
 	private Hashtable<Integer, Animation> animationHolder;
+	/**The current animation*/
 	private Animation mainChar;
 
 	public AnimationHandler(String name) throws SlickException{
@@ -113,20 +117,23 @@ public class AnimationHandler {
 		animationHolder.put(9, movingLeft);
 		mainChar = movingDown;
 	}
-	
+	/**Draws the mainChar with given Location, default height and width
+	 * are 100*/
 	public void draw(Location loc){
 		mainChar.draw(loc.getX(),loc.getY(), 100, 100);
 	}
 	
+	/**Draws the mainChar with given Location, default height and width
+	 * are 1*/
 	public void drawSmall(Location loc){
 		mainChar.draw(loc.getX(),loc.getY(), 1, 1);
 	}
-	
+	/**Sets the mainChar to a new animation based on given direction*/
 	public void setAnimation(int newdirection){
 		mainChar = animationHolder.get(newdirection);
 		this.direction = newdirection;
 	}
-	
+	/**@return The current direction of the animation*/
 	public int getDirection(){
 		return direction;
 	}

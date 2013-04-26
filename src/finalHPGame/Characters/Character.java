@@ -4,30 +4,31 @@ package finalHPGame.Characters;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.*;
-
 import finalHPGame.AnimationHandler.AnimationHandler;
 import finalHPGame.Location.Location;
 import finalHPGame.ShapeUpdater.*;
 
 
-
+/**The most basic version of a object that has Locations and Animations*/
 public class Character {
 
-
+	/**Contains and changes the (x,y)*/
 	private Location loc;
+	/**Contains and changes the animations*/
 	private AnimationHandler anim;
+	/**The name of the Character*/
 	private String name;
-	//the shape that outlines the character
+	/**The Rectangle that surrounds animations*/
 	private Rectangle personal;
+	/**Updates the personal*/
 	ShapeUpdater updater;
 
 	public Character(float mypositionX, float mypositionY,String myname, int currentlevel) 
 			throws SlickException{
-		//names that can be used now are : harry, harry potter, hp
 
 		anim = new AnimationHandler(myname);
 		loc = new Location(mypositionX, mypositionY, currentlevel);
-		
+
 		name = myname.toLowerCase();
 
 		/*if the names equals to harry etc. then the animations variables will be set 
@@ -56,73 +57,97 @@ public class Character {
 
 	}
 
-
-	//Returns the personal shape
+	/**Get the personal variable*/
 	public Shape getPersonalSpace(){
 		return personal;
 	}
 
-	//gets positionX (buckyPostionX)
+	/**Get the x coordinate*/
 	public float getPositionX() {
 		return loc.getX();
 	}
 
-
-	//changes direction based on value of deltaX
-	//checks for collision
+	/**Changes the x coordinate, the direction
+	 * the picture is facing, updates the
+	 * personal shape
+	 * @param deltaX - the change in X*/
 	public void setPositionX(float deltaX) {
 		anim.setAnimation(loc.setX(deltaX));
 		updatePersonal();
 	}
+	/**Changes the x coordinate, does not care about bounds,
+	 * updates the personal shape*/
+	public void addPositionX(float deltaX){
+		anim.setAnimation(loc.addX(deltaX));
+		updatePersonal();
+	}
 
-
-	//gets positionX (buckyPostionX)
+	/**Get the y coordinate*/
 	public float getPositionY() {
 		return loc.getY();
 	}
 
-	//changes direction based on value of deltaY
-	//checks for collision
+
+	/** Changes the y coordinate, the direction
+	 * the picture is facing, updates the 
+	 * personal shape
+	 * @param deltaY - the change in Y*/
 	public void setPositionY(float deltaY) {
 		anim.setAnimation(loc.setY(deltaY));
 		updatePersonal();
 	}
+	/**Changes the y coordinate, does not care about bounds,
+	 * updates the personal shape*/
+	public void addPositionY(float deltaY){
+		anim.setAnimation(loc.addY(deltaY));
+		updatePersonal();
+	}
 
-	//returns the name of the Character
+
+	/**Returns the name of the Character */
 	public String getName(){
 		return name;
 	}
-	
+	/**Returns the AnimationHandler of the Character
+	 * @return AnimationHandler
+	 * */
 	public AnimationHandler getAnimationHolder(){
 		return anim;
 	}
-	
+
+	/**Returns the Location of the Character
+	 * @return Location
+	 * */
 	public Location getLocation(){
 		return loc;
 	}
 
-	//Character is drawn
+	/**Draws the animation
+	 * @see AnimationHandler.draw(Location loc)*/
 	public void draw(){
 		anim.draw(loc);
 	}
 
-	//returns the id of the Character
+	/**Prints the Name, X-coordinate and Y-coordinate*/
 	public String toString(){
 		return "Name: "+name
 				+"/nX: "+loc.getX()
 				+"/nY:"+loc.getY();
 	}
 
-
-	//Draws a red outline of the personal shape
+	/**Draws a red outline of the personal shape*/
 	public void drawPersonal(Graphics g){
+		//Create a red color
 		org.newdawn.slick.Color r = new org.newdawn.slick.Color(255, 0, 0);
+		//Set the graphics to the red color
 		g.setColor(r);
 		updatePersonal();
+		//draw the shape
 		g.draw(personal);
 	}
-
-	//Updates the rectangle
+	
+	/**Calls the updater's update method
+	 * @see ShapeUpdater's update*/
 	public void updatePersonal(){
 		updater.update(personal, anim.getDirection(), loc);
 	}

@@ -1,7 +1,12 @@
 package finalHPGame.States;
 
+import java.io.File;
+
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.*;
+import org.newdawn.slick.particles.ConfigurableEmitter;
+import org.newdawn.slick.particles.ParticleIO;
+import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.state.*;
 
 public class WinnerPage extends BasicGameState{
@@ -12,6 +17,7 @@ public class WinnerPage extends BasicGameState{
    Image menuReturn;
    int posX;
    int posY;
+   ParticleSystem system;
    
    public WinnerPage(int winner){
    }
@@ -20,7 +26,23 @@ public class WinnerPage extends BasicGameState{
       winningPic= new Image("res/winningPic.jpg");
 	  nextLevel = new Image("res/nextLevel.png");
 	  menuReturn= new Image("res/menuReturn.png");
-      //exitGame = new Image("res/exitGame.png");
+  
+	  
+	  system = new ParticleSystem(new Image("data/particle.png",false),1500);
+	 try {
+			File xmlFile = new File("data/torch.xml");
+			ConfigurableEmitter emitter = ParticleIO.loadEmitter(xmlFile);
+			emitter.setPosition(130, 430);
+			system.addEmitter(emitter);
+			emitter = ParticleIO.loadEmitter(xmlFile);
+			emitter.setPosition(965, 430);
+			system.addEmitter(emitter);
+		} catch (Exception e) {
+			System.out.println("Exception: " +e.getMessage());
+			e.printStackTrace();
+			System.exit(0);
+		}
+	  system.setBlendingMode(ParticleSystem.BLEND_ADDITIVE);
       
    }
    
@@ -29,13 +51,14 @@ public class WinnerPage extends BasicGameState{
 	   g.drawString("Instructions:", 100, 50);
       nextLevel.draw(750,600);
       menuReturn.draw(100,600);
-      //exitGame.draw(100,200);
+     
       g.drawString("x "+ posX+ "  y"+ posY,50,200);
-      
+      system.render();
       
    }
    
    public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
+	   system.update(delta);
        posX = Mouse.getX();
        posY = Mouse.getY();
       
@@ -55,12 +78,7 @@ public class WinnerPage extends BasicGameState{
             	sbg.enterState(0);
              }
        }
-     /* //exit game
-      if((posX>100 && posX<311)&&(posY>109 && posY<160)){
-         if(Mouse.isButtonDown(0)){
-            System.exit(0);
-         }
-      }*/
+
    }
    
    public int getID(){

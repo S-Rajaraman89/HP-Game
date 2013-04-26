@@ -1,0 +1,9 @@
+finalHPGame
+finalHPGame.AnimationHandler
+finalHPGame.Bar
+finalHPGame.Boundary
+finalHPGame.Characters
+finalHPGame.Location
+finalHPGame.Movable
+finalHPGame.ShapeUpdater
+finalHPGame.States

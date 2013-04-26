@@ -14,7 +14,8 @@ public class Game extends StateBasedGame{
    public static final int inst=100;
    public static final int loser=200;
    public static final int winner=300;
-		   ;
+
+   /**Creates and adds the states to the list*/
    public Game(String gamename) throws SlickException{
       super(gamename);
       this.addState(new Menu(menu));
@@ -24,7 +25,7 @@ public class Game extends StateBasedGame{
       this.addState(new WinnerPage(winner));
       this.addState(new Play(play2));
    }
-   
+   /**Initializes each state and enters one of them*/
    public void initStatesList(GameContainer gc) throws SlickException{
 	      this.getState(menu).init(gc, this);
 	      this.getState(inst).init(gc, this);
@@ -35,6 +36,7 @@ public class Game extends StateBasedGame{
 	      this.enterState(play);
    }
    
+   /**Creates the display*/
    public static void main(String[] args) {
       AppGameContainer appgc;
       try{

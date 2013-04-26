@@ -4,6 +4,7 @@ package finalHPGame.States;
 
 
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -12,6 +13,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.imageout.ImageOut;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.EmptyTransition;
+import org.newdawn.slick.state.transition.FadeInTransition;
+
 import finalHPGame.CharList;
 
 
@@ -39,7 +43,7 @@ public class Play extends BasicGameState {
 		if(level==1)worldMap = new Image("res/chamberColor.jpg");
 		if(level==2)worldMap = new Image("res/Quiddich.jpg");
 
-		
+
 		list = new CharList(level);
 	}
 
@@ -48,7 +52,7 @@ public class Play extends BasicGameState {
 			throws SlickException {
 
 		worldMap.draw(0,0);
-		
+
 		list.drawEveryone();
 		list.getMainCharacter().getMagicBar().drawBar(g);
 		list.getMainCharacter().getHealthBar().draw(g);
@@ -61,16 +65,17 @@ public class Play extends BasicGameState {
 			throws SlickException {
 
 		if(list.getMainCharacter().getHealthBar().getHealthBarX()==0){
-            arg1.enterState(200);
-         }
-         else if(list.getCharacterList().size()==1){
-            arg1.enterState(300);
-         }
-		 
+			arg1.enterState(200, new EmptyTransition(), new FadeInTransition(new Color(200,0,0),1000));
+
+		}
+		else if(list.getCharacterList().size()==1){
+			arg1.enterState(300);
+		}
+
 
 		list.killEnemies(list.getMainCharacter().getPowerCircle(), list.getMainCharacter().isPowerOn());
 		timer+=delta;
-		if(timer>=500){
+		if(timer>=250){
 			list.moveEnemies(delta);
 			timer=0;
 		}
@@ -78,36 +83,37 @@ public class Play extends BasicGameState {
 
 		Input input = gc.getInput();
 
-		if(input.isKeyDown(Input.KEY_UP)){
+		if(input.isKeyDown(Input.KEY_UP)&&!list.getMainCharacter().isPowerOn()){
 			list.getMainCharacter().setPositionY(-delta*list.getMainCharacter().getSpeed());
-			
+
 		}
 
-		if(input.isKeyDown(Input.KEY_DOWN)){
+		if(input.isKeyDown(Input.KEY_DOWN)&&!list.getMainCharacter().isPowerOn()){
 			list.getMainCharacter().setPositionY(delta*list.getMainCharacter().getSpeed());
-			
+
 		}
 
-		if(input.isKeyDown(Input.KEY_LEFT)){
+		if(input.isKeyDown(Input.KEY_LEFT)&&!list.getMainCharacter().isPowerOn()){
 			list.getMainCharacter().setPositionX(-delta*list.getMainCharacter().getSpeed());
-		
+
 		}
 
-		if(input.isKeyDown(Input.KEY_RIGHT)){
+		if(input.isKeyDown(Input.KEY_RIGHT)&&!list.getMainCharacter().isPowerOn()){
 			list.getMainCharacter().setPositionX(delta*list.getMainCharacter().getSpeed());
-	
-		}
 
-		if(input.isKeyDown(Input.KEY_SPACE)){
+		}
+		
+		//Cannot be invisible and use the powerCircle
+		if(input.isKeyDown(Input.KEY_SPACE)&& !list.getMainCharacter().isPowerOn()){
 			list.getMainCharacter().setInvisibleTrue(delta);
 		}
-
-		if(input.isKeyDown(Input.KEY_F)){
+		//Cannot be invisible and use the powerCircle
+		if(input.isKeyDown(Input.KEY_F)&&!list.getMainCharacter().isInvisible()){
 			list.getMainCharacter().powerCircleOn(delta);
 		}
 
 		if(!input.isKeyDown(Input.KEY_F)){
-		list.getMainCharacter().powerCircleOff(delta);
+			list.getMainCharacter().powerCircleOff(delta);
 		}
 
 		if(!input.isKeyDown(Input.KEY_SPACE)){

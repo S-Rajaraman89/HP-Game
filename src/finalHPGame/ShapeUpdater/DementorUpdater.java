@@ -4,7 +4,8 @@ import org.newdawn.slick.geom.Rectangle;
 import finalHPGame.Location.Location;
 
 public class DementorUpdater implements ShapeUpdater {
-
+	
+	/**Updates personal to match the Dementor*/
 	public void update(Rectangle s, int direction, Location loc) {
 
 		if(direction==12||direction==9){

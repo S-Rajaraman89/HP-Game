@@ -12,9 +12,7 @@ import finalHPGame.Bar.MagicBar;
 
 public class Magician extends Character {
 
-	/* To Create Rectangle for Harry Potter:
-   new Rectangle(hp.getPositionX()+40,hp.getPositionY()+20,20,55);	
-	 */
+
 
 	private boolean isInvisible;
 
@@ -25,6 +23,7 @@ public class Magician extends Character {
 	private boolean isPowerOn;
 	private Circle power;
 	private int powerRadius;
+	private int timer;
 
 	// get the x, y, name, and the current level
 	public Magician(float mypositionX, float mypositionY, String myname, int level)
@@ -32,9 +31,10 @@ public class Magician extends Character {
 		super(mypositionX, mypositionY, myname, level);
 		bar = new MagicBar();
 		hp = new HealthBar();
-		powerRadius = 1;
+		powerRadius = 40;
 		isPowerOn = false;
 		power = new Circle(getPositionX()+60,getPositionY()+40,powerRadius);
+		timer = 0;
 
 	}
 
@@ -129,8 +129,10 @@ public class Magician extends Character {
 		//if isPowerOn is true
 		if(isPowerOn){
 			//restricts the size of the circle
-			if(powerRadius<=60){
-				powerRadius+=delta;
+			timer+=delta;
+			if(powerRadius>=1 && timer>=500){
+				powerRadius-=10;
+				timer = 0;
 			}
 			power.setCenterX(getPositionX()+50);
 			power.setCenterY(getPositionY()+40);
@@ -140,7 +142,8 @@ public class Magician extends Character {
 		else{
 			//if isPowerOn is false, then the circle moves to (0,0)
 			//with size 1
-			powerRadius = 1;
+			powerRadius = 40;
+			timer = 0;
 			power.setCenterX(0);
 			power.setCenterY(0);
 			power.setRadius(powerRadius);

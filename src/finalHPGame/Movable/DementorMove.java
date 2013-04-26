@@ -5,24 +5,25 @@ import finalHPGame.Characters.Magician;
 
 public class DementorMove implements Movable {
 
-
+	/**The Dementor moves directly (no bounds) towards the target.*/
 	public void moveCharacter(Magician target, Enemy self) {
 		float targetX = target.getPositionX();
 		float targetY = target.getPositionY();
 
-		if(targetX>self.getPositionX()){
-			self.setPositionX(10);
+		//TODO change it so that the Dementor just moves one way
+		if(targetX+10>self.getPositionX()){
+			self.getAnimationHolder().setAnimation(self.getLocation().addX(5));
 		}
 		else{
-			self.setPositionX(-10);
+			self.getAnimationHolder().setAnimation(self.getLocation().addX(-5));
 		}
 
 
 		if(targetY>self.getPositionY()){
-			self.setPositionY(10);
+			self.getAnimationHolder().setAnimation(self.getLocation().addY(5));
 		}
 		else{
-			self.setPositionY(-10);
+			self.getAnimationHolder().setAnimation(self.getLocation().addY(-5));
 		}
 		self.updatePersonal();
 	}
