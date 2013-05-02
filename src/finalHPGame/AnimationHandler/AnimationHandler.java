@@ -10,7 +10,7 @@ import finalHPGame.Location.Location;
 
 /**Contains the animations for displayed objects*/
 public class AnimationHandler {
-	
+
 	/**The direction the character is facing. 12-up, 6-down*/
 	private int direction;
 	/**Contains the specific integers with has specific animations*/
@@ -60,26 +60,48 @@ public class AnimationHandler {
 			mainChar = movingDown;
 
 		}
+		else if (name.toLowerCase().equals("hring")){
+			Image[] down= {new Image("res/DauntRing.png"), 
+					new Image("res/DauntRing.png"),
+					new Image("res/DauntRing.png")};
+
+			movingDown=new Animation(down, duration, false);
+			movingLeft=movingDown;
+			movingRight=movingDown;
+			movingUp= movingDown;
+			mainChar=movingDown;
+		}
+		else if(name.equalsIgnoreCase("hjournal")){
+			Image[] down= {new Image("res/Diary.png"), 
+					new Image("res/Diary.png"),
+					new Image("res/Diary.png")};
+
+			movingDown=new Animation(down, duration, false);
+			movingLeft=movingDown;
+			movingRight=movingDown;
+			movingUp= movingDown;
+			mainChar=movingDown;
+		}
 
 		else if (name.toLowerCase().equals("spider") || name.toLowerCase().equals("spiders")){
 		}
 
 		else if (name.toLowerCase().equals("dementor") || name.toLowerCase().equals("dementors")||name.equalsIgnoreCase("d")){
-			Image[] left = {new Image("res/dementor/dem_left.png"), 
-					new Image("res/dementor/dem_left.png"), 
-					new Image("res/dementor/dem_left.png")};
+			Image[] left = {new Image("res/dem_left.png"), 
+					new Image("res/dem_left.png"), 
+					new Image("res/dem_left.png")};
 
-			Image[] right = {new Image("res/dementor/dem_right.png"), 
-					new Image("res/dementor/dem_right.png"), 
-					new Image("res/dementor/dem_right.png")};
+			Image[] right = {new Image("res/dem_right.png"), 
+					new Image("res/dem_right.png"), 
+					new Image("res/dem_right.png")};
 
-			Image[] up = {new Image("res/dementor/dem_up.png"),
-					new Image("res/dementor/dem_up.png"),
-					new Image("res/dementor/dem_up.png")};
-			
-			Image[] down = {new Image("res/dementor/dem_down.png"),
-					new Image("res/dementor/dem_down.png"), 
-					new Image("res/dementor/dem_down.png")};
+			Image[] up = {new Image("res/dem_up.png"),
+					new Image("res/dem_up.png"),
+					new Image("res/dem_up.png")};
+
+			Image[] down = {new Image("res/dem_down.png"),
+					new Image("res/dem_down.png"), 
+					new Image("res/dem_down.png")};
 
 			movingLeft = new Animation(left,duration,false);
 			movingRight = new Animation(right,duration,false);
@@ -122,7 +144,7 @@ public class AnimationHandler {
 	public void draw(Location loc){
 		mainChar.draw(loc.getX(),loc.getY(), 100, 100);
 	}
-	
+
 	/**Draws the mainChar with given Location, default height and width
 	 * are 1*/
 	public void drawSmall(Location loc){

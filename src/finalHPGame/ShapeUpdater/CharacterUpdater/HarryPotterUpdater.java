@@ -1,8 +1,9 @@
-package finalHPGame.ShapeUpdater;
+package finalHPGame.ShapeUpdater.CharacterUpdater;
 
 import org.newdawn.slick.geom.Rectangle;
 
 import finalHPGame.Location.Location;
+import finalHPGame.ShapeUpdater.ShapeUpdater;
 
 public class HarryPotterUpdater implements ShapeUpdater {
 

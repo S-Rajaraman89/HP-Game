@@ -4,9 +4,14 @@ package finalHPGame.Characters;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.*;
+
 import finalHPGame.AnimationHandler.AnimationHandler;
 import finalHPGame.Location.Location;
 import finalHPGame.ShapeUpdater.*;
+import finalHPGame.ShapeUpdater.CharacterUpdater.DementorUpdater;
+import finalHPGame.ShapeUpdater.CharacterUpdater.HarryPotterUpdater;
+import finalHPGame.ShapeUpdater.CharacterUpdater.SnakeUpdater;
+import finalHPGame.ShapeUpdater.HorcruxUpdater.JournalUpdater;
 
 
 /**The most basic version of a object that has Locations and Animations*/
@@ -43,17 +48,21 @@ public class Character {
 			updater = new SnakeUpdater();
 		}
 
-		else if (name.toLowerCase().equals("spider") || name.toLowerCase().equals("spiders")){
-		}
+		else if (name.toLowerCase().equals("spider") || name.toLowerCase().equals("spiders")){}
 
 		else if (name.toLowerCase().equals("d") || name.toLowerCase().equals("dementor")){
 			personal = new Rectangle(loc.getX()+30,loc.getY()+5,41,85);
 			updater = new DementorUpdater();
 		}
 
-		else if(name.toLowerCase().equals("ron")){
-
+		else if(name.toLowerCase().equals("ron")){}
+		
+		else if(name.equalsIgnoreCase("hjournal")){
+			updater = new JournalUpdater();
+			personal =  new Rectangle(loc.getX(),loc.getY(),20,55);
 		}
+		//TODO: Find the rectangle that surrounds this
+		else if(name.equalsIgnoreCase("hring")){}
 
 	}
 

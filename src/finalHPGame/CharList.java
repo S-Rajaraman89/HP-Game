@@ -1,6 +1,8 @@
 package finalHPGame;
 
 import java.util.ArrayList;
+
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Shape;
 import finalHPGame.Characters.Character;
@@ -11,13 +13,13 @@ import finalHPGame.Characters.Magician;
 public class CharList {
 	/**Contains the Characters*/
 	ArrayList<Character> characters;
+	ArrayList<Character> horcruxes;
 
 	/**The Character in the list is based on the level*/
 	public CharList(int level) throws SlickException{
 
 		characters = new ArrayList<Character>();
-
-
+		horcruxes = new ArrayList<Character>();
 
 		//add the characters we would have in level one.
 		if(level==1){
@@ -29,6 +31,9 @@ public class CharList {
 			characters.add(new Magician(400,300,"hp",level));
 			characters.add(new Enemy(300,400,"d",level));
 
+			//characters.add(new Character(200,300,"hjournal",1));
+			horcruxes.add(new Enemy(200,350,"hjournal",1));
+			
 			for(int x = 1; x<10; x++){
 				// to make sure the objects don't 
 				//have the same x and y coordinates to begin with.
@@ -47,6 +52,31 @@ public class CharList {
 		for(Character c: characters){
 			c.draw();
 		}
+		for(Character c: horcruxes){
+			c.draw();
+		}
+	}
+	
+	/**Moves the Horcruxes*/
+	public void moveHorcruxes(){
+		for(Character c: horcruxes){
+			if(c instanceof Enemy){
+				((Enemy) c).moveToward(getMainCharacter());
+			}
+		}
+	}
+	/**Returns the Horcruxes List*/
+	public ArrayList<Character> getHorcruxes(){
+		return horcruxes;
+	}
+	
+	/**If the mainCharacter intersects the horcrux, then remove it*/
+	public void removeHorcruxes(){
+		for(int x=0; x<horcruxes.size();x++){
+			if(horcruxes.get(x).getPersonalSpace().intersects(this.getMainCharacter().getPersonalSpace())){
+			horcruxes.remove(x);
+			}
+		}
 	}
 
 	/**Prints every character in the list*/
@@ -60,7 +90,7 @@ public class CharList {
 	public ArrayList<Character> getCharacterList(){
 		return characters;
 	}
-
+	
 	/**gets the main character in the list*/
 	public Magician getMainCharacter(){
 		return (Magician) characters.get(0);
@@ -97,6 +127,16 @@ public class CharList {
 					getMainCharacter().decreaseHealth(delta);
 				}
 			}
+		}
+	}
+	
+	/**Draws the personalShape on each Character*/
+	public void drawShapes(Graphics g){
+		for(Character c: characters){
+			c.drawPersonal(g);
+		}
+		for(Character c: horcruxes){
+			c.drawPersonal(g);
 		}
 	}
 }

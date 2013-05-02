@@ -60,7 +60,6 @@ public class Location {
 		if(deltax<0){
 			direction=9;
 		}
-
 		if(bounds.inBounds(x+deltax, y)){
 			x+=deltax;
 		}

@@ -34,6 +34,7 @@ public class WinnerPage extends BasicGameState{
 			ConfigurableEmitter emitter = ParticleIO.loadEmitter(xmlFile);
 			emitter.setPosition(130, 430);
 			system.addEmitter(emitter);
+			
 			emitter = ParticleIO.loadEmitter(xmlFile);
 			emitter.setPosition(965, 430);
 			system.addEmitter(emitter);

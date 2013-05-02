@@ -6,4 +6,6 @@ finalHPGame.Characters
 finalHPGame.Location
 finalHPGame.Movable
 finalHPGame.ShapeUpdater
+finalHPGame.ShapeUpdater.CharacterUpdater
+finalHPGame.ShapeUpdater.HorcruxUpdater
 finalHPGame.States

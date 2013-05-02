@@ -31,19 +31,15 @@ public class Play extends BasicGameState {
 
 
 	Image worldMap;
-
-	//Enemy a;
-
 	int timer = 0;
 	CharList list;
+	int htimer = 0;
 
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
 
 		if(level==1)worldMap = new Image("res/chamberColor.jpg");
 		if(level==2)worldMap = new Image("res/Quiddich.jpg");
-
-
 		list = new CharList(level);
 	}
 
@@ -52,11 +48,12 @@ public class Play extends BasicGameState {
 			throws SlickException {
 
 		worldMap.draw(0,0);
-
 		list.drawEveryone();
 		list.getMainCharacter().getMagicBar().drawBar(g);
 		list.getMainCharacter().getHealthBar().draw(g);
 		list.getMainCharacter().drawPowerCircle(g);
+		
+		//list.drawShapes(g);
 
 	}
 
@@ -66,18 +63,25 @@ public class Play extends BasicGameState {
 
 		if(list.getMainCharacter().getHealthBar().getHealthBarX()==0){
 			arg1.enterState(200, new EmptyTransition(), new FadeInTransition(new Color(200,0,0),1000));
-
 		}
-		else if(list.getCharacterList().size()==1){
+		else if(list.getCharacterList().size()==1 && list.getHorcruxes().size()==0){
 			arg1.enterState(300);
 		}
 
 
 		list.killEnemies(list.getMainCharacter().getPowerCircle(), list.getMainCharacter().isPowerOn());
+		list.removeHorcruxes();
+		
 		timer+=delta;
 		if(timer>=250){
 			list.moveEnemies(delta);
 			timer=0;
+		}
+	
+		htimer+=delta;
+		if(htimer>=1500){
+			list.moveHorcruxes();
+			htimer=0;
 		}
 
 

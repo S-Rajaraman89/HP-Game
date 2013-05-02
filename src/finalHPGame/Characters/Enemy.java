@@ -2,6 +2,7 @@ package finalHPGame.Characters;
 
 import org.newdawn.slick.SlickException;
 import finalHPGame.Movable.DementorMove;
+import finalHPGame.Movable.HorcruxMove;
 import finalHPGame.Movable.Movable;
 import finalHPGame.Movable.SnakeMove;
 
@@ -18,6 +19,10 @@ public class Enemy extends Character {
 		else if(n.equalsIgnoreCase("d")){
 			move = new DementorMove();
 		}
+		else if(n.charAt(0)=='h'){
+			move = new HorcruxMove();
+		}
+		
 	}
 
 	//moves the enemy object towards
