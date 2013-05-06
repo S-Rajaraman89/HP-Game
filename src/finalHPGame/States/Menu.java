@@ -49,13 +49,13 @@ public class Menu extends BasicGameState{
 		int posX = Mouse.getX();
 		int posY = Mouse.getY();
 		//play now button
-		if((posX>80 && posX<276)&&(posY>660 && posY<695)){
+		if((posX > gc.getWidth()-975 && posX<gc.getWidth()-775)&&(posY>gc.getHeight()-141 && posY<gc.getHeight()-101)){
 			if(Mouse.isButtonDown(0)){
 				sbg.enterState(100);
 			}
 		}
 		//exit game
-		if((posX>80 && posX<276)&&(posY>558 && posY<595)){
+		if((posX>gc.getWidth()-975 && posX<gc.getWidth()-775)&&(posY>gc.getHeight()-241 && posY<gc.getHeight()-201)){
 			if(Mouse.isButtonDown(0)){
 				System.exit(0);
 			}

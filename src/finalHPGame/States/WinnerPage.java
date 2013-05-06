@@ -66,14 +66,14 @@ public void update(GameContainer gc, StateBasedGame sbg, int delta) throws Slick
       
       //play now button
        
-    if((posX>750 && posX<950)&&(posY>115 && posY<155)){
+    if((posX> gc.getWidth()-300 && posX< gc.getWidth()-100)&&(posY>gc.getHeight()-641 && posY< gc.getHeight()-601)){
        if(Mouse.isButtonDown(0)){
         	System.out.println("clicked");
         	sbg.getState(2).init(gc, sbg);
         	sbg.enterState(2);
          }
     }
-       else if((posX>100 && posX<302)&&(posY>115 && posY<155)){
+       else if((posX>gc.getWidth()-950 && posX< gc.getWidth()-750)&&(posY>gc.getHeight()-641 && posY<gc.getHeight()-601)){
            if(Mouse.isButtonDown(0)){
             	System.out.println("clicked");
             	sbg.getState(0).init(gc, sbg);

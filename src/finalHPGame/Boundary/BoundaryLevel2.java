@@ -6,8 +6,8 @@ public class BoundaryLevel2 implements Boundary {
 	 * @return returns if the location is in bounds*/
 	@Override
 	public boolean inBounds(float x, float y) {
-		// TODO Auto-generated method stub
-		return false;
+		// TODO: Add the boundaries for level 2
+		return true;
 	}
 
 }

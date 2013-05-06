@@ -112,26 +112,26 @@ public class AnimationHandler {
 
 		else if(name.toLowerCase().equals("ron")){
 
-			Image[] left = {new Image("res/RonDefault.png"), 
-					new Image("res/RonDefault.png"), 
-					new Image("res/RonDefault.png")};
+			Image[] left = {new Image("res/ron_left.png"), 
+					new Image("res/ron_left.png"), 
+					new Image("res/ron_left.png")};
 
-			Image[] right = {new Image("res/RonDefault.png"), 
-					new Image("res/RonDefault.png"), 
-					new Image("res/RonDefault.png")};
+			Image[] right = {new Image("res/ron_right.png"), 
+					new Image("res/ron_right.png"), 
+					new Image("res/ron_right.png")};
 
-			Image[] up = {new Image("res/RonDefault.png"),
+			Image[] down = {new Image("res/RonDefault.png"),
 					new Image("res/RonDefault.png"),
 					new Image("res/RonDefault.png")};
-			Image[] down = {new Image("res/RonDefault.png"),
-					new Image("res/RonDefault.png"), 
-					new Image("res/RonDefault.png")};
+			
+			Image[] up = {new Image("res/ron_back.png"),
+					new Image("res/ron_back.png"), 
+					new Image("res/ron_back.png")};
+			
 			movingLeft = new Animation(left,duration,false);
 			movingRight = new Animation(right,duration,false);
 			movingDown=new Animation(down,duration,false);
 			movingUp = new Animation(up,duration,false);
-			mainChar = new Animation(down,duration,false);
-
 		}
 		animationHolder.put(12, movingUp);
 		animationHolder.put(3, movingRight);
@@ -139,6 +139,7 @@ public class AnimationHandler {
 		animationHolder.put(9, movingLeft);
 		mainChar = movingDown;
 	}
+	
 	/**Draws the mainChar with given Location, default height and width
 	 * are 100*/
 	public void draw(Location loc){
@@ -158,5 +159,9 @@ public class AnimationHandler {
 	/**@return The current direction of the animation*/
 	public int getDirection(){
 		return direction;
+	}
+	/**Returns the current animation*/
+	public Animation getMainChar(){
+		return mainChar;
 	}
 }

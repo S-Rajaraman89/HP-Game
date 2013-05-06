@@ -10,6 +10,7 @@ import finalHPGame.Location.Location;
 import finalHPGame.ShapeUpdater.*;
 import finalHPGame.ShapeUpdater.CharacterUpdater.DementorUpdater;
 import finalHPGame.ShapeUpdater.CharacterUpdater.HarryPotterUpdater;
+import finalHPGame.ShapeUpdater.CharacterUpdater.RonUpdater;
 import finalHPGame.ShapeUpdater.CharacterUpdater.SnakeUpdater;
 import finalHPGame.ShapeUpdater.HorcruxUpdater.JournalUpdater;
 
@@ -56,7 +57,10 @@ public class Character {
 			updater = new DementorUpdater();
 		}
 
-		else if(name.toLowerCase().equals("ron")){}
+		else if(name.toLowerCase().equals("ron")){
+			personal= new Rectangle(getPositionX()+40,getPositionY()+20,20,55);
+			updater = new RonUpdater();	
+		}
 		
 		else if(name.equalsIgnoreCase("hjournal")){
 			updater = new JournalUpdater();
@@ -82,6 +86,7 @@ public class Character {
 	 * personal shape
 	 * @param deltaX - the change in X*/
 	public void setPositionX(float deltaX) {
+		//System.out.println("The deltaX is "+ deltaX);
 		anim.setAnimation(loc.setX(deltaX));
 		updatePersonal();
 	}

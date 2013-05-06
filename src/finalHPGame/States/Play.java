@@ -32,8 +32,11 @@ public class Play extends BasicGameState {
 
 	Image worldMap;
 	int timer = 0;
+	
 	CharList list;
+	
 	int htimer = 0;
+
 
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
@@ -55,7 +58,7 @@ public class Play extends BasicGameState {
 		list.getMainCharacter().getHealthBar().draw(g);
 		list.getMainCharacter().drawPowerCircle(g);
 		
-		//list.drawShapes(g);
+		list.drawShapes(g);
 
 	}
 
@@ -78,7 +81,7 @@ public class Play extends BasicGameState {
 		
 		timer+=delta;
 		if(timer>=10){
-			list.moveEnemies(delta);
+			//list.moveEnemies(delta);
 			timer=0;
 		}
 	
@@ -93,21 +96,25 @@ public class Play extends BasicGameState {
 
 		if(input.isKeyDown(Input.KEY_UP)&&!list.getMainCharacter().isPowerOn()){
 			list.getMainCharacter().setPositionY(-delta*list.getMainCharacter().getSpeed());
+			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
 
 		}
 
 		if(input.isKeyDown(Input.KEY_DOWN)&&!list.getMainCharacter().isPowerOn()){
 			list.getMainCharacter().setPositionY(delta*list.getMainCharacter().getSpeed());
+			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
 
 		}
 
 		if(input.isKeyDown(Input.KEY_LEFT)&&!list.getMainCharacter().isPowerOn()){
 			list.getMainCharacter().setPositionX(-delta*list.getMainCharacter().getSpeed());
+			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
 
 		}
 
 		if(input.isKeyDown(Input.KEY_RIGHT)&&!list.getMainCharacter().isPowerOn()){
 			list.getMainCharacter().setPositionX(delta*list.getMainCharacter().getSpeed());
+			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
 
 		}
 		
@@ -153,6 +160,12 @@ public class Play extends BasicGameState {
 			gc.getGraphics().copyArea(target, 0, 0);
 			ImageOut.write(target.getFlippedCopy(false, false), "screenshot.png", false);
 			target.destroy();
+		}
+		
+		if(!(input.isKeyDown(Input.KEY_DOWN)||input.isKeyDown(Input.KEY_LEFT)||
+				input.isKeyDown(Input.KEY_UP)||
+				input.isKeyDown(Input.KEY_RIGHT))){
+			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(false);
 		}
 
 	}
