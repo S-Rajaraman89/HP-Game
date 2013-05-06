@@ -22,20 +22,21 @@ public class WinnerPage extends BasicGameState{
    public WinnerPage(int winner){
    }
    
-   public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
+   @Override
+public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
       winningPic= new Image("res/winningPic.jpg");
 	  nextLevel = new Image("res/nextLevel.png");
 	  menuReturn= new Image("res/menuReturn.png");
   
 	  
 	  system = new ParticleSystem(new Image("data/particle.png",false),1500);
-	 try {
-			File xmlFile = new File("data/torch.xml");
-			ConfigurableEmitter emitter = ParticleIO.loadEmitter(xmlFile);
+	 try {	
+		 File xml = new File("data/torch.xml");
+			ConfigurableEmitter emitter = ParticleIO.loadEmitter(WinnerPage.class.getResourceAsStream("data/torch.xml"));
 			emitter.setPosition(130, 430);
 			system.addEmitter(emitter);
 			
-			emitter = ParticleIO.loadEmitter(xmlFile);
+			emitter = ParticleIO.loadEmitter(WinnerPage.class.getResourceAsStream("data/torch.xml"));
 			emitter.setPosition(965, 430);
 			system.addEmitter(emitter);
 		} catch (Exception e) {
@@ -47,7 +48,8 @@ public class WinnerPage extends BasicGameState{
       
    }
    
-   public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException{
+   @Override
+public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException{
       winningPic.draw(0,0,1050,800);
 	   g.drawString("Instructions:", 100, 50);
       nextLevel.draw(750,600);
@@ -58,7 +60,8 @@ public class WinnerPage extends BasicGameState{
       
    }
    
-   public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
+   @Override
+public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
 	   system.update(delta);
        posX = Mouse.getX();
        posY = Mouse.getY();
@@ -82,7 +85,8 @@ public class WinnerPage extends BasicGameState{
 
    }
    
-   public int getID(){
+   @Override
+public int getID(){
       return 300;
    }
 }

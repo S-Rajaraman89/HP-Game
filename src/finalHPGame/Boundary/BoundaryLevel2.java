@@ -4,6 +4,7 @@ public class BoundaryLevel2 implements Boundary {
 
 	/**Checks the bounds for level 2
 	 * @return returns if the location is in bounds*/
+	@Override
 	public boolean inBounds(float x, float y) {
 		// TODO Auto-generated method stub
 		return false;

@@ -6,6 +6,7 @@ import finalHPGame.Characters.Magician;
 public class DementorMove implements Movable {
 
 	/**The Dementor moves directly (no bounds) towards the target.*/
+	@Override
 	public void moveCharacter(Magician target, Enemy self) {
 		float targetX = target.getPositionX();
 		float targetY = target.getPositionY();

@@ -166,6 +166,7 @@ public class Magician extends Character {
 	/*Overrides the draw method
 	 * if magican is invisble, then his height and width is 1
 	 * else he is normally drawn */
+	@Override
 	public void draw(){
 		if(!isInvisible){
 			super.draw();

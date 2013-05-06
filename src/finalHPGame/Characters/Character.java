@@ -25,6 +25,7 @@ public class Character {
 	private String name;
 	/**The Rectangle that surrounds animations*/
 	private Rectangle personal;
+	
 	/**Updates the personal*/
 	ShapeUpdater updater;
 
@@ -138,6 +139,7 @@ public class Character {
 	}
 
 	/**Prints the Name, X-coordinate and Y-coordinate*/
+	@Override
 	public String toString(){
 		return "Name: "+name
 				+"/nX: "+loc.getX()

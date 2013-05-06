@@ -7,6 +7,7 @@ import finalHPGame.ShapeUpdater.ShapeUpdater;
 public class DementorUpdater implements ShapeUpdater {
 	
 	/**Updates personal to match the Dementor*/
+	@Override
 	public void update(Rectangle s, int direction, Location loc) {
 
 		if(direction==12||direction==9){

@@ -26,7 +26,8 @@ public class Game extends StateBasedGame{
       this.addState(new Play(play2));
    }
    /**Initializes each state and enters one of them*/
-   public void initStatesList(GameContainer gc) throws SlickException{
+   @Override
+public void initStatesList(GameContainer gc) throws SlickException{
 	      this.getState(menu).init(gc, this);
 	      this.getState(inst).init(gc, this);
 	      this.getState(play).init(gc, this);

@@ -6,6 +6,7 @@ import finalHPGame.Characters.Magician;
 public class SnakeMove implements Movable {
 
 	/**Decides and calls which directions to move the Character*/
+	@Override
 	public void moveCharacter(Magician target, Enemy self) {
 		if(target.isInvisible()){
 

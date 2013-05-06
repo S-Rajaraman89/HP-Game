@@ -9,6 +9,7 @@ public class HorcruxMove implements Movable {
 	public HorcruxMove() {}
 
 	/**Changes the location until it gets a location that is valid*/
+	@Override
 	public void moveCharacter(Magician target, Enemy self) {
 		
 		float intX = 0;

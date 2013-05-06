@@ -35,6 +35,7 @@ public class Play extends BasicGameState {
 	CharList list;
 	int htimer = 0;
 
+	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
 
@@ -44,6 +45,7 @@ public class Play extends BasicGameState {
 	}
 
 
+	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
 
@@ -58,6 +60,7 @@ public class Play extends BasicGameState {
 	}
 
 
+	@Override
 	public void update(GameContainer gc, StateBasedGame arg1, int delta)
 			throws SlickException {
 
@@ -159,6 +162,7 @@ public class Play extends BasicGameState {
 	}
 
 	//returns level which is the ID of this GameState
+	@Override
 	public int getID() {
 		return level;
 	}

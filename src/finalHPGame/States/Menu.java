@@ -23,6 +23,7 @@ public class Menu extends BasicGameState{
 	}
 
 
+	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
 		hogwarts3= new Image("res/hogwarts.jpg");
 		playNow = new Image("res/playNow.png");
@@ -32,6 +33,7 @@ public class Menu extends BasicGameState{
 	}
 
 
+	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException{
 		hogwarts3.draw(0,0,1050,800);
 		g.drawString("Harry Potter!", 100, 50);
@@ -41,6 +43,7 @@ public class Menu extends BasicGameState{
 	}
 
 
+	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
 
 		int posX = Mouse.getX();
@@ -60,6 +63,7 @@ public class Menu extends BasicGameState{
 	}
 
 
+	@Override
 	public int getID(){
 		return 0;
 	}

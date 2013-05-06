@@ -11,6 +11,7 @@ public class JournalUpdater implements ShapeUpdater {
 	}
 
 	/***/
+	@Override
 	public void update(Rectangle s, int direction, Location loc) {
 	 s.setBounds(new Rectangle(loc.getX()+25,loc.getY()+10,35,60));
 	}

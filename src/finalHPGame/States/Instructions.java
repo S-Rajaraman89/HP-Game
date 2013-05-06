@@ -16,6 +16,7 @@ public class Instructions extends BasicGameState{
 	public Instructions(int state){
 	}
 
+	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
 		bathroom= new Image("res/bathroom.jpg");
 		ready = new Image("res/playNow.png");
@@ -23,6 +24,7 @@ public class Instructions extends BasicGameState{
 
 	}
 
+	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException{
 		bathroom.draw(0,0,1050,800);
 		g.drawString("Instructions:", 100, 50);
@@ -32,6 +34,7 @@ public class Instructions extends BasicGameState{
 
 	}
 
+	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
 		posX = Mouse.getX();
 		posY = Mouse.getY();
@@ -46,6 +49,7 @@ public class Instructions extends BasicGameState{
 		}
 	}
 
+	@Override
 	public int getID(){
 		return 100;
 	}

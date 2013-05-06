@@ -8,6 +8,7 @@ import finalHPGame.ShapeUpdater.ShapeUpdater;
 public class HarryPotterUpdater implements ShapeUpdater {
 
 	/**Updates personal to match the Harry Potter*/
+	@Override
 	public void update(Rectangle s, int direction, Location loc) {
 		//Checks the direction harry is in
 		if(direction==3||direction==6){
