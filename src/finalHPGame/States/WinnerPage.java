@@ -1,6 +1,5 @@
 package finalHPGame.States;
 
-import java.io.File;
 
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.*;
@@ -31,7 +30,6 @@ public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
 	  
 	  system = new ParticleSystem(new Image("data/particle.png",false),1500);
 	 try {	
-		 File xml = new File("data/torch.xml");
 			ConfigurableEmitter emitter = ParticleIO.loadEmitter(WinnerPage.class.getResourceAsStream("data/torch.xml"));
 			emitter.setPosition(130, 430);
 			system.addEmitter(emitter);

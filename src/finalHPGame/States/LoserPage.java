@@ -43,6 +43,7 @@ public class LoserPage extends BasicGameState{
 		if((posX>750 && posX<950)&&(posY>115 && posY<155)){
 			if(Mouse.isButtonDown(0)){
 				System.out.println("clicked");
+				
 				if(Play.getPlayLevel()==1){
 					sbg.getState(1).init(gc, sbg);
 					sbg.enterState(1);

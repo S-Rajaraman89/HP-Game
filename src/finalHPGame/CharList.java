@@ -33,7 +33,7 @@ public class CharList {
 
 			//characters.add(new Character(200,300,"hjournal",1));
 			horcruxes.add(new Enemy(200,350,"hjournal",1));
-			
+
 			for(int x = 1; x<10; x++){
 				// to make sure the objects don't 
 				//have the same x and y coordinates to begin with.
@@ -44,6 +44,7 @@ public class CharList {
 		}
 		else if(level==2){
 			characters.add(new Magician(200,300,"ron",level));
+			characters.add(new Enemy(300,400,"d",level));
 		}
 	}
 
@@ -56,7 +57,7 @@ public class CharList {
 			c.draw();
 		}
 	}
-	
+
 	/**Moves the Horcruxes*/
 	public void moveHorcruxes(){
 		for(Character c: horcruxes){
@@ -69,12 +70,12 @@ public class CharList {
 	public ArrayList<Character> getHorcruxes(){
 		return horcruxes;
 	}
-	
+
 	/**If the mainCharacter intersects the horcrux, then remove it*/
 	public void removeHorcruxes(){
 		for(int x=0; x<horcruxes.size();x++){
 			if(horcruxes.get(x).getPersonalSpace().intersects(this.getMainCharacter().getPersonalSpace())){
-			horcruxes.remove(x);
+				horcruxes.remove(x);
 			}
 		}
 	}
@@ -90,7 +91,7 @@ public class CharList {
 	public ArrayList<Character> getCharacterList(){
 		return characters;
 	}
-	
+
 	/**gets the main character in the list*/
 	public Magician getMainCharacter(){
 		return (Magician) characters.get(0);
@@ -129,7 +130,7 @@ public class CharList {
 			}
 		}
 	}
-	
+
 	/**Draws the personalShape on each Character*/
 	public void drawShapes(Graphics g){
 		for(Character c: characters){

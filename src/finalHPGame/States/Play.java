@@ -23,10 +23,10 @@ public class Play extends BasicGameState {
 
 
 	int level;
-	static int playLevel;
+	static int playLevel=0;
 	public Play(int play1) throws SlickException {
 		level = play1;
-		playLevel = level;
+		playLevel++;
 	}
 
 
@@ -65,6 +65,7 @@ public class Play extends BasicGameState {
 			throws SlickException {
 
 		if(list.getMainCharacter().getHealthBar().getHealthBarX()==0){
+			playLevel--;
 			arg1.enterState(200, new EmptyTransition(), new FadeInTransition(new Color(200,0,0),1000));
 		}
 		else if(list.getCharacterList().size()==1 && list.getHorcruxes().size()==0){
@@ -76,7 +77,7 @@ public class Play extends BasicGameState {
 		list.removeHorcruxes();
 		
 		timer+=delta;
-		if(timer>=250){
+		if(timer>=10){
 			list.moveEnemies(delta);
 			timer=0;
 		}

@@ -11,20 +11,20 @@ public class DementorMove implements Movable {
 		float targetX = target.getPositionX();
 		float targetY = target.getPositionY();
 
-		//TODO change it so that the Dementor just moves one way
+		//TODO Dementor switches directions back and forth too quickly.
 		if(targetX+10>self.getPositionX()){
-			self.getAnimationHolder().setAnimation(self.getLocation().addX(5));
+			self.getAnimationHolder().setAnimation(self.getLocation().addX((float) .5));
 		}
 		else{
-			self.getAnimationHolder().setAnimation(self.getLocation().addX(-5));
+			self.getAnimationHolder().setAnimation(self.getLocation().addX((float) -.5));
 		}
 
 
 		if(targetY>self.getPositionY()){
-			self.getAnimationHolder().setAnimation(self.getLocation().addY(5));
+			self.getAnimationHolder().setAnimation(self.getLocation().addY((float) .5));
 		}
 		else{
-			self.getAnimationHolder().setAnimation(self.getLocation().addY(-5));
+			self.getAnimationHolder().setAnimation(self.getLocation().addY((float) -.5));
 		}
 		self.updatePersonal();
 	}
