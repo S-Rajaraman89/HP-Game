@@ -12,6 +12,7 @@ public class MagicBar {
 	private float spellBarX=65;
 	private float spellTime;
 	private float spellTimeRevive;
+	
 
 	public MagicBar(){
 		spellTime=0;
@@ -20,10 +21,15 @@ public class MagicBar {
 
 	/**Reloads the MagicBar based on time*/
 	public void reviveMagicBar(float delta){
+		if(spellBarX<65){
 		spellTimeRevive+=delta;
+		}
 		if(spellTimeRevive>=2500){
 			if(spellBarX<65){
 				spellBarX+=13;
+				if(spellBarX>=65){
+					spellBarX=65;
+				}
 				spellTimeRevive = 0;
 			}
 		}
@@ -32,8 +38,8 @@ public class MagicBar {
 	/**Decreases the MagicBar based on time*/
 	public void decreaseMagicBar(float delta){
 		spellTime+=delta;
-		if (spellTime >= 1000 && !isMagicEmpty) {
-			spellBarX-=13;
+		if (spellTime >= 125 && !isMagicEmpty) {
+			spellBarX-=(13/8);
 			spellTime=0;
 		}
 		if(spellBarX<=0){

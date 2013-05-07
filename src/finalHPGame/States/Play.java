@@ -1,9 +1,5 @@
 package finalHPGame.States;
 
-
-
-
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -15,8 +11,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.EmptyTransition;
 import org.newdawn.slick.state.transition.FadeInTransition;
-
 import finalHPGame.CharList;
+import finalHPGame.Map.*;
 
 
 public class Play extends BasicGameState {
@@ -24,49 +20,43 @@ public class Play extends BasicGameState {
 
 	int level;
 	static int playLevel=0;
+	 
 	public Play(int play1) throws SlickException {
 		level = play1;
 		playLevel++;
 	}
 
-
-	Image worldMap;
+	Map worldMap;
 	int timer = 0;
-	
 	CharList list;
-	
 	int htimer = 0;
 
 
-	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-
-		if(level==1)worldMap = new Image("res/chamberColor.jpg");
-		if(level==2)worldMap = new Image("res/Quiddich.jpg");
+		if(level==1)worldMap = new MapLevel1();
+		if(level==2)worldMap = new MapLevel2();
 		list = new CharList(level);
+		
 	}
 
 
-	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
-
-		worldMap.draw(0,0);
+		worldMap.drawMap();
 		list.drawEveryone();
 		list.getMainCharacter().getMagicBar().drawBar(g);
 		list.getMainCharacter().getHealthBar().draw(g);
 		list.getMainCharacter().drawPowerCircle(g);
-		
 		list.drawShapes(g);
-
+		g.drawString("Health "+list.getMainCharacter().getHealthBar().getHealthBarX(), 30, 220);
 	}
 
 
-	@Override
 	public void update(GameContainer gc, StateBasedGame arg1, int delta)
 			throws SlickException {
-
+		//System.out.println(list.getMainCharacter().getHealthBar().getHealthBarX());
+		
 		if(list.getMainCharacter().getHealthBar().getHealthBarX()==0){
 			playLevel--;
 			arg1.enterState(200, new EmptyTransition(), new FadeInTransition(new Color(200,0,0),1000));
@@ -81,7 +71,7 @@ public class Play extends BasicGameState {
 		
 		timer+=delta;
 		if(timer>=10){
-			//list.moveEnemies(delta);
+			list.moveEnemies(delta);
 			timer=0;
 		}
 	
@@ -90,32 +80,28 @@ public class Play extends BasicGameState {
 			list.moveHorcruxes();
 			htimer=0;
 		}
-
+		
 
 		Input input = gc.getInput();
 
 		if(input.isKeyDown(Input.KEY_UP)&&!list.getMainCharacter().isPowerOn()){
 			list.getMainCharacter().setPositionY(-delta*list.getMainCharacter().getSpeed());
 			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
-
 		}
 
 		if(input.isKeyDown(Input.KEY_DOWN)&&!list.getMainCharacter().isPowerOn()){
 			list.getMainCharacter().setPositionY(delta*list.getMainCharacter().getSpeed());
 			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
-
 		}
 
 		if(input.isKeyDown(Input.KEY_LEFT)&&!list.getMainCharacter().isPowerOn()){
 			list.getMainCharacter().setPositionX(-delta*list.getMainCharacter().getSpeed());
 			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
-
 		}
 
 		if(input.isKeyDown(Input.KEY_RIGHT)&&!list.getMainCharacter().isPowerOn()){
 			list.getMainCharacter().setPositionX(delta*list.getMainCharacter().getSpeed());
 			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
-
 		}
 		
 		//Cannot be invisible and use the powerCircle

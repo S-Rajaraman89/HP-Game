@@ -1,34 +1,34 @@
 package finalHPGame.Characters;
 
 import org.newdawn.slick.SlickException;
-import finalHPGame.Movable.DementorMove;
-import finalHPGame.Movable.HorcruxMove;
+
+import finalHPGame.Data.Data;
+import finalHPGame.HealthDecreaser.*;
 import finalHPGame.Movable.Movable;
-import finalHPGame.Movable.SnakeMove;
+
 
 
 public class Enemy extends Character {
 	
 	Movable move;
+	HealthDecreaser decreaser;
 	
-	public Enemy(float x, float y, String n, int level) throws SlickException{
-		super(x,y,n,level);
-		if(n.equalsIgnoreCase("snake")){
-			move = new SnakeMove();
-		}
-		else if(n.equalsIgnoreCase("d")){
-			move = new DementorMove();
-		}
-		else if(n.charAt(0)=='h'){
-			move = new HorcruxMove();
-		}
-		
+	public Enemy(Data data) throws SlickException{
+		super(data);
+			move = data.getMovable();
+			decreaser = data.getHealthDecreaser();	
 	}
 
-	//moves the enemy object towards
-	//the target which is the playable character
+	/**Moves the enemy object towards
+	  * the any Magician target
+	  */
+
 	public void moveToward(Magician target){
 		move.moveCharacter(target, this);
+	}
+	
+	public HealthDecreaser getHealthDecreaser(){
+		return decreaser;
 	}
 	
 	

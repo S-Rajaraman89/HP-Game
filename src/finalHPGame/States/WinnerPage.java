@@ -30,13 +30,14 @@ public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
 	  
 	  system = new ParticleSystem(new Image("data/particle.png",false),1500);
 	 try {	
-			ConfigurableEmitter emitter = ParticleIO.loadEmitter(WinnerPage.class.getResourceAsStream("data/torch.xml"));
+			ConfigurableEmitter emitter = ParticleIO.loadEmitter(WinnerPage.class.getResourceAsStream("resData/torch.xml"));
 			emitter.setPosition(130, 430);
 			system.addEmitter(emitter);
 			
-			emitter = ParticleIO.loadEmitter(WinnerPage.class.getResourceAsStream("data/torch.xml"));
+			emitter = ParticleIO.loadEmitter(WinnerPage.class.getResourceAsStream("resData/torch.xml"));
 			emitter.setPosition(965, 430);
 			system.addEmitter(emitter);
+			
 		} catch (Exception e) {
 			System.out.println("Exception: " +e.getMessage());
 			e.printStackTrace();

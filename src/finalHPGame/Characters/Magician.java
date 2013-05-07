@@ -7,6 +7,7 @@ import org.newdawn.slick.geom.Shape;
 
 import finalHPGame.Bar.HealthBar;
 import finalHPGame.Bar.MagicBar;
+import finalHPGame.Data.Data;
 
 
 
@@ -26,9 +27,10 @@ public class Magician extends Character {
 	private int timer;
 
 	// get the x, y, name, and the current level
-	public Magician(float mypositionX, float mypositionY, String myname, int level)
+	public Magician(Data data)
 			throws SlickException {
-		super(mypositionX, mypositionY, myname, level);
+		super(data);
+		
 		bar = new MagicBar();
 		hp = new HealthBar();
 		powerRadius = 40;

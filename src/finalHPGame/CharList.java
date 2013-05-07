@@ -8,6 +8,10 @@ import org.newdawn.slick.geom.Shape;
 import finalHPGame.Characters.Character;
 import finalHPGame.Characters.Enemy;
 import finalHPGame.Characters.Magician;
+import finalHPGame.Data.characters.DementorData;
+import finalHPGame.Data.characters.HarryPotterData;
+import finalHPGame.Data.characters.RonData;
+import finalHPGame.Data.characters.SnakeData;
 
 /**Contains the Characters in the game*/
 public class CharList {
@@ -28,23 +32,23 @@ public class CharList {
 			  in this level it is Harry*/
 
 			//characters.add(new Magician(200,300,"hp",level));
-			characters.add(new Magician(400,300,"hp",level));
-			characters.add(new Enemy(300,400,"d",level));
+			characters.add(new Magician(new HarryPotterData(400,300,level)));
+			characters.add(new Enemy(new DementorData(300,400,level)));
 
-			//characters.add(new Character(200,300,"hjournal",1));
-			horcruxes.add(new Enemy(200,350,"hjournal",1));
+			
+			//horcruxes.add(new Enemy(new JournalData(200,350,1)));
 
 			for(int x = 1; x<10; x++){
 				// to make sure the objects don't 
 				//have the same x and y coordinates to begin with.
 				float randx = (float)Math.random()*200;
 				float randy = (float)Math.random()*300;
-				characters.add(new Enemy(250+randx,300+randy,"snake",level));
+				characters.add(new Enemy(new SnakeData(250+randx,300+randy,level)));
 			}
 		}
 		else if(level==2){
-			characters.add(new Magician(200,300,"ron",level));
-			characters.add(new Enemy(300,400,"d",level));
+			characters.add(new Magician(new RonData(200,300,level)));
+			characters.add(new Enemy(new DementorData(300,400,level)));
 		}
 	}
 
@@ -107,8 +111,11 @@ public class CharList {
 				if(characters.get(x) instanceof Enemy){
 					//if the enemy intersects, then remove it.
 					if(spellBound.intersects(characters.get(x).getPersonalSpace())){
-						characters.remove(x);
-						--x;
+						if(characters.get(x).getName().equalsIgnoreCase("snake")){
+							characters.remove(x);
+							--x;
+						}
+						//TODO Move the dementor away from main Character
 					}
 				}
 			}
@@ -123,9 +130,13 @@ public class CharList {
 		for(Character c: characters){
 			if(c instanceof Enemy){
 				((Enemy) c).moveToward(this.getMainCharacter());
-
+				
+				float decreaser = (float) ((Enemy) c).getHealthDecreaser().getDecreaser();
+				
 				if( ((Enemy) c).getPersonalSpace().intersects(this.getMainCharacter().getPersonalSpace())){
-					getMainCharacter().decreaseHealth(delta);
+	
+						getMainCharacter().decreaseHealth(delta*decreaser);
+
 				}
 			}
 		}

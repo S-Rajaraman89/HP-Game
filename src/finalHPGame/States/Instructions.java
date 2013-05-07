@@ -53,7 +53,7 @@ package finalHPGame.States;
 	      //play now button
 	      if((posX> gc.getWidth()-300 && posX<gc.getWidth()-100)&&(posY> gc.getHeight()-641 && posY< gc.getHeight()-601)){
 	         if(Mouse.isButtonDown(0)){
-	        	 System.out.println("clicked");
+	        	 sbg.getState(1).init(gc, sbg);
 	            sbg.enterState(1);
 	         }
 	      }

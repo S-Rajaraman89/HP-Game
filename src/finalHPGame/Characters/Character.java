@@ -6,13 +6,9 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.geom.*;
 
 import finalHPGame.AnimationHandler.AnimationHandler;
+import finalHPGame.Data.Data;
 import finalHPGame.Location.Location;
 import finalHPGame.ShapeUpdater.*;
-import finalHPGame.ShapeUpdater.CharacterUpdater.DementorUpdater;
-import finalHPGame.ShapeUpdater.CharacterUpdater.HarryPotterUpdater;
-import finalHPGame.ShapeUpdater.CharacterUpdater.RonUpdater;
-import finalHPGame.ShapeUpdater.CharacterUpdater.SnakeUpdater;
-import finalHPGame.ShapeUpdater.HorcruxUpdater.JournalUpdater;
 
 
 /**The most basic version of a object that has Locations and Animations*/
@@ -30,49 +26,18 @@ public class Character {
 	/**Updates the personal*/
 	ShapeUpdater updater;
 
-	public Character(float mypositionX, float mypositionY,String myname, int currentlevel) 
+	public Character(Data data) 
 			throws SlickException{
-
-		anim = new AnimationHandler(myname);
-		loc = new Location(mypositionX, mypositionY, currentlevel);
-
-		name = myname.toLowerCase();
-
-		/*if the names equals to harry etc. then the animations variables will be set 
-		for him.*/
-		if(name.toLowerCase().equals("harry")||name.toLowerCase().equals("hp")){
-			personal= new Rectangle(getPositionX()+40,getPositionY()+20,20,55);
-			updater = new HarryPotterUpdater();
-		}
-
-		else if (name.toLowerCase().equals("snake") || name.toLowerCase().equals("snakes")){
-			personal= new Rectangle(getPositionX()+40,getPositionY()+8,16,73);
-			updater = new SnakeUpdater();
-		}
-
-		else if (name.toLowerCase().equals("spider") || name.toLowerCase().equals("spiders")){}
-
-		else if (name.toLowerCase().equals("d") || name.toLowerCase().equals("dementor")){
-			personal = new Rectangle(loc.getX()+30,loc.getY()+5,41,85);
-			updater = new DementorUpdater();
-		}
-
-		else if(name.toLowerCase().equals("ron")){
-			personal= new Rectangle(getPositionX()+40,getPositionY()+20,20,55);
-			updater = new RonUpdater();	
-		}
+		anim = new AnimationHandler(data);
+		loc = data.getLocation();
+		name = data.getName();
+		personal = data.getRectangle();
+		updater = data.getShapeUpdater();
 		
-		else if(name.equalsIgnoreCase("hjournal")){
-			updater = new JournalUpdater();
-			personal =  new Rectangle(loc.getX(),loc.getY(),20,55);
-		}
-		//TODO: Find the rectangle that surrounds this
-		else if(name.equalsIgnoreCase("hring")){}
-
 	}
 
 	/**Get the personal variable*/
-	public Shape getPersonalSpace(){
+	public Rectangle getPersonalSpace(){
 		return personal;
 	}
 

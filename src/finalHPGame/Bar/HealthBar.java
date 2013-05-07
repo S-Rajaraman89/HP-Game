@@ -18,10 +18,10 @@ public class HealthBar {
 	
 	/**Decreases the HealthBar based on time*/
 	public void decreaseHealthBar(float delta){
-		if((healthBarX-delta)>=0){
+		if((healthBarX)>=0){
 			healthBarX-=(delta*.010);
 		}
-		else if(healthBarX-delta<0){
+		else if(healthBarX<0){
 			healthBarX=0;
 		}
 	}

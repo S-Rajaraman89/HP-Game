@@ -12,7 +12,6 @@ public class RingUpdater implements ShapeUpdater {
 	}
 	
 	//TODO: find the rectangle that works for the ring
-	@Override
 	public void update(Rectangle s, int direction, Location loc) {
 		
 
