@@ -35,7 +35,8 @@ public class Play extends BasicGameState {
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
 		if(level==1)worldMap = new MapLevel1();
-		if(level==2)worldMap = new MapLevel2();
+		else if(level==2)worldMap = new MapLevel2();
+		else if(level==3)worldMap= new MapLevel3();
 		list = new CharList(level);
 		
 	}
@@ -69,17 +70,17 @@ public class Play extends BasicGameState {
 		list.killEnemies(list.getMainCharacter().getPowerCircle(), list.getMainCharacter().isPowerOn());
 		list.removeHorcruxes();
 		
-		timer+=delta;
+	/*	timer+=delta;
 		if(timer>=10){
 			list.moveEnemies(delta);
 			timer=0;
 		}
-	
-		htimer+=delta;
+	*/
+/*		htimer+=delta;
 		if(htimer>=1500){
 			list.moveHorcruxes();
 			htimer=0;
-		}
+		}*/
 		
 
 		Input input = gc.getInput();

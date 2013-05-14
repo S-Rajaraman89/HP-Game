@@ -10,7 +10,7 @@ public class Game extends StateBasedGame{
    public static final String gamename = "Harry Potter";
    public static final int menu = 0;
    public static final int play = 1;
-   public static final int play2=2;
+   public static final int play2 = 2;
    public static final int inst=100;
    public static final int loser=200;
    public static final int winner=300;

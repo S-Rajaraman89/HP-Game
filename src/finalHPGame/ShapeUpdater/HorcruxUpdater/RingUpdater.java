@@ -7,13 +7,10 @@ import finalHPGame.ShapeUpdater.ShapeUpdater;
 
 public class RingUpdater implements ShapeUpdater {
 
-	public RingUpdater() {
-
-	}
+	public RingUpdater() {}
 	
-	//TODO: find the rectangle that works for the ring
-	public void update(Rectangle s, int direction, Location loc) {
-		
+	public void update(Rectangle s, int direction, Location myLoc) {
+		s.setBounds(new Rectangle(myLoc.getX()+20,myLoc.getY()+40,23,25));
 
 	}
 

@@ -5,13 +5,10 @@ import java.util.ArrayList;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Shape;
+import finalHPGame.Characters.*;
 import finalHPGame.Characters.Character;
-import finalHPGame.Characters.Enemy;
-import finalHPGame.Characters.Magician;
-import finalHPGame.Data.characters.DementorData;
-import finalHPGame.Data.characters.HarryPotterData;
-import finalHPGame.Data.characters.RonData;
-import finalHPGame.Data.characters.SnakeData;
+import finalHPGame.Data.characters.*;
+import finalHPGame.Data.horcrux.*;
 
 /**Contains the Characters in the game*/
 public class CharList {
@@ -36,7 +33,7 @@ public class CharList {
 			characters.add(new Enemy(new DementorData(300,400,level)));
 
 			
-			//horcruxes.add(new Enemy(new JournalData(200,350,1)));
+			horcruxes.add(new Enemy(new CupData(200,200,1)));
 
 			for(int x = 1; x<10; x++){
 				// to make sure the objects don't 
@@ -129,8 +126,7 @@ public class CharList {
 	public void moveEnemies(int delta){
 		for(Character c: characters){
 			if(c instanceof Enemy){
-				((Enemy) c).moveToward(this.getMainCharacter());
-				
+				((Enemy) c).moveToward(this.getMainCharacter());	
 				float decreaser = (float) ((Enemy) c).getHealthDecreaser().getDecreaser();
 				
 				if( ((Enemy) c).getPersonalSpace().intersects(this.getMainCharacter().getPersonalSpace())){
