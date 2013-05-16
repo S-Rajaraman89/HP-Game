@@ -11,14 +11,11 @@ import finalHPGame.Movable.HorcruxMove;
 import finalHPGame.ShapeUpdater.HorcruxUpdater.DiademUpdater;
 
 public class DiademData extends Data {
-	//TODO: CHANGE THE ANIMATION FIRST, get rid of white spaces.
-	//TODO: Add ShapeUpdater
-	//TODO: Add Personal
 	public DiademData(float x, float y, int level) throws SlickException{
 		myLoc = new Location(x,y,level);
 		name = "diadem";
 		move = new HorcruxMove();
-		personal = new Rectangle(myLoc.getX()+25,myLoc.getY()+15,35,60);
+		personal = new Rectangle(myLoc.getX()+19,myLoc.getY()+39,63,45);
 		updater = new DiademUpdater();
 		init();
 	}

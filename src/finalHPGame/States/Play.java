@@ -20,7 +20,7 @@ public class Play extends BasicGameState {
 
 	int level;
 	static int playLevel=0;
-	 
+
 	public Play(int play1) throws SlickException {
 		level = play1;
 		playLevel++;
@@ -38,7 +38,7 @@ public class Play extends BasicGameState {
 		else if(level==2)worldMap = new MapLevel2();
 		else if(level==3)worldMap= new MapLevel3();
 		list = new CharList(level);
-		
+
 	}
 
 
@@ -57,7 +57,7 @@ public class Play extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame arg1, int delta)
 			throws SlickException {
 		//System.out.println(list.getMainCharacter().getHealthBar().getHealthBarX());
-		
+
 		if(list.getMainCharacter().getHealthBar().getHealthBarX()==0){
 			playLevel--;
 			arg1.enterState(200, new EmptyTransition(), new FadeInTransition(new Color(200,0,0),1000));
@@ -69,19 +69,19 @@ public class Play extends BasicGameState {
 
 		list.killEnemies(list.getMainCharacter().getPowerCircle(), list.getMainCharacter().isPowerOn());
 		list.removeHorcruxes();
-		
-	/*	timer+=delta;
+
+/*		timer+=delta;
 		if(timer>=10){
 			list.moveEnemies(delta);
 			timer=0;
 		}
-	*/
-/*		htimer+=delta;
+		
+		htimer+=delta;
 		if(htimer>=1500){
 			list.moveHorcruxes(delta);
 			htimer=0;
 		}*/
-		
+
 
 		Input input = gc.getInput();
 
@@ -104,7 +104,7 @@ public class Play extends BasicGameState {
 			list.getMainCharacter().setPositionX(delta*list.getMainCharacter().getSpeed());
 			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
 		}
-		
+
 		//Cannot be invisible and use the powerCircle
 		if(input.isKeyDown(Input.KEY_SPACE)&& !list.getMainCharacter().isPowerOn()){
 			list.getMainCharacter().setInvisibleTrue(delta);
@@ -148,7 +148,7 @@ public class Play extends BasicGameState {
 			ImageOut.write(target.getFlippedCopy(false, false), "screenshot.png", false);
 			target.destroy();
 		}
-		
+
 		if(!(input.isKeyDown(Input.KEY_DOWN)||input.isKeyDown(Input.KEY_LEFT)||
 				input.isKeyDown(Input.KEY_UP)||
 				input.isKeyDown(Input.KEY_RIGHT))){

@@ -32,7 +32,7 @@ public class CharList {
 			characters.add(new Enemy(new DementorData(300,400,level)));
 
 			
-			horcruxes.add(new Enemy(new DiademData(200,200,1)));
+			horcruxes.add(new Enemy(new CupData(200,200,1)));
 
 			for(int x = 1; x<10; x++){
 				// to make sure the objects don't 
@@ -111,7 +111,6 @@ public class CharList {
 							characters.remove(x);
 							--x;
 						}
-						//TODO Move the dementor away from main Character
 					}
 				}
 			}

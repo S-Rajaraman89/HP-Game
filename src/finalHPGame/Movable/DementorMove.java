@@ -15,11 +15,11 @@ public class DementorMove implements Movable {
 		float targetY = target.getPositionY();
 		Rectangle selfShape = (Rectangle) self.getPersonalSpace();
 		Rectangle targetShape = (Rectangle) target.getPersonalSpace();
-		
-		if(!selfShape.intersects(targetShape) 
+
+		if((!selfShape.intersects(targetShape) 
 				|| Math.abs(selfShape.getCenterX()-targetShape.getCenterX())>6
-				||Math.abs(selfShape.getCenterY()-targetShape.getCenterY())>6){
-			
+				||Math.abs(selfShape.getCenterY()-targetShape.getCenterY())>6) && !target.isPowerOn()){
+
 			if(Math.abs(targetY-self.getPositionY())<=2){
 			}
 			else if(targetX>self.getPositionX()){
@@ -40,9 +40,8 @@ public class DementorMove implements Movable {
 			}
 			self.updatePersonal();
 		}
+		//TODO: Move the dementor away from the the target when isPowerOn()
 	}
-
-
 }
 
 

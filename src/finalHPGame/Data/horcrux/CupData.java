@@ -11,14 +11,11 @@ import finalHPGame.Movable.HorcruxMove;
 import finalHPGame.ShapeUpdater.HorcruxUpdater.CupUpdater;
 
 public class CupData extends Data {
-	//TODO: FIX THE IMAGE. WHITE SPACES
-	//TODO: Add ShapeUpdater
-	//TODO: Add Personal
 	public CupData(float x, float y, int level) throws SlickException{
 		myLoc = new Location(x,y,level);
 		move = new HorcruxMove();
 		name ="cup";
-		personal = new Rectangle(myLoc.getX()+25,myLoc.getY()+15,35,60);
+		personal = new Rectangle(myLoc.getX()+33,myLoc.getY()+15,35,60);
 		updater = new CupUpdater();
 		init();
 	}

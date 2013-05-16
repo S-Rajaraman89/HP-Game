@@ -8,8 +8,7 @@ import finalHPGame.ShapeUpdater.ShapeUpdater;
 public class DiademUpdater implements ShapeUpdater {
 
 	public void update(Rectangle s, int direction, Location myLoc) {
-		// TODO Auto-generated method stub
-		s.setBounds(new Rectangle(myLoc.getX()+25,myLoc.getY()+15,35,60));
+		s.setBounds(new Rectangle(myLoc.getX()+19,myLoc.getY()+39,63,45));
 	}
 
 }

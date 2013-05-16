@@ -9,8 +9,7 @@ public class CupUpdater implements ShapeUpdater {
 
 
 	public void update(Rectangle s, int direction, Location myLoc) {
-		// TODO Auto-generated method stub
-		 s.setBounds(new Rectangle(myLoc.getX()+25,myLoc.getY()+15,35,60));
+		 s.setBounds(new Rectangle(myLoc.getX()+33,myLoc.getY()+15,35,60));
 	}
 
 }
