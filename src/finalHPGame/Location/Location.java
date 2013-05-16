@@ -3,6 +3,7 @@ package finalHPGame.Location;
 import finalHPGame.Boundary.Boundary;
 import finalHPGame.Boundary.BoundaryLevel1;
 import finalHPGame.Boundary.BoundaryLevel2;
+import finalHPGame.Boundary.BoundaryLevel3;
 /**Holds the X,Y coordinate. Optional bounds checker*/
 public class Location {
 	private float x;
@@ -24,6 +25,9 @@ public class Location {
 		}
 		else if(level==2){
 			bounds = new BoundaryLevel2();
+		}
+		else if(level==3){
+			bounds = new BoundaryLevel3();
 		}
 	}
 	

@@ -1,7 +1,6 @@
 package finalHPGame;
 
 import java.util.ArrayList;
-
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Shape;
@@ -33,7 +32,7 @@ public class CharList {
 			characters.add(new Enemy(new DementorData(300,400,level)));
 
 			
-			horcruxes.add(new Enemy(new CupData(200,200,1)));
+			horcruxes.add(new Enemy(new DiademData(200,200,1)));
 
 			for(int x = 1; x<10; x++){
 				// to make sure the objects don't 
@@ -60,10 +59,10 @@ public class CharList {
 	}
 
 	/**Moves the Horcruxes*/
-	public void moveHorcruxes(){
+	public void moveHorcruxes(int delta){
 		for(Character c: horcruxes){
 			if(c instanceof Enemy){
-				((Enemy) c).moveToward(getMainCharacter());
+				((Enemy) c).moveToward(this,delta);
 			}
 		}
 	}
@@ -126,7 +125,7 @@ public class CharList {
 	public void moveEnemies(int delta){
 		for(Character c: characters){
 			if(c instanceof Enemy){
-				((Enemy) c).moveToward(this.getMainCharacter());	
+				((Enemy) c).moveToward(this, delta);	
 				float decreaser = (float) ((Enemy) c).getHealthDecreaser().getDecreaser();
 				
 				if( ((Enemy) c).getPersonalSpace().intersects(this.getMainCharacter().getPersonalSpace())){

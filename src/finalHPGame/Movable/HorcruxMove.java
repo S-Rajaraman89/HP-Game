@@ -1,7 +1,7 @@
 package finalHPGame.Movable;
 
+import finalHPGame.CharList;
 import finalHPGame.Characters.Enemy;
-import finalHPGame.Characters.Magician;
 
 /**Moves the Horcrux in random locations*/
 public class HorcruxMove implements Movable {
@@ -10,7 +10,7 @@ public class HorcruxMove implements Movable {
 
 	/**Changes the location until it gets a location that is valid*/
 	@Override
-	public void moveCharacter(Magician target, Enemy self) {
+	public void moveCharacter(CharList list, Enemy self, int delta) {
 		
 		float intX = 0;
 		float intY =0;

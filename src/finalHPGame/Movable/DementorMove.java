@@ -2,13 +2,15 @@ package finalHPGame.Movable;
 
 import org.newdawn.slick.geom.Rectangle;
 
+import finalHPGame.CharList;
 import finalHPGame.Characters.Enemy;
 import finalHPGame.Characters.Magician;
 
 public class DementorMove implements Movable {
 
 	/**The Dementor moves directly (no bounds) towards the target.*/
-	public void moveCharacter(Magician target, Enemy self) {
+	public void moveCharacter(CharList list, Enemy self, int delta) {
+		Magician target = list.getMainCharacter();
 		float targetX = target.getPositionX();
 		float targetY = target.getPositionY();
 		Rectangle selfShape = (Rectangle) self.getPersonalSpace();

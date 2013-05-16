@@ -78,7 +78,7 @@ public class Play extends BasicGameState {
 	*/
 /*		htimer+=delta;
 		if(htimer>=1500){
-			list.moveHorcruxes();
+			list.moveHorcruxes(delta);
 			htimer=0;
 		}*/
 		

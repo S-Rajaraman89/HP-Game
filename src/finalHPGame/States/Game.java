@@ -1,7 +1,5 @@
 package finalHPGame.States;
 
-
-
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 

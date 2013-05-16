@@ -1,13 +1,14 @@
 package finalHPGame.Movable;
 
+import finalHPGame.CharList;
 import finalHPGame.Characters.Enemy;
 import finalHPGame.Characters.Magician;
 
 public class SnakeMove implements Movable {
 
 	/**Decides and calls which directions to move the Character*/
-	@Override
-	public void moveCharacter(Magician target, Enemy self) {
+	public void moveCharacter(CharList list, Enemy self, int delta) {
+		Magician target = list.getMainCharacter();
 		if(target.isInvisible()){
 
 		}

@@ -2,6 +2,7 @@ package finalHPGame.Characters;
 
 import org.newdawn.slick.SlickException;
 
+import finalHPGame.CharList;
 import finalHPGame.Data.Data;
 import finalHPGame.HealthDecreaser.*;
 import finalHPGame.Movable.Movable;
@@ -23,8 +24,8 @@ public class Enemy extends Character {
 	  * the any Magician target
 	  */
 
-	public void moveToward(Magician target){
-		move.moveCharacter(target, this);
+	public void moveToward(CharList list, int delta){
+		move.moveCharacter(list, this,delta);
 	}
 	
 	public HealthDecreaser getHealthDecreaser(){
