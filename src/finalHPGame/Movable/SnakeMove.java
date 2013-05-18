@@ -16,7 +16,7 @@ public class SnakeMove implements Movable {
 		timer+=delta;
 		if(timer>=500){
 		Magician target = list.getMainCharacter();
-		if(target.isInvisible()){
+		if(target.getInvisiblePower().isPowerOn()){
 
 		}
 		else{

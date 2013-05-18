@@ -26,7 +26,7 @@ public class DementorMove implements Movable {
 
 			if((!selfShape.intersects(targetShape) 
 					|| Math.abs(selfShape.getCenterX()-targetShape.getCenterX())>6
-					||Math.abs(selfShape.getCenterY()-targetShape.getCenterY())>6) && !target.isPowerOn()){
+					||Math.abs(selfShape.getCenterY()-targetShape.getCenterY())>6) && !target.getCirclePower().isPowerOn()){
 
 				if(Math.abs(targetY-self.getPositionY())<=2){
 				}

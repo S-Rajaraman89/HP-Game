@@ -47,7 +47,7 @@ public class Play extends BasicGameState {
 		list.drawEveryone();
 		list.getMainCharacter().getMagicBar().drawBar(g);
 		list.getMainCharacter().getHealthBar().draw(g);
-		list.getMainCharacter().drawPowerCircle(g);
+		list.getMainCharacter().getCirclePower().drawPowerCircle(g);
 		list.drawShapes(g);
 		g.drawString("Health "+list.getMainCharacter().getHealthBar().getHealthBarX(), 30, 220);
 	}
@@ -66,49 +66,50 @@ public class Play extends BasicGameState {
 		}
 
 
-		list.killEnemies(list.getMainCharacter().getPowerCircle(), list.getMainCharacter().isPowerOn());
+		list.killEnemies(list.getMainCharacter().getCirclePower().getPowerCircle(), 
+				list.getMainCharacter().getCirclePower().isPowerOn());
 		list.removeHorcruxes();
-
 		list.moveEnemies(delta);
 		list.moveHorcruxes(delta);
 
 		Input input = gc.getInput();
 
-		if(input.isKeyDown(Input.KEY_UP)&&!list.getMainCharacter().isPowerOn()){
+		if(input.isKeyDown(Input.KEY_UP)&&!list.getMainCharacter().getCirclePower().isPowerOn()){
 			list.getMainCharacter().setPositionY(-delta*list.getMainCharacter().getSpeed());
 			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
 		}
 
-		if(input.isKeyDown(Input.KEY_DOWN)&&!list.getMainCharacter().isPowerOn()){
+		if(input.isKeyDown(Input.KEY_DOWN)&&!list.getMainCharacter().getCirclePower().isPowerOn()){
 			list.getMainCharacter().setPositionY(delta*list.getMainCharacter().getSpeed());
 			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
 		}
 
-		if(input.isKeyDown(Input.KEY_LEFT)&&!list.getMainCharacter().isPowerOn()){
+		if(input.isKeyDown(Input.KEY_LEFT)&&!list.getMainCharacter().getCirclePower().isPowerOn()){
 			list.getMainCharacter().setPositionX(-delta*list.getMainCharacter().getSpeed());
 			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
 		}
 
-		if(input.isKeyDown(Input.KEY_RIGHT)&&!list.getMainCharacter().isPowerOn()){
+		if(input.isKeyDown(Input.KEY_RIGHT)&&!list.getMainCharacter().getCirclePower().isPowerOn()){
 			list.getMainCharacter().setPositionX(delta*list.getMainCharacter().getSpeed());
 			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
 		}
 
 		//Cannot be invisible and use the powerCircle
-		if(input.isKeyDown(Input.KEY_SPACE)&& !list.getMainCharacter().isPowerOn()){
+		if(input.isKeyDown(Input.KEY_SPACE)&& !list.getMainCharacter().getCirclePower().isPowerOn()){
 			list.getMainCharacter().setInvisibleTrue(delta);
 		}
 		//Cannot be invisible and use the powerCircle
-		if(input.isKeyDown(Input.KEY_F)&&!list.getMainCharacter().isInvisible()){
+		if(input.isKeyDown(Input.KEY_F) && !list.getMainCharacter().getInvisiblePower().isPowerOn()){
 			list.getMainCharacter().powerCircleOn(delta);
 		}
 
 		if(!input.isKeyDown(Input.KEY_F)){
-			list.getMainCharacter().powerCircleOff(delta);
+			list.getMainCharacter().getCirclePower().setPowerOff();
+			//System.out.println(list.getMainCharacter().getCirclePower().isPowerOn());
 		}
 
 		if(!input.isKeyDown(Input.KEY_SPACE)){
-			list.getMainCharacter().setInvisibleFalse();
+			list.getMainCharacter().getInvisiblePower().setPowerOff();
 		}
 
 		//if the user is pressing down a,
@@ -120,7 +121,7 @@ public class Play extends BasicGameState {
 		//if the user is not pressing a,
 		//the speed is back to normal
 		if(!input.isKeyDown(Input.KEY_A)){
-			list.getMainCharacter().setSpeedNormal();
+			list.getMainCharacter().getSpeedPower().setPowerOff();
 		}
 
 		//IF the user is not using any of the powers, then load the magicbar

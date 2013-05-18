@@ -7,14 +7,13 @@ import finalHPGame.Location.Location;
 public class SpiderMove implements Movable {
 
 	private int timer;
-	private boolean setLocation;
+	
 	/**Where the spider should move to*/
 	private Location target;
 	private Location playablePreviousLocation;
 
 	public SpiderMove(){
 		timer =0;
-		setLocation = false;
 	}
 
 	/*
@@ -43,11 +42,11 @@ public class SpiderMove implements Movable {
 		if(mainCharLoc.getBounds().inBounds(mainCharLoc.getX(), self.getPositionY())){
 			target = new Location(mainCharLoc.getX(), self.getPositionY(),mainCharLoc.getLevel());
 			playablePreviousLocation = mainCharLoc.getCopyOfLocation();
-			setLocation = true;
+			
 		}
 		else if(mainCharLoc.getBounds().inBounds(self.getPositionX(), mainCharLoc.getY())){
 			target = new Location(self.getPositionX(), mainCharLoc.getY(), mainCharLoc.getLevel());
-			setLocation = true;
+	
 			playablePreviousLocation = mainCharLoc.getCopyOfLocation();
 		}
 	}
@@ -71,7 +70,6 @@ public class SpiderMove implements Movable {
 			if(self.getLocation().equals(target)){
 				int direction = self.getLocation().directionOf(playablePreviousLocation);
 				System.out.println("Shoot");
-				setLocation = false;
 				target =null;
 			}
 		}
