@@ -27,9 +27,8 @@ public class Play extends BasicGameState {
 	}
 
 	Map worldMap;
-	int timer = 0;
 	CharList list;
-	int htimer = 0;
+
 
 
 	public void init(GameContainer arg0, StateBasedGame arg1)
@@ -70,18 +69,8 @@ public class Play extends BasicGameState {
 		list.killEnemies(list.getMainCharacter().getPowerCircle(), list.getMainCharacter().isPowerOn());
 		list.removeHorcruxes();
 
-/*		timer+=delta;
-		if(timer>=10){
-			list.moveEnemies(delta);
-			timer=0;
-		}
-		
-		htimer+=delta;
-		if(htimer>=1500){
-			list.moveHorcruxes(delta);
-			htimer=0;
-		}*/
-
+		list.moveEnemies(delta);
+		list.moveHorcruxes(delta);
 
 		Input input = gc.getInput();
 

@@ -6,7 +6,7 @@ public class SpiderHealthDecreaser implements HealthDecreaser {
 	
 	public SpiderHealthDecreaser(int level){
 		//TODO: fix the decreaser.
-		decreaser = new float []{1,3,4};
+		decreaser = new float []{(float) 0.34,(float) 3.2,(float) 2.3};
 		this.level = level;
 	}
 

@@ -6,8 +6,15 @@ import finalHPGame.Characters.Magician;
 
 public class SnakeMove implements Movable {
 
+	private int timer;
+	
+	public SnakeMove(){
+		timer =0;
+	}
 	/**Decides and calls which directions to move the Character*/
 	public void moveCharacter(CharList list, Enemy self, int delta) {
+		timer+=delta;
+		if(timer>=500){
 		Magician target = list.getMainCharacter();
 		if(target.isInvisible()){
 
@@ -35,6 +42,7 @@ public class SnakeMove implements Movable {
 			
 		
 		self.updatePersonal();
+		}
 
 	}
 	

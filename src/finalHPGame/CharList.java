@@ -12,12 +12,12 @@ import finalHPGame.Data.horcrux.*;
 /**Contains the Characters in the game*/
 public class CharList {
 	/**Contains the Characters*/
-	ArrayList<Character> characters;
-	ArrayList<Character> horcruxes;
+	private ArrayList<Character> characters;
+	private ArrayList<Character> horcruxes;
+	
 
 	/**The Character in the list is based on the level*/
 	public CharList(int level) throws SlickException{
-
 		characters = new ArrayList<Character>();
 		horcruxes = new ArrayList<Character>();
 
@@ -28,19 +28,20 @@ public class CharList {
 			  in this level it is Harry*/
 
 			//characters.add(new Magician(200,300,"hp",level));
-			characters.add(new Magician(new HarryPotterData(400,300,level)));
-			characters.add(new Enemy(new DementorData(300,400,level)));
-
+			characters.add(new Magician(new RonData(400,300,level)));
+		//	characters.add(new Enemy(new DementorData(300,400,level)));
+			
+			characters.add(new Enemy(new SpiderData(300,400,1)));
 			
 			horcruxes.add(new Enemy(new CupData(200,200,1)));
 
-			for(int x = 1; x<10; x++){
+		/*	for(int x = 1; x<10; x++){
 				// to make sure the objects don't 
 				//have the same x and y coordinates to begin with.
 				float randx = (float)Math.random()*200;
 				float randy = (float)Math.random()*300;
 				characters.add(new Enemy(new SnakeData(250+randx,300+randy,level)));
-			}
+			}*/
 		}
 		else if(level==2){
 			characters.add(new Magician(new RonData(200,300,level)));
@@ -146,4 +147,3 @@ public class CharList {
 		}
 	}
 }
-

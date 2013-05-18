@@ -16,28 +16,28 @@ public class RonData extends Data {
 	
 	public RonData(float x, float y, int level) throws SlickException{
 		updater = new RonUpdater();
-		personal= new Rectangle(40,20,20,55);
+		personal= new Rectangle(40,20,20,59);
 		myLoc = new Location(x,y,level);
 		init();
 		name = "Ron";
 	}
 	public void init() throws SlickException{
 		int[] duration = {200,200,200};
-		Image[] left = {new Image("res/ron_left.png"), 
-				new Image("res/ron_left.png"), 
-				new Image("res/ron_left.png")};
+		Image[] left = {new Image("res/ron_broomstick_left.png"), 
+				new Image("res/ron_broomstick_left.png"), 
+				new Image("res/ron_broomstick_left.png")};
 
-		Image[] right = {new Image("res/ron_right.png"), 
-				new Image("res/ron_right.png"), 
-				new Image("res/ron_right.png")};
+		Image[] right = {new Image("res/ron_broomstick_right.png"), 
+				new Image("res/ron_broomstick_right.png"), 
+				new Image("res/ron_broomstick_right.png")};
 
-		Image[] down = {new Image("res/RonDefault.png"),
-				new Image("res/RonDefault.png"),
-				new Image("res/RonDefault.png")};
+		Image[] down = {new Image("res/ron_broomstick_default.png"),
+				new Image("res/ron_broomstick_default.png"),
+				new Image("res/ron_broomstick_default.png")};
 		
-		Image[] up = {new Image("res/ron_back.png"),
-				new Image("res/ron_back.png"), 
-				new Image("res/ron_back.png")};
+		Image[] up = {new Image("res/ron_broomstick_back.png"),
+				new Image("res/ron_broomstick_back.png"), 
+				new Image("res/ron_broomstick_back.png")};
 
 		movingLeft = new Animation(left,duration,false);
 		movingRight = new Animation(right,duration,false);

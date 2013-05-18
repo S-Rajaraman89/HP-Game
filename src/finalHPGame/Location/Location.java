@@ -9,6 +9,7 @@ public class Location {
 	private float x;
 	private float y;
 	private Boundary bounds;
+	private int level;
 
 	/**Use this when checking bounds does not matter*/
 	public Location(float myx, float myy){
@@ -29,6 +30,7 @@ public class Location {
 		else if(level==3){
 			bounds = new BoundaryLevel3();
 		}
+		this.level = level;
 	}
 	
 	/**Get the x coordinate 
@@ -89,5 +91,48 @@ public class Location {
 	public boolean inBounds(){
 		return bounds.inBounds(x, y);
 	}
-
+	
+	public int getLevel(){
+		return level;
+	}
+	/**Gets the Boundary of the current level*/
+	public Boundary getBounds(){
+		return bounds;
+	}
+	public Location getCopyOfLocation(){
+		return new Location(this.x,this.y, this.level);
+	}
+	
+	public void replaceX(float newX){
+		x=newX;
+	}
+	
+	public void replaceY(float newY){
+		y = newY;
+	}
+	public boolean equals(Object o){
+		Location temp = (Location) o;
+		return (temp.getX()==x && temp.getY()==y);
+	}
+	public String toString(){
+		return "X: "+ x +" Y: "+y;
+	}
+	/**Returns which direction is the b based on this Location*/
+	//Is b left, right, up down of Current location?
+	public int directionOf(Location b){
+		if(x<b.x){
+			return 3;
+		}
+		else if(x>b.x){
+			return 9;
+		}
+		else if(y>b.y){
+			return 6;
+		}
+		else if(y<b.y){
+			return 12;
+		}
+		return 0;
+	}
+	
 }
