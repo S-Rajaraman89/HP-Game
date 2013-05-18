@@ -8,12 +8,13 @@ import org.newdawn.slick.geom.Shape;
 import finalHPGame.Bar.HealthBar;
 import finalHPGame.Bar.MagicBar;
 import finalHPGame.Data.Data;
+import finalHPGame.Spell.Spell;
 
 
 
 public class Magician extends Character {
 
-
+	private Spell [] spells;
 
 	private boolean isInvisible;
 

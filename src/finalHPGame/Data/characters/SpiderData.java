@@ -24,14 +24,14 @@ public SpiderData(float x, float y, int level) throws SlickException{
 	move = new SpiderMove();
 	updater = new SpiderUpdater();
 	init();
-	personal = new Rectangle(myLoc.getX(),myLoc.getY(),100,100);
+	personal = new Rectangle(myLoc.getX()+35,myLoc.getY()+30,35,30);
 }
 
 public void init() throws SlickException{
 	int[] duration = {200,200,200};
-	Image[] down = {new Image("res/spiderFinal.jpg"), 
-			new Image("res/spiderFinal.jpg"), 
-			new Image("res/spiderFinal.jpg")};
+	Image[] down = {new Image("res/spiderFinal.png"), 
+			new Image("res/spiderFinal.png"), 
+			new Image("res/spiderFinal.png")};
 	movingDown = new Animation(down,duration,false);
 	movingLeft = movingDown;
 	movingRight = movingDown;

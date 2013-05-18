@@ -9,7 +9,7 @@ public class SpiderUpdater implements ShapeUpdater {
 
 	
 	public void update(Rectangle s, int direction, Location myLoc) {
-		s.setBounds(new Rectangle(myLoc.getX(),myLoc.getY(),100,100));
+		s.setBounds(new Rectangle(myLoc.getX()+35,myLoc.getY()+30,35,30));
 	}
 
 

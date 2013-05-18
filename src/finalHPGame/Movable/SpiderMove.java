@@ -33,16 +33,8 @@ public class SpiderMove implements Movable {
 	 * */
 
 	public void moveCharacter(CharList list, Enemy self, int delta) {
-		if(!setLocation && target == null){
-			setTargetLocation(list.getMainCharacter().getLocation(),self);
-		}
-		else if (setLocation && target != null){
-			setTargetLocation(list.getMainCharacter().getLocation(),self);
-			move(delta, self);
-		}
-		else{
-			
-		}
+		setTargetLocation(list.getMainCharacter().getLocation(),self);
+		move(delta, self);
 	}
 
 
