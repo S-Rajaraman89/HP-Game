@@ -3,8 +3,8 @@ package finalHPGame.Characters;
 import org.newdawn.slick.SlickException;
 
 import finalHPGame.CharList;
+import finalHPGame.Constant.*;
 import finalHPGame.Data.Data;
-import finalHPGame.HealthDecreaser.*;
 import finalHPGame.Movable.Movable;
 
 
@@ -12,12 +12,12 @@ import finalHPGame.Movable.Movable;
 public class Enemy extends Character {
 	
 	Movable move;
-	HealthDecreaser decreaser;
+	Constant constant;
 	
 	public Enemy(Data data) throws SlickException{
 		super(data);
 			move = data.getMovable();
-			decreaser = data.getHealthDecreaser();	
+			constant = data.getConstant();
 	}
 
 	/**Moves the enemy object towards
@@ -28,8 +28,8 @@ public class Enemy extends Character {
 		move.moveCharacter(list, this,delta);
 	}
 	
-	public HealthDecreaser getHealthDecreaser(){
-		return decreaser;
+	public Constant getConstant(){
+		return constant;
 	}
 	
 	

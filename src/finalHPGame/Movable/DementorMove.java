@@ -27,24 +27,24 @@ public class DementorMove implements Movable {
 			if((!selfShape.intersects(targetShape) 
 					|| Math.abs(selfShape.getCenterX()-targetShape.getCenterX())>6
 					||Math.abs(selfShape.getCenterY()-targetShape.getCenterY())>6) && !target.getCirclePower().isPowerOn()){
-
+				float speed = self.getConstant().getSpeed();
 				if(Math.abs(targetY-self.getPositionY())<=2){
 				}
 				else if(targetX>self.getPositionX()){
-					self.getAnimationHolder().setAnimation(self.getLocation().addX((float) .77));
+					self.getAnimationHolder().setAnimation(self.getLocation().addX(speed));
 				}
 				else{
-					self.getAnimationHolder().setAnimation(self.getLocation().addX((float) -.77));
+					self.getAnimationHolder().setAnimation(self.getLocation().addX(-speed));
 				}
 
 
 				if(Math.abs(targetY-self.getPositionY())<=8){
 				}
 				else if(targetY>self.getPositionY()){
-					self.getAnimationHolder().setAnimation(self.getLocation().addY((float) .77));
+					self.getAnimationHolder().setAnimation(self.getLocation().addY(speed));
 				}
 				else{
-					self.getAnimationHolder().setAnimation(self.getLocation().addY((float) -.77));
+					self.getAnimationHolder().setAnimation(self.getLocation().addY(-speed));
 				}
 				self.updatePersonal();
 			}

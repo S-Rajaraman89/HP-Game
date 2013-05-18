@@ -3,7 +3,7 @@ package finalHPGame.Data;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.geom.Rectangle;
 
-import finalHPGame.HealthDecreaser.HealthDecreaser;
+import finalHPGame.Constant.Constant;
 import finalHPGame.Location.Location;
 import finalHPGame.Movable.Movable;
 import finalHPGame.ShapeUpdater.ShapeUpdater;
@@ -18,7 +18,7 @@ public class Data {
 	protected Movable move=null;
 	protected ShapeUpdater updater=null;
 	protected Rectangle personal=null;
-	protected HealthDecreaser decreaser=null;
+	protected Constant constant=null;
 	protected Animation movingUp=null;
 	protected Animation movingDown=null;
 	protected Animation movingLeft=null;
@@ -35,8 +35,8 @@ public class Data {
 	public Rectangle getRectangle(){
 		return personal;
 	}
-	public HealthDecreaser getHealthDecreaser(){
-		return decreaser;
+	public Constant getConstant(){
+		return constant;
 	}
 	public Animation getMovingUp(){
 		return movingUp;

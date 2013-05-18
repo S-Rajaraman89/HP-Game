@@ -126,7 +126,7 @@ public class CharList {
 		for(Character c: characters){
 			if(c instanceof Enemy){
 				((Enemy) c).moveToward(this, delta);	
-				float decreaser = (float) ((Enemy) c).getHealthDecreaser().getDecreaser();
+				float decreaser = (float) ((Enemy) c).getConstant().getDecreaser();
 				
 				if( ((Enemy) c).getPersonalSpace().intersects(this.getMainCharacter().getPersonalSpace())){
 	

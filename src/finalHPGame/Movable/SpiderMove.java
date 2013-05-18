@@ -75,12 +75,14 @@ public class SpiderMove implements Movable {
 		}
 	}
 	public void moveX(Enemy self){
-		if(Math.abs(self.getPositionX()-target.getX())>5){
+		
+		
+		if(Math.abs(self.getPositionX()-target.getX())>15){
 			if(target.getX()>self.getPositionX()){
-				self.addPositionX(10);
+				self.addPositionX(self.getConstant().getSpeed());
 			}
 			else{
-				self.addPositionX(-10);
+				self.addPositionX(-self.getConstant().getSpeed());
 			}
 		}
 		else{
@@ -89,12 +91,12 @@ public class SpiderMove implements Movable {
 	}
 	
 	public void moveY(Enemy self){
-		if(Math.abs(self.getPositionY()-target.getY())>5){
+		if(Math.abs(self.getPositionY()-target.getY())>15){
 			if(target.getY()>self.getPositionY()){
-				self.addPositionY(10);
+				self.addPositionY(self.getConstant().getSpeed());
 			}
 			else{
-				self.addPositionY(-10);
+				self.addPositionY(-self.getConstant().getSpeed());
 			}
 		}
 		else{

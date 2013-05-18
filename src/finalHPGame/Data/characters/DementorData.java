@@ -5,8 +5,8 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import finalHPGame.Constant.DementorConstant;
 import finalHPGame.Data.Data;
-import finalHPGame.HealthDecreaser.DementorHealthDecreaser;
 import finalHPGame.Location.Location;
 import finalHPGame.Movable.DementorMove;
 import finalHPGame.ShapeUpdater.CharacterUpdater.DementorUpdater;
@@ -20,7 +20,7 @@ public class DementorData extends Data {
 		super.move = new DementorMove();
 		super.updater = new DementorUpdater();
 		super.personal = new Rectangle(30,5,41,85);
-		super.decreaser = new DementorHealthDecreaser(level);
+		super.constant = new DementorConstant(level);
 		super.myLoc = new Location(x,y,level);
 		super.name = "Dementor";
 		init();
