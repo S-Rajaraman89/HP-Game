@@ -6,8 +6,15 @@ import org.newdawn.slick.Graphics;
 public class HealthBar {
 	/**Length of the bar. 0=dead*/
 	private float healthBarX = 65;
-
-	public HealthBar(){	}
+	private float speed = (float) 0.01;
+	
+	public HealthBar(){	
+		healthBarX = 65;
+	}
+	
+	public HealthBar(float x){
+		healthBarX = x;
+	}
 
 	/**Draws the HealthBar in a green color*/
 	public void draw(Graphics g){
@@ -15,11 +22,11 @@ public class HealthBar {
 		g.setColor(r);
 		g.fillRect(50, 589, healthBarX, 10);
 	}
-	
+
 	/**Decreases the HealthBar based on time*/
 	public void decreaseHealthBar(float delta){
 		if((healthBarX)>=0){
-			healthBarX-=(delta*.010);
+			healthBarX-=(delta*speed);
 		}
 		else if(healthBarX<0){
 			healthBarX=0;
@@ -30,4 +37,12 @@ public class HealthBar {
 		return healthBarX;
 	}
 
+	/**Add more length to health bar*/
+	public void addHP(float hp){
+		healthBarX+=hp;
+	}
+	
+	public float getSpeedOfReduction(){
+		return speed;
+	}
 }

@@ -9,6 +9,7 @@ import finalHPGame.Location.Location;
 import finalHPGame.Spell.Spell;
 import finalHPGame.Spell.rangepower.bullet.Bullet;
 import finalHPGame.Spell.rangepower.bullet.bulletconstant.BulletConstant;
+import finalHPGame.Spell.rangepower.data.RangeData;
 import finalHPGame.Characters.Character;
 
 public class RangePower implements Spell {
@@ -25,7 +26,7 @@ public class RangePower implements Spell {
 	
 	
 	
-	public RangePower(RangePowerData data, CharList list, Character User)
+	public RangePower(RangeData data, CharList list, Character User)
 	{
 		targets = list.getCharacterList();
 		this.userLocation = User.getLocation();
@@ -35,7 +36,7 @@ public class RangePower implements Spell {
 	
 	public boolean isPlayable() //Check if target is magician or anything else
 	{
-		return this.getClass() instanceof Magician;
+		return isTargetPlayable;
 			
 	}
 	

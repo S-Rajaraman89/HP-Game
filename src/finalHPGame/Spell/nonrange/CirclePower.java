@@ -34,14 +34,11 @@ public class CirclePower extends NonRange {
 		if(super.isPowerOn){
 			power.setCenterX(self.getPositionX()+50);
 			power.setCenterY(self.getPositionY()+40);
-			power.setRadius(powerRadius);
-			
 			timer+=delta;
 			if(powerRadius>=1 && timer>=500){
 				powerRadius-=10;
 				timer = 0;
 			}
-			
 			power.setRadius(powerRadius);
 		}
 		

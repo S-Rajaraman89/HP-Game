@@ -16,9 +16,7 @@ import finalHPGame.Spell.rangepower.bullet.movable.*;
 			else if(direction==3) bulletmove = new BulletMoveRight();
 			else if(direction==6) bulletmove = new BulletMoveDown();
 			else if(direction==9) bulletmove = new BulletMoveLeft();
-	
 			loc = UserLocation.getCopyOfLocation();
-	
 			timer = 0;
 			image = i;
 			image.draw(loc.getX(), loc.getY());

@@ -27,12 +27,8 @@ public class CharList {
 			/*The first character is always the playable character
 			  in this level it is Harry*/
 
-			//characters.add(new Magician(200,300,"hp",level));
-			characters.add(new Magician(new RonData(400,300,level)));
-		//	characters.add(new Enemy(new DementorData(300,400,level)));
-			
+			characters.add(new Magician(new HarryPotterData(300,140,level)));
 			characters.add(new Enemy(new SpiderData(300,400,1)));
-			
 			horcruxes.add(new Enemy(new CupData(200,200,1)));
 
 			for(int x = 1; x<10; x++){

@@ -16,8 +16,6 @@ public class Magician extends Character {
 	private InvisiblePower invisible;
 	private MagicBar bar;
 	private HealthBar hp;
-
-
 	
 	public Magician(Data data)throws SlickException {
 		super(data);
@@ -82,6 +80,7 @@ public class Magician extends Character {
 	public void decreaseHealth(float delta){
 		hp.decreaseHealthBar(delta);
 	}
+	
 	/**Sets isPowerOn true if there is energy*/
 	public void powerCircleOn(int delta){
 		//There must be energy is the energy bar
@@ -94,7 +93,6 @@ public class Magician extends Character {
 		}
 		circle.updateCircle(delta, this);
 	}
-
 
 	/**Overrides the draw method
 	 * if magician is invisible, then his height and width is 1
