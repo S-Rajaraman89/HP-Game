@@ -4,14 +4,28 @@ import finalHPGame.Location.Location;
 
 public class BulletMoveDown implements BulletMovable {
 
-	@Override
-	public void moveBullet(Location bulletLocation, float speed) {
+	private int timer;
+	
+	
+	public void moveBullet(Location bulletLocation, int speed) {
 		// TODO Auto-generated method stub
+		
+		
+		timer = 0;
+		if(timer>=5)
+		{
+			timer = 0;
+			bulletLocation.addY(speed);
+		}
+			
+		
+		
+		
+	
 		
 	}
 
-	@Override
-	public boolean canMove(Location bulletsLocation, float speed) {
+	public boolean canMove(Location bulletsLocation, int speed) {
 		// TODO Auto-generated method stub
 		return false;
 	}

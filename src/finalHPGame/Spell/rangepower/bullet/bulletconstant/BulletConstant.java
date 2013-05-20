@@ -1,6 +1,8 @@
 package finalHPGame.Spell.rangepower.bullet.bulletconstant;
 
-public class BulletConstant {
+import finalHPGame.Constant.Constant;
+
+public class BulletConstant extends Constant{
 	protected float [] decreaser;
 	protected int level;
 	protected float[] speed;
