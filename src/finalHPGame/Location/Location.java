@@ -97,6 +97,7 @@ public class Location {
 	public int getLevel(){
 		return level;
 	}
+	
 	/**Gets the Boundary of the current level*/
 	public Boundary getBounds(){
 		return bounds;

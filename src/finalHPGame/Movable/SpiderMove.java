@@ -43,6 +43,10 @@ public class SpiderMove implements Movable {
 		if(rand>.5){
 			if(mainCharLoc.getBounds().inBounds(mainCharLoc.getX(), self.getPositionY())){
 				target = new Location(mainCharLoc.getX(), self.getPositionY(),mainCharLoc.getLevel());
+				/*if(target.getDistance(mainCharLoc)<10){
+					this.setDistantLocationX(mainCharLoc, self, target.getDistance(mainCharLoc));
+					System.out.println("Goes thru the if statement");
+				}*/
 				playablePreviousLocation = mainCharLoc.getCopyOfLocation();
 			}
 		}
@@ -53,6 +57,20 @@ public class SpiderMove implements Movable {
 			}
 		}
 	}
+	
+/*	public void setDistantLocationX(Location mainCharLoc, Enemy self, float distance){
+		if(mainCharLoc.getX()<target.getX()){
+			target.replaceX(target.getX()+Math.abs((10-distance)));
+		}
+		else{
+			target.replaceX(target.getX()-Math.abs((10-distance)));
+		}
+	}
+	
+	public Location setDistantLocationY(){
+		
+		return null;
+	}*/
 
 	/*Step 3.
 	 * Move towards Location target
@@ -105,8 +123,4 @@ public class SpiderMove implements Movable {
 			self.getLocation().replaceY(target.getY());
 		}
 	}
-	/* First find out if we are worried about x or y direction
-	 * 2. Find out the location at should 
-	 * 
-	 */
 }

@@ -26,13 +26,13 @@ public class RangePower implements Spell {
 	
 	
 	
-	public RangePower(RangePowerData data, CharList list, Character User, float speed, Image image)
+	/*public RangePower(RangePowerData data, CharList list, Character User, float speed, Image image)
 	{
 		targets = list.getCharacterList();
 		this.userLocation = User.getLocation();
 		this.speed = speed;
 		this.image = image;
-	}
+	}*/
 	
 	public boolean isPlayable() //Check if target is magician or anything else
 	{

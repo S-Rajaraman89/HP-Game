@@ -44,11 +44,11 @@ public class LoserPage extends BasicGameState{
 			if(Mouse.isButtonDown(0)){
 				System.out.println("clicked");
 				
-				if(Play.getPlayLevel()==1){
+				if(Play.playLevel==1){
 					sbg.getState(1).init(gc, sbg);
 					sbg.enterState(1);
 				}
-				if(Play.getPlayLevel()==2){
+				if(Play.playLevel==2){
 					sbg.getState(2).init(gc, sbg);
 					sbg.enterState(2);
 				}
