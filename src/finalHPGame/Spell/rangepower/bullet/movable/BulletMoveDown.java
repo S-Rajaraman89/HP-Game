@@ -7,27 +7,16 @@ public class BulletMoveDown implements BulletMovable {
 	private int timer;
 	
 	
-	public void moveBullet(Location bulletLocation, int speed) {
+	public void moveBullet(Location bulletLocation, float speed) {
 		// TODO Auto-generated method stub
-		
-		
-		timer = 0;
-		if(timer>=5)
-		{
-			timer = 0;
-			bulletLocation.addY(speed);
-		}
-			
-		
-		
-		
-	
-		
+		bulletLocation.addY(speed);
 	}
 
-	public boolean canMove(Location bulletsLocation, int speed) {
+	public boolean canMove(Location bulletsLocation, float speed) {
 		// TODO Auto-generated method stub
-		return false;
+		Location loc = bulletsLocation.getCopyOfLocation();
+		loc.setY(speed);
+		return loc.inBounds();
 	}
 
 }

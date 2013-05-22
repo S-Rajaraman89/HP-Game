@@ -7,20 +7,18 @@ public class BulletMoveLeft implements BulletMovable {
 	
 	private int timer;
 	@Override
-	public void moveBullet(Location bulletLocation, int speed) {
+	public void moveBullet(Location bulletLocation, float speed) {
 		// TODO Auto-generated method stub
-		timer = 0;
-		if(timer>=5)
-		{
-			timer = 0;
-			bulletLocation.addX(speed);
-		}
+			bulletLocation.addX(-speed);
+		
 	}
 
 	@Override
-	public boolean canMove(Location bulletsLocation, int speed) {
+	public boolean canMove(Location bulletsLocation, float speed) {
 		// TODO Auto-generated method stub
-		return false;
+		Location loc = bulletsLocation.getCopyOfLocation();
+		loc.setX(-speed);
+		return loc.inBounds();
 	}
 
 }

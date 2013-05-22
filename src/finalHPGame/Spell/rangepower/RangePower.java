@@ -22,32 +22,54 @@ public class RangePower implements Spell {
 	boolean isTargetPlayable;
 	BulletConstant bulletConstant;
 	Character User;
+	float speed;
 	
 	
 	
-	public RangePower(RangePowerData data, CharList list, Character User)
+	public RangePower(RangePowerData data, CharList list, Character User, float speed, Image image)
 	{
 		targets = list.getCharacterList();
 		this.userLocation = User.getLocation();
-		
-		
+		this.speed = speed;
+		this.image = image;
 	}
 	
 	public boolean isPlayable() //Check if target is magician or anything else
 	{
-		return this.getClass() instanceof Magician;
+		return isTargetPlayable;
 			
 	}
 	
-	public void addBullet()
+	public void addBullet(int direction) //add to arraylist
 	{
+		Bullet b = new Bullet(direction, userLocation.getCopyOfLocation(), speed, image);
+		bullet.add(b);
+		
 		
 	}
 	
-	public void updateBullet(int delta)
+	public void updateBullet(int delta) //go through arraylist bullets & targets and update
 	{
-		
+		for(int i = 0; i<bullet.size(); i++)
+		{
+			if(bullet.get(i).getMovable().canMove(bullet.get(i).getLocation(), speed)){
+				for(int j = 0; j<targets.size(); j++){
+					if(bullet.get(i).getLocation()!=targets.get(j).getLocation() ){
+						bullet.get(i).update(delta);
+					}
+					else 
+						targets.remove(j);
+						j--;
+				}
+			}
+			else
+				bullet.remove(i);
+				i--;
+				
+		}
 	}
+	
+	
 	
 	
 }

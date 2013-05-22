@@ -25,6 +25,34 @@ import finalHPGame.Spell.rangepower.bullet.movable.*;
 		}
 
 		public boolean update(int delta){
-			return false;	
+			timer += delta;
+			if(timer >= 1500)
+			{	
+				if(bulletmove.canMove(loc, speed))
+					bulletmove.moveBullet(loc, speed);
+					
+					return true;
+			}
+			return false;
 		}
+		public Image getImage()
+		{
+			return image;
+		}
+		
+		public void setImage(Image i)
+		{
+			i = image;
+		}
+		
+		public BulletMovable getMovable()
+		{
+			return bulletmove;
+		}
+		
+		public Location getLocation()
+		{
+			return loc;
+		}
+		
 }

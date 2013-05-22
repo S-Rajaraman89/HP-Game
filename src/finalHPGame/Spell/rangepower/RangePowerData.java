@@ -17,8 +17,24 @@ public class RangePowerData {
 	protected BulletMovable movable = null;
 	protected boolean isPlayable;
 	
-	public BulletMovable getBulletMovable(){
-		return movable;
+	public ArrayList<Bullet> getBulletList()
+	{
+		return bullets;
+	}
+	
+	public BulletConstant getBulletConstant()
+	{
+		return constants;
+	}
+	
+	public int getLimit()
+	{
+		return limit;
+	}
+	
+	public Image getImage()
+	{
+		return bulletImage;
 	}
 	
 	
