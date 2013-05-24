@@ -11,6 +11,7 @@ import finalHPGame.ShapeUpdater.ShapeUpdater;
 //If the class is meant for Horcrux, init Animations, ShapeUpdater, Movable, personal
 //If the class is meant for an Enemy, init Animation, ShapeUpdater, Movable, Personal, HealthDecreaser
 //If the class is meant for Playable Charcter, init Animation, ShapeUpdater, Personal
+import finalHPGame.Spell.Spell;
 
 /**Holds the data for each character*/
 public class Data {
@@ -25,6 +26,7 @@ public class Data {
 	protected Animation movingRight=null;
 	protected Location myLoc = null;
 	protected String name = null;
+	protected Spell[] spells =null;
 
 	public Movable getMovable(){
 		return move;
@@ -58,5 +60,41 @@ public class Data {
 	}
 	public String toString(){
 		return"";
+	}
+	public Spell[] getSpells(){
+		return spells;
+	}
+	public void setMove(Movable move) {
+		this.move = move;
+	}
+	public void setShapeUpdater(ShapeUpdater updater) {
+		this.updater = updater;
+	}
+	public void setPersonal(Rectangle personal) {
+		this.personal = personal;
+	}
+	public void setConstant(Constant constant) {
+		this.constant = constant;
+	}
+	public void setMovingUp(Animation movingUp) {
+		this.movingUp = movingUp;
+	}
+	public void setMovingDown(Animation movingDown) {
+		this.movingDown = movingDown;
+	}
+	public void setMovingLeft(Animation movingLeft) {
+		this.movingLeft = movingLeft;
+	}
+	public void setMovingRight(Animation movingRight) {
+		this.movingRight = movingRight;
+	}
+	public void setMyLoc(Location myLoc) {
+		this.myLoc = myLoc;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setSpells(Spell[] spells){
+		this.spells = spells;
 	}
 }

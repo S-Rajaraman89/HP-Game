@@ -6,6 +6,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.imageout.ImageOut;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -19,27 +20,34 @@ import finalHPGame.Spell.nonrange.*;
 
 public class Play extends BasicGameState {
 
-	int level;
+	private int level;
 	static int playLevel=0;
-	Map worldMap;
-	CharList list;
+	private Map worldMap;
+	private CharList list;
+	private float decreaser;
+
 
 	public Play(int play1) throws SlickException {
 		level = play1;
-		playLevel++;
 	}
-
-
 
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-		if(level==1)worldMap = new MapLevel1();
-		else if(level==2)worldMap = new MapLevel2();
-		else if(level==3)worldMap= new MapLevel3();
+		if(level==1){
+			decreaser = 5;
+			worldMap = new MapLevel1();
+		}
+		else if(level==2){
+			worldMap = new MapLevel2();
+			decreaser = 10;
+		}
+		else if(level==3){
+			worldMap= new MapLevel3();
+			decreaser = 12;
+		}
 		list = new CharList(level);
 
 	}
-
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
@@ -52,29 +60,34 @@ public class Play extends BasicGameState {
 		g.drawString("Health "+list.getMainCharacter().getHealthBar().getHealthBarX(), 30, 220);
 		g.drawString(list.getMainCharacter().getLocation().toString(), 30, 240);
 		worldMap.render(gc, sbg, g);
-		//g.draw(new Rectangle(240,180,90,165));
+		//first corn field
+		g.draw(new Rectangle(205,380,40,195));
+		g.draw(new Rectangle(465,380,40,195));
+		g.draw(new Rectangle(690,375,40,195));
+
 	}
 
 
 	public void update(GameContainer gc, StateBasedGame arg1, int delta)
 			throws SlickException {
-		
+
 		worldMap.update(delta);
-		
+
 		if(worldMap.isinHarm(list.getMainCharacter().getPersonalSpace())){
-			list.getMainCharacter().getHealthBar().decreaseHealthBar((float) (delta*1.25));
+			list.getMainCharacter().getHealthBar().decreaseHealthBar((float) (delta*decreaser));
 		}
 		/*Checks if game should enter new state because playableCharacter is dead or 
 		 * or the playable killed everyone and got the horcrux
 		 */
 		if(list.getMainCharacter().getHealthBar().getHealthBarX()==0){
-			playLevel--;
+			playLevel++;
 			arg1.enterState(200, new EmptyTransition(), new FadeInTransition(new Color(200,0,0),1000));
 		}
 		else if(list.getCharacterList().size()==1 && list.getHorcruxes().size()==0){
+			playLevel++;
 			arg1.enterState(300);
 		}
-		
+
 		//Temp Variables
 		Input input = gc.getInput();
 		Magician playable = list.getMainCharacter();
@@ -86,10 +99,7 @@ public class Play extends BasicGameState {
 		list.removeHorcruxes();
 		list.moveEnemies(delta);
 		list.moveHorcruxes(delta);
-		
 
-
-		
 		if(input.isKeyDown(Input.KEY_UP) && !circle.isPowerOn()){
 			playable.setPositionY(-delta*speed.getSpeed());
 			playable.getAnimationHolder().getMainChar().setAutoUpdate(true);
@@ -155,19 +165,13 @@ public class Play extends BasicGameState {
 		}
 
 		if(!(input.isKeyDown(Input.KEY_DOWN)||input.isKeyDown(Input.KEY_LEFT)||
-			input.isKeyDown(Input.KEY_UP)||input.isKeyDown(Input.KEY_RIGHT))){
+				input.isKeyDown(Input.KEY_UP)||input.isKeyDown(Input.KEY_RIGHT))){
 			playable.getAnimationHolder().getMainChar().setAutoUpdate(false);
 		}
 
 	}
 
 	//returns level which is the ID of this GameState
-	public static int getPlayLevel(){
-		return playLevel;
-	}
-
-	//returns level which is the ID of this GameState
-	@Override
 	public int getID() {
 		return level;
 	}

@@ -13,9 +13,9 @@ import finalHPGame.ShapeUpdater.CharacterUpdater.HarryPotterUpdater;
  * Holds the variables for Harry
  *
  */
-public class HarryPotterData extends Data {
+public class HarryData extends Data {
 
-	public HarryPotterData(float x, float y, int level) throws SlickException{
+	public HarryData(float x, float y, int level) throws SlickException{
 		updater = new HarryPotterUpdater();
 		personal= new Rectangle(40,20,20,55);
 		myLoc = new Location(x,y,level);

@@ -9,6 +9,7 @@ public class Game extends StateBasedGame{
    public static final int menu = 0;
    public static final int play = 1;
    public static final int play2 = 2;
+   public static final int play3 =3;
    public static final int inst=100;
    public static final int loser=200;
    public static final int winner=300;
@@ -22,6 +23,7 @@ public class Game extends StateBasedGame{
       this.addState(new LoserPage(loser));
       this.addState(new WinnerPage(winner));
       this.addState(new Play(play2));
+      this.addState(new Play(play3));
    }
    
    /**Initializes each state and enters one of them*/
