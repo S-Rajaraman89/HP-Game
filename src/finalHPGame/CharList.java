@@ -27,7 +27,7 @@ public class CharList {
 			/*The first character is always the playable character
 			  in this level it is Harry*/
 
-			characters.add(new Magician(new HarryData(300,140,level)));
+			characters.add(new Magician(new HarryData(300,140,level),this));
 			characters.add(new Enemy(new SpiderData(300,400,1)));
 			horcruxes.add(new Enemy(new CupData(200,200,1)));
 
@@ -40,11 +40,11 @@ public class CharList {
 			}
 		}
 		else if(level==2){
-			characters.add(new Magician(new RonData(140,300,level)));
+			characters.add(new Magician(new RonData(140,300,level), this));
 			characters.add(new Enemy(new DementorData(300,400,level)));
 		}
 		else if(level==3){
-			characters.add(new Magician(new HarryData(140,300,level)));
+			characters.add(new Magician(new HarryData(140,300,level),this));
 			characters.add(new Enemy(new DementorData(300,400,level)));
 		}
 	}

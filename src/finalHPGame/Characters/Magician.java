@@ -1,10 +1,12 @@
 package finalHPGame.Characters;
 
 import org.newdawn.slick.SlickException;
+import finalHPGame.CharList;
 import finalHPGame.Bar.HealthBar;
 import finalHPGame.Bar.MagicBar;
 import finalHPGame.Data.Data;
 import finalHPGame.Spell.nonrange.*;
+import finalHPGame.Spell.rangepower.RangePower;
 
 
 
@@ -16,14 +18,16 @@ public class Magician extends Character {
 	private InvisiblePower invisible;
 	private MagicBar bar;
 	private HealthBar hp;
+	private RangePower rangepower;
 	
-	public Magician(Data data)throws SlickException {
+	public Magician(Data data, CharList list)throws SlickException {
 		super(data);
 		speed = new SpeedPower();
 		circle = new CirclePower(this.getPositionX(), this.getPositionY());
 		invisible = new InvisiblePower();
 		bar = new MagicBar();
 		hp = new HealthBar();
+		rangepower = new RangePower(list, this, (float)2);
 	}
 	/**Returns the SpeedPower object*/
 	public SpeedPower getSpeedPower(){
@@ -32,6 +36,10 @@ public class Magician extends Character {
 	/**Returns the CirclePower object*/
 	public CirclePower getCirclePower(){
 		return circle;
+	}
+	
+	public RangePower getRangePower(){
+		return rangepower;
 	}
 	/**Returns the InvisiblePower object*/
 	public InvisiblePower getInvisiblePower(){

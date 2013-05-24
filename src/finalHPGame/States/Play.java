@@ -6,7 +6,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.imageout.ImageOut;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -16,6 +15,7 @@ import finalHPGame.CharList;
 import finalHPGame.Characters.Magician;
 import finalHPGame.Map.*;
 import finalHPGame.Spell.nonrange.*;
+import finalHPGame.Spell.rangepower.RangePower;
 
 
 public class Play extends BasicGameState {
@@ -60,17 +60,13 @@ public class Play extends BasicGameState {
 		g.drawString("Health "+list.getMainCharacter().getHealthBar().getHealthBarX(), 30, 220);
 		g.drawString(list.getMainCharacter().getLocation().toString(), 30, 240);
 		worldMap.render(gc, sbg, g);
-		//first corn field
-		g.draw(new Rectangle(205,380,40,195));
-		g.draw(new Rectangle(465,380,40,195));
-		g.draw(new Rectangle(690,375,40,195));
-
+		list.getMainCharacter().getRangePower().draw(g);
 	}
 
 
 	public void update(GameContainer gc, StateBasedGame arg1, int delta)
 			throws SlickException {
-
+		list.getMainCharacter().getRangePower().updateBullet(delta);
 		worldMap.update(delta);
 
 		if(worldMap.isinHarm(list.getMainCharacter().getPersonalSpace())){
@@ -94,11 +90,13 @@ public class Play extends BasicGameState {
 		CirclePower circle = playable.getCirclePower();
 		InvisiblePower invisible = playable.getInvisiblePower();
 		SpeedPower speed = playable.getSpeedPower();
+		//************TESTING*****************
+		RangePower range = playable.getRangePower();
 
 		list.killEnemies(circle.getPowerCircle(), circle.isPowerOn());
 		list.removeHorcruxes();
-		list.moveEnemies(delta);
-		list.moveHorcruxes(delta);
+		//list.moveEnemies(delta);
+		//list.moveHorcruxes(delta);
 
 		if(input.isKeyDown(Input.KEY_UP) && !circle.isPowerOn()){
 			playable.setPositionY(-delta*speed.getSpeed());
@@ -135,6 +133,10 @@ public class Play extends BasicGameState {
 
 		if(!input.isKeyDown(Input.KEY_SPACE)){
 			invisible.setPowerOff();
+		}
+		if(input.isKeyPressed(Input.KEY_Q)){
+			int direction = playable.getAnimationHolder().getDirection();
+			range.addBullet(direction);
 		}
 
 		//if the user is pressing down a,

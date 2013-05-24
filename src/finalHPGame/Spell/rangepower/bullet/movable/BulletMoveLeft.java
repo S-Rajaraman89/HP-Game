@@ -4,18 +4,11 @@ import finalHPGame.Location.Location;
 
 public class BulletMoveLeft implements BulletMovable {
 
-	
-	private int timer;
-	@Override
 	public void moveBullet(Location bulletLocation, float speed) {
-		// TODO Auto-generated method stub
-			bulletLocation.addX(-speed);
-		
+			bulletLocation.replaceX(bulletLocation.getX()-speed);
 	}
 
-	@Override
 	public boolean canMove(Location bulletsLocation, float speed) {
-		// TODO Auto-generated method stub
 		Location loc = bulletsLocation.getCopyOfLocation();
 		loc.setX(-speed);
 		return loc.inBounds();

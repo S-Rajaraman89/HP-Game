@@ -153,5 +153,8 @@ public class Location {
 	public boolean contains(Shape s){
 		return s.contains(x, y);
 	}
+	public boolean inBounds(Shape s){
+		return bounds.inBounds(s);
+	}
 	
 }
