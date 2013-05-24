@@ -1,5 +1,7 @@
 package finalHPGame.Location;
 
+import org.newdawn.slick.geom.Shape;
+
 import finalHPGame.Boundary.Boundary;
 import finalHPGame.Boundary.BoundaryLevel1;
 import finalHPGame.Boundary.BoundaryLevel2;
@@ -99,24 +101,28 @@ public class Location {
 	public Boundary getBounds(){
 		return bounds;
 	}
+	/**Return a new object of Location with same values*/
 	public Location getCopyOfLocation(){
 		return new Location(this.x,this.y, this.level);
 	}
-	
+	/**Replaces the x coordinate*/
 	public void replaceX(float newX){
 		x=newX;
 	}
-	
+	/**Replaces the y coordinate*/
 	public void replaceY(float newY){
 		y = newY;
 	}
+	
 	public boolean equals(Object o){
 		Location temp = (Location) o;
 		return (temp.getX()==x && temp.getY()==y);
 	}
+	
 	public String toString(){
 		return "X: "+ x +" Y: "+y;
 	}
+	
 	/**Returns which direction is the b based on this Location*/
 	//Is b left, right, up down of Current location?
 	public int directionOf(Location b){
@@ -133,6 +139,18 @@ public class Location {
 			return 12;
 		}
 		return 0;
+	}
+	
+	/**Gets the distance between this location and b*/
+	public float getDistance(Location b){
+		double xval = Math.pow((float)x-b.x, 2);
+		double yval = Math.pow((float)y-b.y, 2);
+			return (float) Math.sqrt(xval+yval);
+	}
+	
+	/**Returns true if the location is contained in Shape*/
+	public boolean contains(Shape s){
+		return s.contains(x, y);
 	}
 	
 }

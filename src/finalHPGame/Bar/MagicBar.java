@@ -6,29 +6,39 @@ import org.newdawn.slick.Graphics;
 
 public class MagicBar {
 
-	
+
 	private boolean isMagicEmpty = false;
 	/**The current length of the bar*/
-	private float spellBarX=65;
+	private float spellBarX;
 	private float spellTime;
 	private float spellTimeRevive;
-	
+	private float limit;
+
 
 	public MagicBar(){
 		spellTime=0;
 		spellTimeRevive=0;
+		spellBarX=65;
+		limit = 65;
+	}
+	
+	public MagicBar(float x){
+		spellTime=0;
+		spellTimeRevive=0;
+		spellBarX=x;
+		limit=x;
 	}
 
 	/**Reloads the MagicBar based on time*/
 	public void reviveMagicBar(float delta){
-		if(spellBarX<65){
-		spellTimeRevive+=delta;
+		if(spellBarX<limit){
+			spellTimeRevive+=delta;
 		}
 		if(spellTimeRevive>=2500){
-			if(spellBarX<65){
+			if(spellBarX<limit){
 				spellBarX+=13;
-				if(spellBarX>=65){
-					spellBarX=65;
+				if(spellBarX>=limit){
+					spellBarX=limit;
 				}
 				spellTimeRevive = 0;
 			}
@@ -48,8 +58,8 @@ public class MagicBar {
 		else{
 			isMagicEmpty=false;
 		}
-
 	}
+	
 	/**Return true if the bar is full*/
 	public boolean isFull(){
 		return(spellBarX>=65);
@@ -58,7 +68,6 @@ public class MagicBar {
 	public boolean isEmpty(){
 		return(spellBarX<5);
 	}
-
 
 	/**Draws a red bar on the screen*/
 	public void drawBar(Graphics g){
@@ -71,4 +80,6 @@ public class MagicBar {
 	public float getSpellBarX() {
 		return spellBarX;
 	}
+	
+
 }

@@ -7,7 +7,7 @@ import finalHPGame.Location.Location;
 public class SpiderMove implements Movable {
 
 	private int timer;
-	
+
 	/**Where the spider should move to*/
 	private Location target;
 	private Location playablePreviousLocation;
@@ -39,15 +39,18 @@ public class SpiderMove implements Movable {
 
 	//Step 1 and 2
 	public void setTargetLocation(Location mainCharLoc, Enemy self){
-		if(mainCharLoc.getBounds().inBounds(mainCharLoc.getX(), self.getPositionY())){
-			target = new Location(mainCharLoc.getX(), self.getPositionY(),mainCharLoc.getLevel());
-			playablePreviousLocation = mainCharLoc.getCopyOfLocation();
-			
+		double rand = (double)Math.random()*1;
+		if(rand>.5){
+			if(mainCharLoc.getBounds().inBounds(mainCharLoc.getX(), self.getPositionY())){
+				target = new Location(mainCharLoc.getX(), self.getPositionY(),mainCharLoc.getLevel());
+				playablePreviousLocation = mainCharLoc.getCopyOfLocation();
+			}
 		}
-		else if(mainCharLoc.getBounds().inBounds(self.getPositionX(), mainCharLoc.getY())){
-			target = new Location(self.getPositionX(), mainCharLoc.getY(), mainCharLoc.getLevel());
-	
-			playablePreviousLocation = mainCharLoc.getCopyOfLocation();
+		else{
+			if(mainCharLoc.getBounds().inBounds(self.getPositionX(), mainCharLoc.getY())){
+				target = new Location(self.getPositionX(), mainCharLoc.getY(), mainCharLoc.getLevel());
+				playablePreviousLocation = mainCharLoc.getCopyOfLocation();
+			}
 		}
 	}
 
@@ -74,9 +77,8 @@ public class SpiderMove implements Movable {
 			}
 		}
 	}
+	/**Moves the spider towards target only in x direction*/
 	public void moveX(Enemy self){
-		
-		
 		if(Math.abs(self.getPositionX()-target.getX())>15){
 			if(target.getX()>self.getPositionX()){
 				self.addPositionX(self.getConstant().getSpeed());
@@ -89,7 +91,7 @@ public class SpiderMove implements Movable {
 			self.getLocation().replaceX(target.getX());
 		}
 	}
-	
+	/**Moves the spider towards target only in y direction*/
 	public void moveY(Enemy self){
 		if(Math.abs(self.getPositionY()-target.getY())>15){
 			if(target.getY()>self.getPositionY()){
@@ -103,4 +105,8 @@ public class SpiderMove implements Movable {
 			self.getLocation().replaceY(target.getY());
 		}
 	}
+	/* First find out if we are worried about x or y direction
+	 * 2. Find out the location at should 
+	 * 
+	 */
 }

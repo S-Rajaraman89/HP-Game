@@ -12,22 +12,22 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.EmptyTransition;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import finalHPGame.CharList;
+import finalHPGame.Characters.Magician;
 import finalHPGame.Map.*;
+import finalHPGame.Spell.nonrange.*;
 
 
 public class Play extends BasicGameState {
 
-
 	int level;
 	static int playLevel=0;
+	Map worldMap;
+	CharList list;
 
 	public Play(int play1) throws SlickException {
 		level = play1;
 		playLevel++;
 	}
-
-	Map worldMap;
-	CharList list;
 
 
 
@@ -41,7 +41,7 @@ public class Play extends BasicGameState {
 	}
 
 
-	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		worldMap.drawMap();
 		list.drawEveryone();
@@ -50,13 +50,23 @@ public class Play extends BasicGameState {
 		list.getMainCharacter().getCirclePower().drawPowerCircle(g);
 		list.drawShapes(g);
 		g.drawString("Health "+list.getMainCharacter().getHealthBar().getHealthBarX(), 30, 220);
+		g.drawString(list.getMainCharacter().getLocation().toString(), 30, 240);
+		worldMap.render(gc, sbg, g);
+		//g.draw(new Rectangle(240,180,90,165));
 	}
 
 
 	public void update(GameContainer gc, StateBasedGame arg1, int delta)
 			throws SlickException {
-		//System.out.println(list.getMainCharacter().getHealthBar().getHealthBarX());
-
+		
+		worldMap.update(delta);
+		
+		if(worldMap.isinHarm(list.getMainCharacter().getPersonalSpace())){
+			list.getMainCharacter().getHealthBar().decreaseHealthBar((float) (delta*1.25));
+		}
+		/*Checks if game should enter new state because playableCharacter is dead or 
+		 * or the playable killed everyone and got the horcrux
+		 */
 		if(list.getMainCharacter().getHealthBar().getHealthBarX()==0){
 			playLevel--;
 			arg1.enterState(200, new EmptyTransition(), new FadeInTransition(new Color(200,0,0),1000));
@@ -64,71 +74,76 @@ public class Play extends BasicGameState {
 		else if(list.getCharacterList().size()==1 && list.getHorcruxes().size()==0){
 			arg1.enterState(300);
 		}
+		
+		//Temp Variables
+		Input input = gc.getInput();
+		Magician playable = list.getMainCharacter();
+		CirclePower circle = playable.getCirclePower();
+		InvisiblePower invisible = playable.getInvisiblePower();
+		SpeedPower speed = playable.getSpeedPower();
 
-
-		list.killEnemies(list.getMainCharacter().getCirclePower().getPowerCircle(), 
-				list.getMainCharacter().getCirclePower().isPowerOn());
+		list.killEnemies(circle.getPowerCircle(), circle.isPowerOn());
 		list.removeHorcruxes();
 		list.moveEnemies(delta);
 		list.moveHorcruxes(delta);
+		
 
-		Input input = gc.getInput();
 
-		if(input.isKeyDown(Input.KEY_UP)&&!list.getMainCharacter().getCirclePower().isPowerOn()){
-			list.getMainCharacter().setPositionY(-delta*list.getMainCharacter().getSpeed());
-			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
+		
+		if(input.isKeyDown(Input.KEY_UP) && !circle.isPowerOn()){
+			playable.setPositionY(-delta*speed.getSpeed());
+			playable.getAnimationHolder().getMainChar().setAutoUpdate(true);
 		}
 
-		if(input.isKeyDown(Input.KEY_DOWN)&&!list.getMainCharacter().getCirclePower().isPowerOn()){
-			list.getMainCharacter().setPositionY(delta*list.getMainCharacter().getSpeed());
-			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
+		if(input.isKeyDown(Input.KEY_DOWN) && !circle.isPowerOn()){
+			playable.setPositionY(delta*speed.getSpeed());
+			playable.getAnimationHolder().getMainChar().setAutoUpdate(true);
 		}
 
-		if(input.isKeyDown(Input.KEY_LEFT)&&!list.getMainCharacter().getCirclePower().isPowerOn()){
-			list.getMainCharacter().setPositionX(-delta*list.getMainCharacter().getSpeed());
-			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
+		if(input.isKeyDown(Input.KEY_LEFT) && !circle.isPowerOn()){
+			playable.setPositionX(-delta*speed.getSpeed());
+			playable.getAnimationHolder().getMainChar().setAutoUpdate(true);
 		}
 
-		if(input.isKeyDown(Input.KEY_RIGHT)&&!list.getMainCharacter().getCirclePower().isPowerOn()){
-			list.getMainCharacter().setPositionX(delta*list.getMainCharacter().getSpeed());
-			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(true);
+		if(input.isKeyDown(Input.KEY_RIGHT) && !circle.isPowerOn()){
+			playable.setPositionX(delta*speed.getSpeed());
+			playable.getAnimationHolder().getMainChar().setAutoUpdate(true);
 		}
 
 		//Cannot be invisible and use the powerCircle
-		if(input.isKeyDown(Input.KEY_SPACE)&& !list.getMainCharacter().getCirclePower().isPowerOn()){
-			list.getMainCharacter().setInvisibleTrue(delta);
+		if(input.isKeyDown(Input.KEY_SPACE) && !circle.isPowerOn()){
+			playable.setInvisibleTrue(delta);
 		}
 		//Cannot be invisible and use the powerCircle
-		if(input.isKeyDown(Input.KEY_F) && !list.getMainCharacter().getInvisiblePower().isPowerOn()){
-			list.getMainCharacter().powerCircleOn(delta);
+		if(input.isKeyDown(Input.KEY_F) && !invisible.isPowerOn()){
+			playable.powerCircleOn(delta);
 		}
 
 		if(!input.isKeyDown(Input.KEY_F)){
-			list.getMainCharacter().getCirclePower().setPowerOff();
-			//System.out.println(list.getMainCharacter().getCirclePower().isPowerOn());
+			circle.setPowerOff();
 		}
 
 		if(!input.isKeyDown(Input.KEY_SPACE)){
-			list.getMainCharacter().getInvisiblePower().setPowerOff();
+			invisible.setPowerOff();
 		}
 
 		//if the user is pressing down a,
 		//then the speed of main character increases
 		if(input.isKeyDown(Input.KEY_A)){
-			list.getMainCharacter().setSpeedFast(delta);
+			playable.setSpeedFast(delta);
 		}
 
 		//if the user is not pressing a,
 		//the speed is back to normal
 		if(!input.isKeyDown(Input.KEY_A)){
-			list.getMainCharacter().getSpeedPower().setPowerOff();
+			speed.setPowerOff();
 		}
 
-		//IF the user is not using any of the powers, then load the magicbar
+		//If the user is not using any of the powers, then load the magicbar
 		if(!input.isKeyDown(Input.KEY_A) 
 				&& ! input.isKeyDown(Input.KEY_SPACE) 
 				&& ! input.isKeyDown(Input.KEY_F)){
-			list.getMainCharacter().getMagicBar().reviveMagicBar(delta);
+			playable.getMagicBar().reviveMagicBar(delta);
 		}
 
 		//When the user press s, then it takes a screenshoot
@@ -140,9 +155,8 @@ public class Play extends BasicGameState {
 		}
 
 		if(!(input.isKeyDown(Input.KEY_DOWN)||input.isKeyDown(Input.KEY_LEFT)||
-				input.isKeyDown(Input.KEY_UP)||
-				input.isKeyDown(Input.KEY_RIGHT))){
-			list.getMainCharacter().getAnimationHolder().getMainChar().setAutoUpdate(false);
+			input.isKeyDown(Input.KEY_UP)||input.isKeyDown(Input.KEY_RIGHT))){
+			playable.getAnimationHolder().getMainChar().setAutoUpdate(false);
 		}
 
 	}

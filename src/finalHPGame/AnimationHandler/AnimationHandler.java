@@ -1,6 +1,6 @@
 package finalHPGame.AnimationHandler;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 
@@ -13,12 +13,12 @@ public class AnimationHandler {
 	/**The direction the character is facing. 12-up, 6-down*/
 	private int direction;
 	/**Contains the specific integers with has specific animations*/
-	private Hashtable<Integer, Animation> animationHolder;
+	private HashMap<Integer, Animation> animationHolder;
 	/**The current animation*/
 	private Animation mainChar;
 
 	public AnimationHandler(Data data) throws SlickException{
-		animationHolder = new Hashtable<Integer, Animation>();
+		animationHolder = new HashMap<Integer, Animation>();
 		direction = 6;
 		animationHolder.put(12, data.getMovingUp());
 		animationHolder.put(3, data.getMovingRight());

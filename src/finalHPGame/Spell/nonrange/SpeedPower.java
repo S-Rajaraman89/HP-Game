@@ -1,5 +1,5 @@
 package finalHPGame.Spell.nonrange;
-
+/**Part of nonrange spells*/
 public class SpeedPower extends NonRange {
 	private float speed;
 	public SpeedPower(){
