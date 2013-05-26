@@ -54,7 +54,7 @@ public class Play extends BasicGameState {
 		worldMap.drawMap();
 		list.drawEveryone();
 		list.getMainCharacter().getMagicBar().drawBar(g);
-		list.getMainCharacter().getHealthBar().draw(g);
+		list.getMainCharacter().getHealthBar().drawBar(g);
 		list.getMainCharacter().getCirclePower().drawPowerCircle(g);
 		list.drawShapes(g);
 		g.drawString("Health "+list.getMainCharacter().getHealthBar().getHealthBarX(), 30, 220);

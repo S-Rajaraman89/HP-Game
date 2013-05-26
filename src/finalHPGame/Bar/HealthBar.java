@@ -17,7 +17,7 @@ public class HealthBar {
 	}
 
 	/**Draws the HealthBar in a green color*/
-	public void draw(Graphics g){
+	public void drawBar(Graphics g){
 		org.newdawn.slick.Color r = new org.newdawn.slick.Color(124, 252, 0);
 		g.setColor(r);
 		g.fillRect(50, 589, healthBarX, 10);

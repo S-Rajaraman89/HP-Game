@@ -29,16 +29,6 @@ public class RangePower implements Spell {
 		this.userLocation = userLocation;
 		this.speed = speed;
 		this.isPlayable = playable;
-		
-		if(isPlayable){
-			startingIndex = 1;
-			finishingIndex = targets.size();
-		}
-		else{
-			startingIndex = 0;
-			finishingIndex = 1;
-		}
-
 	}
 
 	public boolean isPlayable() //Check if target is magician or anything else
@@ -64,12 +54,21 @@ public class RangePower implements Spell {
 	 */
 	public void updateBullet(int delta) //go through arraylist bullets & targets and update
 	{
+		if(isPlayable){
+			startingIndex = 1;
+			finishingIndex = targets.size();
+		}
+		else{
+			startingIndex = 0;
+			finishingIndex = 1;
+		}
+		
 		for(int x = 0; x<bullet.size();x++){
-			System.out.println("RP1");
+			//System.out.println("RP1");
 			Bullet currentbullet = bullet.get(x);
 			
 			if(currentbullet.update(delta)){
-				System.out.println("RP2");
+				//System.out.println("RP2");
 				
 				for(int i=startingIndex; i<finishingIndex;i++){
 					System.out.println("RP3");
