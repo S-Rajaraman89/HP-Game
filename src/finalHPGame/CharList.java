@@ -14,7 +14,7 @@ public class CharList {
 	/**Contains the Characters*/
 	private ArrayList<Character> characters;
 	private ArrayList<Character> horcruxes;
-	
+
 
 	/**The Character in the list is based on the level*/
 	public CharList(int level) throws SlickException{
@@ -28,7 +28,7 @@ public class CharList {
 			  in this level it is Harry*/
 
 			characters.add(new Magician(new HarryData(300,140,level),this));
-			characters.add(new Enemy(new SpiderData(300,400,1)));
+			characters.add(new Enemy(new SpiderData(300,400,1,this)));
 			horcruxes.add(new Enemy(new CupData(200,200,1)));
 
 			for(int x = 1; x<10; x++){
@@ -101,7 +101,9 @@ public class CharList {
 	/**The enemies will be removed if considered "killed"*/
 	/*Killed = If the user is pressing F and the enemy intersects with
 	the circle spell.*/
-	public void killEnemies(Shape spellBound, boolean isUsing){
+	public void killEnemies(){
+		boolean isUsing = this.getMainCharacter().getCirclePower().isPowerOn();
+		Shape spellBound = this.getMainCharacter().getCirclePower().getPowerCircle();
 		if(isUsing){
 			//Get all the enemies in the list
 			for(int x = 0; x<characters.size();x++){
@@ -110,8 +112,8 @@ public class CharList {
 					if(spellBound.intersects(characters.get(x).getPersonalSpace())){
 						//TODO: Change the way Enemies die
 						//if(characters.get(x).getName().equalsIgnoreCase("snake")){
-							characters.remove(x);
-							--x;
+						characters.remove(x);
+						--x;
 						//}
 					}
 				}
@@ -128,10 +130,10 @@ public class CharList {
 			if(c instanceof Enemy){
 				((Enemy) c).moveToward(this, delta);	
 				float decreaser = (float) ((Enemy) c).getConstant().getDecreaser();
-				
+
 				if( ((Enemy) c).getPersonalSpace().intersects(this.getMainCharacter().getPersonalSpace())){
-	
-						getMainCharacter().decreaseHealth(delta*decreaser);
+
+					getMainCharacter().decreaseHealth(delta*decreaser);
 
 				}
 			}
@@ -145,6 +147,28 @@ public class CharList {
 		}
 		for(Character c: horcruxes){
 			c.drawPersonal(g);
+		}
+	}
+
+	public void updateAllBullet(int delta){
+		System.out.println("1");
+		getMainCharacter().getRangePower().updateBullet(delta);
+		System.out.println("2");
+		for(int x = 1; x<characters.size();x++){
+			Character e = characters.get(x);
+			if(e instanceof Enemy && ((Enemy) e).hasRangePower()){
+				((Enemy) e).getRangePower().updateBullet(delta);
+			}
+		}
+	}
+	
+	public void drawAllBullet(Graphics g){
+		getMainCharacter().getRangePower().draw(g);
+		for(int x = 1; x<characters.size();x++){
+			Character e = characters.get(x);
+			if(e instanceof Enemy && ((Enemy) e).hasRangePower()){
+				((Enemy) e).getRangePower().draw(g);
+			}
 		}
 	}
 }

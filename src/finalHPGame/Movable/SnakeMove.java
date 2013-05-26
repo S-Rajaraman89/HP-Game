@@ -14,7 +14,8 @@ public class SnakeMove implements Movable {
 	/**Decides and calls which directions to move the Character*/
 	public void moveCharacter(CharList list, Enemy self, int delta) {
 		timer+=delta;
-		if(timer>=700){
+		if(timer>=5){
+			timer =0;
 		Magician target = list.getMainCharacter();
 		if(target.getInvisiblePower().isPowerOn()){
 

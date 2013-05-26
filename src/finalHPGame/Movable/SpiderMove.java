@@ -39,39 +39,18 @@ public class SpiderMove implements Movable {
 
 	//Step 1 and 2
 	public void setTargetLocation(Location mainCharLoc, Enemy self){
-		double rand = (double)Math.random()*1;
-		if(rand>.5){
+
 			if(mainCharLoc.getBounds().inBounds(mainCharLoc.getX(), self.getPositionY())){
 				target = new Location(mainCharLoc.getX(), self.getPositionY(),mainCharLoc.getLevel());
-				/*if(target.getDistance(mainCharLoc)<10){
-					this.setDistantLocationX(mainCharLoc, self, target.getDistance(mainCharLoc));
-					System.out.println("Goes thru the if statement");
-				}*/
 				playablePreviousLocation = mainCharLoc.getCopyOfLocation();
-			}
+			
 		}
-		else{
 			if(mainCharLoc.getBounds().inBounds(self.getPositionX(), mainCharLoc.getY())){
 				target = new Location(self.getPositionX(), mainCharLoc.getY(), mainCharLoc.getLevel());
 				playablePreviousLocation = mainCharLoc.getCopyOfLocation();
-			}
 		}
 	}
 	
-/*	public void setDistantLocationX(Location mainCharLoc, Enemy self, float distance){
-		if(mainCharLoc.getX()<target.getX()){
-			target.replaceX(target.getX()+Math.abs((10-distance)));
-		}
-		else{
-			target.replaceX(target.getX()-Math.abs((10-distance)));
-		}
-	}
-	
-	public Location setDistantLocationY(){
-		
-		return null;
-	}*/
-
 	/*Step 3.
 	 * Move towards Location target
 	 * and if with then radius of 5 in the target, set the self.location = to target
@@ -91,6 +70,9 @@ public class SpiderMove implements Movable {
 			if(self.getLocation().equals(target)){
 				int direction = self.getLocation().directionOf(playablePreviousLocation);
 				System.out.println("Shoot");
+				if(self.hasRangePower()){
+					self.getRangePower().addBullet(direction);
+				}
 				target =null;
 			}
 		}
@@ -99,10 +81,10 @@ public class SpiderMove implements Movable {
 	public void moveX(Enemy self){
 		if(Math.abs(self.getPositionX()-target.getX())>15){
 			if(target.getX()>self.getPositionX()){
-				self.addPositionX(self.getConstant().getSpeed());
+				self.addPositionX(20);
 			}
 			else{
-				self.addPositionX(-self.getConstant().getSpeed());
+				self.addPositionX(-20);
 			}
 		}
 		else{
@@ -113,10 +95,10 @@ public class SpiderMove implements Movable {
 	public void moveY(Enemy self){
 		if(Math.abs(self.getPositionY()-target.getY())>15){
 			if(target.getY()>self.getPositionY()){
-				self.addPositionY(self.getConstant().getSpeed());
+				self.addPositionY(20);
 			}
 			else{
-				self.addPositionY(-self.getConstant().getSpeed());
+				self.addPositionY(-20);
 			}
 		}
 		else{

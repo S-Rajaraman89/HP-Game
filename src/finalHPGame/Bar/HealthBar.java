@@ -5,13 +5,13 @@ import org.newdawn.slick.Graphics;
 /**Represents the HealthBar*/
 public class HealthBar {
 	/**Length of the bar. 0=dead*/
-	private float healthBarX = 65;
+	private float healthBarX;
 	private float speed = (float) 0.01;
-	
+
 	public HealthBar(){	
 		healthBarX = 65;
 	}
-	
+
 	public HealthBar(float x){
 		healthBarX = x;
 	}
@@ -41,8 +41,17 @@ public class HealthBar {
 	public void addHP(float hp){
 		healthBarX+=hp;
 	}
-	
+
 	public float getSpeedOfReduction(){
 		return speed;
+	}
+
+	public void subHP(){
+		if((healthBarX)>=0){
+			healthBarX-=13;
+		}
+		if(healthBarX<=0){
+			healthBarX=0;
+		}
 	}
 }

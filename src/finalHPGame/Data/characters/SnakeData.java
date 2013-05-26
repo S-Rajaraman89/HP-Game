@@ -9,6 +9,7 @@ import finalHPGame.Data.Data;
 import finalHPGame.Location.Location;
 import finalHPGame.Movable.SnakeMove;
 import finalHPGame.ShapeUpdater.CharacterUpdater.SnakeUpdater;
+import finalHPGame.Spell.Spell;
 
 /**
  *Holds variables for the snake
@@ -16,6 +17,7 @@ import finalHPGame.ShapeUpdater.CharacterUpdater.SnakeUpdater;
 public class SnakeData extends Data {
 
 	public SnakeData(float x, float y,int level) throws SlickException{
+		super();
 		move = new SnakeMove();
 		updater = new SnakeUpdater();
 		constant = new SnakeConstant(level);
@@ -23,6 +25,7 @@ public class SnakeData extends Data {
 		myLoc = new Location(x,y,level);
 		name = "snake";
 		init();
+		initSpell();
 	}
 
 	public void init() throws SlickException{
@@ -34,5 +37,13 @@ public class SnakeData extends Data {
 		movingLeft = movingDown;
 		movingRight = movingDown;
 		movingUp = movingDown;
+	}
+
+	public void initSpell(){
+		this.spells = new Spell[4];
+		spells[0] = null;
+		spells[1] = null;
+		spells[2] = null;
+		spells[3] = null;
 	}
 }

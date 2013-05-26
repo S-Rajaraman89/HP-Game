@@ -16,17 +16,35 @@ import finalHPGame.Spell.Spell;
 /**Holds the data for each character*/
 public class Data {
 
-	protected Movable move=null;
-	protected ShapeUpdater updater=null;
-	protected Rectangle personal=null;
-	protected Constant constant=null;
-	protected Animation movingUp=null;
-	protected Animation movingDown=null;
-	protected Animation movingLeft=null;
-	protected Animation movingRight=null;
-	protected Location myLoc = null;
-	protected String name = null;
-	protected Spell[] spells =null;
+	protected Movable move;
+	protected ShapeUpdater updater;
+	protected Rectangle personal;
+	protected Constant constant;
+	protected Animation movingUp;
+	protected Animation movingDown;
+	protected Animation movingLeft;
+	protected Animation movingRight;
+	protected Location myLoc;
+	protected String name;
+	protected Spell[] spells;
+	
+	public Data(){
+		move = null;
+		updater = null;
+		personal = null;
+		constant = null;
+		movingUp=null;
+		movingDown = null;
+		movingLeft = null;
+		movingRight = null;
+		myLoc = null;
+		name = null;
+		spells = new Spell[4];
+		spells[0] = null;
+		spells[1] = null;
+		spells[2] = null;
+		spells[3] = null;
+	}
 
 	public Movable getMovable(){
 		return move;

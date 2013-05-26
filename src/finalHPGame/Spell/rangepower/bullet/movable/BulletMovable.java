@@ -8,9 +8,4 @@ public interface BulletMovable {
 	 * ex. bulletsLocation.setX(speed)
 	 * */
 	public void moveBullet(Location bulletLocation, float speed);
-
-	/**Can the bullet still move
-	 * @return true if the bullet can move
-	 * @return false if the bullet has hit it's bounds*/
-	public boolean canMove(Location bulletsLocation, float speed);
 }

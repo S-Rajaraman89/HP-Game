@@ -15,7 +15,7 @@ import finalHPGame.CharList;
 import finalHPGame.Characters.Magician;
 import finalHPGame.Map.*;
 import finalHPGame.Spell.nonrange.*;
-import finalHPGame.Spell.rangepower.RangePower;
+
 
 
 public class Play extends BasicGameState {
@@ -60,13 +60,13 @@ public class Play extends BasicGameState {
 		g.drawString("Health "+list.getMainCharacter().getHealthBar().getHealthBarX(), 30, 220);
 		g.drawString(list.getMainCharacter().getLocation().toString(), 30, 240);
 		worldMap.render(gc, sbg, g);
-		list.getMainCharacter().getRangePower().draw(g);
+		list.drawAllBullet(g);
 	}
 
 
 	public void update(GameContainer gc, StateBasedGame arg1, int delta)
 			throws SlickException {
-		list.getMainCharacter().getRangePower().updateBullet(delta);
+		list.updateAllBullet(delta);
 		worldMap.update(delta);
 
 		if(worldMap.isinHarm(list.getMainCharacter().getPersonalSpace())){
@@ -90,13 +90,11 @@ public class Play extends BasicGameState {
 		CirclePower circle = playable.getCirclePower();
 		InvisiblePower invisible = playable.getInvisiblePower();
 		SpeedPower speed = playable.getSpeedPower();
-		//************TESTING*****************
-		RangePower range = playable.getRangePower();
 
-		list.killEnemies(circle.getPowerCircle(), circle.isPowerOn());
+		list.killEnemies();
 		list.removeHorcruxes();
-		//list.moveEnemies(delta);
-		//list.moveHorcruxes(delta);
+		list.moveEnemies(delta);
+		list.moveHorcruxes(delta);
 
 		if(input.isKeyDown(Input.KEY_UP) && !circle.isPowerOn()){
 			playable.setPositionY(-delta*speed.getSpeed());
@@ -135,8 +133,7 @@ public class Play extends BasicGameState {
 			invisible.setPowerOff();
 		}
 		if(input.isKeyPressed(Input.KEY_Q)){
-			int direction = playable.getAnimationHolder().getDirection();
-			range.addBullet(direction);
+			playable.addBullet();
 		}
 
 		//if the user is pressing down a,

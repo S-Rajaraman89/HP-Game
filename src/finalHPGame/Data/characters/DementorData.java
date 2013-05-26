@@ -17,12 +17,13 @@ import finalHPGame.ShapeUpdater.CharacterUpdater.DementorUpdater;
 public class DementorData extends Data {
 
 	public DementorData(float x, float y,int level) throws SlickException{
-		super.move = new DementorMove();
-		super.updater = new DementorUpdater();
-		super.personal = new Rectangle(30,5,41,85);
-		super.constant = new DementorConstant(level);
-		super.myLoc = new Location(x,y,level);
-		super.name = "Dementor";
+		super();
+		move = new DementorMove();
+		updater = new DementorUpdater();
+		personal = new Rectangle(30,5,41,85);
+		constant = new DementorConstant(level);
+		myLoc = new Location(x,y,level);
+		name = "Dementor";
 		init();
 	}
 

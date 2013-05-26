@@ -27,7 +27,7 @@ public class Magician extends Character {
 		invisible = new InvisiblePower();
 		bar = new MagicBar();
 		hp = new HealthBar();
-		rangepower = new RangePower(list, this, (float)2);
+		rangepower = new RangePower(list, this.getLocation(), (float)2, true);
 	}
 	/**Returns the SpeedPower object*/
 	public SpeedPower getSpeedPower(){
@@ -111,6 +111,13 @@ public class Magician extends Character {
 		}
 		else{
 			super.getAnimationHolder().drawSmall(super.getLocation());
+		}
+	}
+	
+	public void addBullet(){
+		if(bar.getSpellBarX()>0){
+			rangepower.addBullet(this.getAnimationHolder().getDirection());
+			bar.subMagic();
 		}
 	}
 

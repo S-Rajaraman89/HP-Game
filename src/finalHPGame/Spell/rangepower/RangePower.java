@@ -6,36 +6,44 @@ import finalHPGame.CharList;
 import finalHPGame.Location.Location;
 import finalHPGame.Spell.Spell;
 import finalHPGame.Spell.rangepower.bullet.Bullet;
-import finalHPGame.Spell.rangepower.bullet.bulletconstant.BulletConstant;
 import finalHPGame.Characters.Character;
+import finalHPGame.Characters.Magician;
 
 public class RangePower implements Spell {
 
 
-	int limit;
 	Location userLocation;
 	ArrayList<Character> targets;
 	ArrayList<Bullet> bullet;
-	boolean isTargetPlayable;
-	BulletConstant bulletConstant;
-	Character User;
-	float speed;
+	private boolean isPlayable;
+	private float speed;
+	private int startingIndex;
+	private int finishingIndex;
 
 
 
-	public RangePower(CharList list, Character User, float speed)
+	public RangePower(CharList list, Location userLocation, float speed, boolean playable)
 	{
 		bullet = new ArrayList<Bullet>();
 		targets = list.getCharacterList();
-		this.userLocation = User.getLocation();
+		this.userLocation = userLocation;
 		this.speed = speed;
+		this.isPlayable = playable;
 		
+		if(isPlayable){
+			startingIndex = 1;
+			finishingIndex = targets.size();
+		}
+		else{
+			startingIndex = 0;
+			finishingIndex = 1;
+		}
+
 	}
 
 	public boolean isPlayable() //Check if target is magician or anything else
 	{
-		return isTargetPlayable;
-
+		return isPlayable;
 	}
 
 	public void addBullet(int direction) //add to arraylist
@@ -43,7 +51,7 @@ public class RangePower implements Spell {
 		Bullet b = new Bullet(direction, userLocation.getCopyOfLocation(), speed);
 		bullet.add(b);	
 	}
-	
+
 	/* 1. Add the bullet to the bulletlist
 	 * 2. Update the bullets in the list
 	 * 		In the Bullet class:
@@ -57,17 +65,30 @@ public class RangePower implements Spell {
 	public void updateBullet(int delta) //go through arraylist bullets & targets and update
 	{
 		for(int x = 0; x<bullet.size();x++){
+			System.out.println("RP1");
 			Bullet currentbullet = bullet.get(x);
 			
 			if(currentbullet.update(delta)){
-				for(int i=1; i<targets.size();i++){
+				System.out.println("RP2");
+				
+				for(int i=startingIndex; i<finishingIndex;i++){
+					System.out.println("RP3");
 					Character enemy = targets.get(i);
+
 					
 					if(enemy.getPersonalSpace().intersects(currentbullet.getPersonal())){
-						targets.remove(i);
-						--i;
+						System.out.println("RP4");
 						bullet.remove(x);
 						--x;
+						
+						if(isPlayable){
+							targets.remove(i);
+							--i;
+							
+						}
+						else{
+							((Magician) targets.get(0)).getHealthBar().subHP();
+						}
 						break;
 					}
 				}
@@ -76,9 +97,9 @@ public class RangePower implements Spell {
 				bullet.remove(x);
 				--x;
 			}
-			
+
 		}
-		
+
 	}
 
 	public void draw(Graphics g){

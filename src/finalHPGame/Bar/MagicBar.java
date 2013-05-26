@@ -81,5 +81,14 @@ public class MagicBar {
 		return spellBarX;
 	}
 	
+	public void subMagic(){
+		if((spellBarX)>=0){
+			spellBarX-=13;
+		}
+		else if(spellBarX<=0){
+			spellBarX=0;
+		}
+	}
+	
 
 }
