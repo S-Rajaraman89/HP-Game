@@ -28,7 +28,7 @@ public class CharList {
 			  in this level it is Harry*/
 
 			characters.add(new Magician(new HarryData(300,140,level),this));
-			//characters.add(new Enemy(new SpiderData(300,400,1,this)));
+			characters.add(new Enemy(new SpiderData(300,400,1,this)));
 			horcruxes.add(new Enemy(new CupData(200,200,1)));
 
 			for(int x = 1; x<10; x++){

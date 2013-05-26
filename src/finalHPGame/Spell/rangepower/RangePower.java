@@ -54,44 +54,37 @@ public class RangePower implements Spell {
 	 */
 	public void updateBullet(int delta) //go through arraylist bullets & targets and update
 	{
-		if(isPlayable){
-			startingIndex = 1;
-			finishingIndex = targets.size();
-		}
-		else{
-			startingIndex = 0;
-			finishingIndex = 1;
-		}
-		
+		setIndex();	
 		for(int x = 0; x<bullet.size();x++){
 			//System.out.println("RP1");
 			Bullet currentbullet = bullet.get(x);
-			
+
 			if(currentbullet.update(delta)){
 				//System.out.println("RP2");
-				
-				for(int i=startingIndex; i<finishingIndex;i++){
-					System.out.println("RP3");
-					Character enemy = targets.get(i);
+				if(targets.size()>1){
+					for(int i=startingIndex; i<finishingIndex;i++){
+						Character enemy = targets.get(i);
 
-					
-					if(enemy.getPersonalSpace().intersects(currentbullet.getPersonal())){
-						System.out.println("RP4");
-						bullet.remove(x);
-						--x;
-						
-						if(isPlayable){
-							targets.remove(i);
-							--i;
-							
+
+						if(enemy.getPersonalSpace().intersects(currentbullet.getPersonal())){
+							System.out.println("RP4");
+							bullet.remove(x);
+							--x;
+
+							if(isPlayable){
+								targets.remove(i);
+								--i;
+
+							}
+							else{
+								((Magician) targets.get(0)).getHealthBar().subHP();
+							}
+							break;
 						}
-						else{
-							((Magician) targets.get(0)).getHealthBar().subHP();
-						}
-						break;
+						this.setIndex();
 					}
-				}
-			}		
+				}		
+			}
 			else{
 				bullet.remove(x);
 				--x;
@@ -104,6 +97,16 @@ public class RangePower implements Spell {
 	public void draw(Graphics g){
 		for(Bullet current: bullet){
 			current.draw(g);
+		}
+	}
+	public void setIndex(){
+		if(isPlayable){
+			startingIndex = 1;
+			finishingIndex = targets.size();
+		}
+		else{
+			startingIndex = 0;
+			finishingIndex = 1;
 		}
 	}
 }
