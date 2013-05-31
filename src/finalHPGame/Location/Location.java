@@ -134,10 +134,10 @@ public class Location {
 			return 9;
 		}
 		else if(y>b.y){
-			return 6;
+			return 12;
 		}
 		else if(y<b.y){
-			return 12;
+			return 6;
 		}
 		return 0;
 	}

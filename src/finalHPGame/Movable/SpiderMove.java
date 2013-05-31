@@ -38,26 +38,33 @@ public class SpiderMove implements Movable {
 
 
 	//Step 1 and 2
-	public void setTargetLocation(Location mainCharLoc, Enemy self){
-
-			if(mainCharLoc.getBounds().inBounds(mainCharLoc.getX(), self.getPositionY())){
-				target = new Location(mainCharLoc.getX(), self.getPositionY(),mainCharLoc.getLevel());
-				playablePreviousLocation = mainCharLoc.getCopyOfLocation();
-			
+	private void setTargetLocation(Location mainCharLoc, Enemy self){
+		Location [] temp = new Location[2];
+		if(mainCharLoc.getBounds().inBounds(mainCharLoc.getX(), self.getPositionY())){
+			temp[0] = new Location(mainCharLoc.getX(), self.getPositionY(),mainCharLoc.getLevel());
 		}
-			if(mainCharLoc.getBounds().inBounds(self.getPositionX(), mainCharLoc.getY())){
-				target = new Location(self.getPositionX(), mainCharLoc.getY(), mainCharLoc.getLevel());
-				playablePreviousLocation = mainCharLoc.getCopyOfLocation();
+		if(mainCharLoc.getBounds().inBounds(self.getPositionX(), mainCharLoc.getY())){
+			temp[1] = new Location(self.getPositionX(), mainCharLoc.getY(), mainCharLoc.getLevel());
 		}
+		target = this.closestLocation(temp, self.getLocation());
+		playablePreviousLocation = mainCharLoc.getCopyOfLocation();
 	}
-	
+	/*Gets the closest Location from self's Location*/
+	private Location closestLocation(Location [] temp, Location selfLocation){
+		if(temp[0]==null && temp[1]==null) return null;
+		else if(temp[0]==null) return temp[1];
+		else if(temp[1]==null) return temp[0];
+		else if(selfLocation.getDistance(temp[0])<= selfLocation.getDistance(temp[1])) return temp[0];
+		return temp[1];
+	}
+
 	/*Step 3.
 	 * Move towards Location target
 	 * and if with then radius of 5 in the target, set the self.location = to target
 	 */
 	/**Move the self towards Location target
 	 * @param delta - move it based on time*/
-	public void move(int delta, Enemy self){
+	private void move(int delta, Enemy self){
 		timer+=delta;
 		if(timer>500){
 			timer=0;
@@ -69,7 +76,7 @@ public class SpiderMove implements Movable {
 			}
 			if(self.getLocation().equals(target)){
 				int direction = self.getLocation().directionOf(playablePreviousLocation);
-				System.out.println("Shoot");
+				//	System.out.println("Shoot");
 				if(self.hasRangePower()){
 					self.getRangePower().addBullet(direction);
 				}
@@ -78,7 +85,7 @@ public class SpiderMove implements Movable {
 		}
 	}
 	/**Moves the spider towards target only in x direction*/
-	public void moveX(Enemy self){
+	private void moveX(Enemy self){
 		if(Math.abs(self.getPositionX()-target.getX())>15){
 			if(target.getX()>self.getPositionX()){
 				self.addPositionX(20);
@@ -92,7 +99,7 @@ public class SpiderMove implements Movable {
 		}
 	}
 	/**Moves the spider towards target only in y direction*/
-	public void moveY(Enemy self){
+	private void moveY(Enemy self){
 		if(Math.abs(self.getPositionY()-target.getY())>15){
 			if(target.getY()>self.getPositionY()){
 				self.addPositionY(20);

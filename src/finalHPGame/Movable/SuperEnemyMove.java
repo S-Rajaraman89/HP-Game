@@ -10,12 +10,30 @@ public class SuperEnemyMove implements Movable {
 	 * 	-Circle Power - when the playable is too close
 	 *	-InvisiblePower - random time
 	 *	-RangePower - when and if x and y are the same as the target, or if the target is near a certain range
-	 * 	-
-	 * 
 	 */
 	public void moveCharacter(CharList list, Enemy self, int delta) {
-		// TODO Auto-generated method stub
 	
 	}
-
+	
+	private void useCirclePower(Enemy self, int delta){
+		if(!self.hasCirlePower()){
+			return;
+		}
+		self.getCirclePower().setPowerOn();
+		self.getCirclePower().updateCircle(delta, self);
+	}
+	private void setCirclePowerOff(Enemy self){
+		self.getCirclePower().setPowerOff();
+	}
+	
+	private void useInvisiblePower(Enemy self, int delta){
+		if(!self.hasInvisiblePower()){
+			return;
+		}
+		self.getCirclePower().setPowerOn();
+		self.getCirclePower().updateCircle(delta, self);
+	}
+	private void setInvisibleOff(Enemy self){
+		self.getCirclePower().setPowerOff();
+	}
 }
