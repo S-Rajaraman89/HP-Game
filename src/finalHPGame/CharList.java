@@ -8,9 +8,6 @@ import finalHPGame.Characters.*;
 import finalHPGame.Characters.Character;
 import finalHPGame.Data.characters.*;
 import finalHPGame.Data.horcrux.*;
-import finalHPGame.Movable.SuperEnemyMove;
-import finalHPGame.Spell.Spell;
-import finalHPGame.Spell.nonrange.CirclePower;
 
 /**Contains the Characters in the game*/
 public class CharList {
@@ -45,14 +42,23 @@ public class CharList {
 			}
 		}
 		else if(level==2){
-			characters.add(new Magician(new RonData(140,300,level), this));
-			characters.add(new Enemy(new DementorData(300,400,level)));
-			characters.add(new Enemy(new DementorData(200,230,level)));
-			characters.add(new Enemy(new DementorData(20,259,level)));
+			characters.add(new Magician(new RonData(50,300,level), this));
+			characters.add(new Enemy(new DementorData(450,400,level)));
+			characters.add(new Enemy(new DementorData(300,230,level)));
+			characters.add(new Enemy(new DementorData(680,259,level)));
+			characters.add(new Enemy(new SpiderData(300,320,level,this)));
+			characters.add(new Enemy(new SpiderData(700,400,level,this)));
+			characters.add(new Enemy(new SpiderData(600,400,level,this)));
 		}
 		else if(level==3){
 			characters.add(new Magician(new HarryData(140,300,level),this));
 			characters.add(new Enemy(new DementorData(300,400,level)));
+			characters.add(new Enemy(new SpiderData(300,300,level,this)));
+			characters.add(new Enemy(new SpiderData(700,400,level,this)));
+			characters.add(new Enemy(new SpiderData(600,400,level,this)));
+			characters.add(new Enemy(new SpiderData(300,300,level,this)));
+			characters.add(new Enemy(new SpiderData(700,400,level,this)));
+			characters.add(new Enemy(new SpiderData(600,400,level,this)));
 		}
 	}
 
@@ -118,10 +124,10 @@ public class CharList {
 					//if the enemy intersects, then remove it.
 					if(spellBound.intersects(characters.get(x).getPersonalSpace())){
 						//TODO: Change the way Enemies die
-						//if(characters.get(x).getName().equalsIgnoreCase("snake")){
+						if(characters.get(x).getName().equalsIgnoreCase("snake")){
 						characters.remove(x);
 						--x;
-						//}
+						}
 					}
 				}
 			}

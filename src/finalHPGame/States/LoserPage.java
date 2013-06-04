@@ -23,10 +23,9 @@ public class LoserPage extends BasicGameState{
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException{
 		bathroom.draw(0,0,1050,800);
-		g.drawString("Instructions:", 100, 50);
 		ready.draw(750,600);
 		menuReturn.draw(100,600);
-		g.drawString("x "+ posX+ "  y"+ posY,50,200);
+		
 
 
 	}
@@ -39,21 +38,23 @@ public class LoserPage extends BasicGameState{
 
 		if((posX> gc.getWidth()-300 && posX<gc.getWidth()-100)&&(posY> gc.getHeight()-641 && posY<gc.getHeight()-601)){
 			if(Mouse.isButtonDown(0)){
-				System.out.println("clicked");
 				
 				if(Play.playLevel==1){
 					sbg.getState(1).init(gc, sbg);
 					sbg.enterState(1);
 				}
-				if(Play.playLevel==2){
+				else if(Play.playLevel==2){
 					sbg.getState(2).init(gc, sbg);
 					sbg.enterState(2);
+				}
+				else if(Play.playLevel==3){
+					sbg.getState(3).init(gc, sbg);
+					sbg.enterState(3);
 				}
 			}
 		}
 		else if((posX> gc.getWidth()-950 && posX<gc.getWidth()-750)&&(posY> gc.getHeight()-641 && posY< gc.getHeight()-601)){
 			if(Mouse.isButtonDown(0)){
-				System.out.println("clicked");
 				sbg.getState(0).init(gc, sbg);
 				sbg.enterState(0);
 			}

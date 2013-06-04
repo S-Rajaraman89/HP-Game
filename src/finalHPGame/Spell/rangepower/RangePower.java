@@ -54,25 +54,23 @@ public class RangePower implements Spell {
 	{
 		setIndex();	
 		for(int x = 0; x<bullet.size();x++){
-			//System.out.println("RP1");
 			Bullet currentbullet = bullet.get(x);
 
 			if(currentbullet.update(delta)){
-				//System.out.println("RP2");
 				if(targets.size()>1){
 					for(int i=startingIndex; i<finishingIndex;i++){
 						Character enemy = targets.get(i);
 
 
 						if(enemy.getPersonalSpace().intersects(currentbullet.getPersonal())){
-							System.out.println("RP4");
 							bullet.remove(x);
 							--x;
 
 							if(isPlayable){
+								if(enemy.getName().equals("spider")|| enemy.getName().equalsIgnoreCase("dementor")){
 								targets.remove(i);
 								--i;
-
+								}
 							}
 							else{
 								((Magician) targets.get(0)).getHealthBar().subHP();

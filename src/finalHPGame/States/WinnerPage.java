@@ -46,11 +46,8 @@ public class WinnerPage extends BasicGameState{
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException{
 		winningPic.draw(0,0,1050,800);
-		g.drawString("Instructions:", 100, 50);
 		nextLevel.draw(750,600);
 		menuReturn.draw(100,600);
-
-		g.drawString("x "+ posX+ "  y"+ posY,50,200);
 		system.render();
 
 	}
@@ -59,14 +56,17 @@ public class WinnerPage extends BasicGameState{
 		system.update(delta);
 		posX = Mouse.getX();
 		posY = Mouse.getY();
-
-		//play now button
+		if(Play.playLevel==4){
+			nextLevel = new Image("res/exitGame.png");
+		}
 
 		if((posX> gc.getWidth()-300 && posX< gc.getWidth()-100)&&(posY>gc.getHeight()-641 && posY< gc.getHeight()-601)){
 			if(Mouse.isButtonDown(0)){
-				//System.out.println("clicked");
-				sbg.getState(Play.playLevel+1).init(gc, sbg);
-				sbg.enterState(Play.playLevel+1);
+				if(Play.playLevel==4){
+					System.exit(0);
+				}
+				sbg.getState(Play.playLevel).init(gc, sbg);
+				sbg.enterState(Play.playLevel);
 			}
 		}
 		else if((posX>gc.getWidth()-950 && posX< gc.getWidth()-750)&&(posY>gc.getHeight()-641 && posY<gc.getHeight()-601)){

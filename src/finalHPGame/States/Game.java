@@ -35,7 +35,7 @@ public void initStatesList(GameContainer gc) throws SlickException{
 	      this.getState(winner).init(gc, this);
 	      this.getState(play2).init(gc,this);
 	      this.getState(play3).init(gc, this);
-	      this.enterState(play);
+	      this.enterState(menu);
    }
    
    /**Creates the display*/
