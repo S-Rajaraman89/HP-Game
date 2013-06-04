@@ -13,7 +13,6 @@ public class MapLevel3 implements Map {
 		worldMap = new Image("res/HarryPotterHouse.jpg");
 	}
 
-	//TODO:Add flames if needed
 	public boolean isinHarm(Shape s) {
 		return false;
 	}

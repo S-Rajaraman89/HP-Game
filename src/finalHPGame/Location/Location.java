@@ -146,7 +146,7 @@ public class Location {
 	public float getDistance(Location b){
 		double xval = Math.pow((float)x-b.x, 2);
 		double yval = Math.pow((float)y-b.y, 2);
-			return (float) Math.sqrt(xval+yval);
+			return Math.abs((float) Math.sqrt(xval+yval));
 	}
 	
 	/**Returns true if the location is contained in Shape*/

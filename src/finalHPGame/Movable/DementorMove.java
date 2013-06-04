@@ -13,6 +13,7 @@ public class DementorMove implements Movable {
 	public DementorMove(){
 		timer = 0;
 	}
+	//TODO: Add invisible power
 	/**The Dementor moves directly (no bounds) towards the target.*/
 	public void moveCharacter(CharList list, Enemy self, int delta) {
 		timer+=delta;

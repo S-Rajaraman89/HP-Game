@@ -4,19 +4,28 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Shape;
 import finalHPGame.Characters.Character;
+import finalHPGame.Characters.Enemy;
 
 public class CirclePower extends NonRange {
 	
 	private Circle power;
 	private int powerRadius;
+	private final int radiusMax;
 	private int timer;
 	
-	public CirclePower(float x, float y){
+	public CirclePower(){
 		super();
 		powerRadius = 40;
 		power = new Circle(0,0,0);
 		timer = 0;
-		
+		radiusMax = 40;
+	}
+	public CirclePower(int radius){
+		super();
+		radiusMax = radius;
+		powerRadius = radius;
+		power = new Circle(0,0,0);
+		timer = 0;
 	}
 	public Shape getPowerCircle(){
 		return power;
@@ -48,7 +57,7 @@ public class CirclePower extends NonRange {
 
 	}
 	public void reset(){
-		powerRadius = 40;
+		powerRadius = radiusMax;
 		timer = 0;
 		power.setCenterX(0);
 		power.setCenterY(0);
@@ -58,6 +67,14 @@ public class CirclePower extends NonRange {
 	public void setPowerOff(){
 		this.isPowerOn=false;
 		reset();
+	}
+	
+	public Shape getPossibleCircle(Enemy self){
+		Circle circle = new Circle(0, 0, 0);
+		circle.setCenterX(self.getPositionX()+50);
+		circle.setCenterY(self.getPositionY()+40);
+		circle.setRadius(radiusMax);
+		return circle;
 	}
 	
 }

@@ -20,8 +20,6 @@ public class RangePower implements Spell {
 	private int startingIndex;
 	private int finishingIndex;
 
-
-
 	public RangePower(CharList list, Location userLocation, float speed, boolean playable)
 	{
 		bullet = new ArrayList<Bullet>();

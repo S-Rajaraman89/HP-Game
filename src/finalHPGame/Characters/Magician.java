@@ -23,7 +23,7 @@ public class Magician extends Character {
 	public Magician(Data data, CharList list)throws SlickException {
 		super(data);
 		speed = new SpeedPower();
-		circle = new CirclePower(this.getPositionX(), this.getPositionY());
+		circle = new CirclePower();
 		invisible = new InvisiblePower();
 		bar = new MagicBar();
 		hp = new HealthBar();

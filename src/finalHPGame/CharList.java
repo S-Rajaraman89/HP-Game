@@ -8,6 +8,9 @@ import finalHPGame.Characters.*;
 import finalHPGame.Characters.Character;
 import finalHPGame.Data.characters.*;
 import finalHPGame.Data.horcrux.*;
+import finalHPGame.Movable.SuperEnemyMove;
+import finalHPGame.Spell.Spell;
+import finalHPGame.Spell.nonrange.CirclePower;
 
 /**Contains the Characters in the game*/
 public class CharList {
@@ -28,8 +31,10 @@ public class CharList {
 			  in this level it is Harry*/
 
 			characters.add(new Magician(new HarryData(300,140,level),this));
-			characters.add(new Enemy(new SpiderData(300,400,1,this)));
-			horcruxes.add(new Enemy(new CupData(200,200,1)));
+			characters.add(new Enemy(new SpiderData(300,400,level,this)));
+			horcruxes.add(new Enemy(new CupData(200,200,level)));
+			horcruxes.add(new Enemy(new DiademData(299,303,level)));
+			
 
 			for(int x = 1; x<10; x++){
 				// to make sure the objects don't 
@@ -42,6 +47,8 @@ public class CharList {
 		else if(level==2){
 			characters.add(new Magician(new RonData(140,300,level), this));
 			characters.add(new Enemy(new DementorData(300,400,level)));
+			characters.add(new Enemy(new DementorData(200,230,level)));
+			characters.add(new Enemy(new DementorData(20,259,level)));
 		}
 		else if(level==3){
 			characters.add(new Magician(new HarryData(140,300,level),this));
@@ -159,13 +166,24 @@ public class CharList {
 			}
 		}
 	}
-	
-	public void drawAllBullet(Graphics g){
+
+	public void drawPowers(Graphics g){
 		getMainCharacter().getRangePower().draw(g);
 		for(int x = 1; x<characters.size();x++){
 			Character e = characters.get(x);
-			if(e instanceof Enemy && ((Enemy) e).hasRangePower()){
-				((Enemy) e).getRangePower().draw(g);
+			if(e instanceof Enemy){
+				Enemy current = (Enemy)e;
+				if(current.hasRangePower()){
+					current.getRangePower().draw(g);
+				}
+				
+				if(current.hasInvisiblePower()){
+
+				}
+				
+				if(current.hasCirlePower()){
+					current.getCirclePower().drawPowerCircle(g);
+				}
 			}
 		}
 	}
