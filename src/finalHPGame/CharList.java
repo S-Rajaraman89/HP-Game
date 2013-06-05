@@ -30,7 +30,7 @@ public class CharList {
 			characters.add(new Magician(new HarryData(300,140,level),this));
 			characters.add(new Enemy(new SpiderData(300,400,level,this)));
 			horcruxes.add(new Enemy(new CupData(200,200,level)));
-			horcruxes.add(new Enemy(new DiademData(299,303,level)));
+			horcruxes.add(new Enemy(new JournalData(299,303,level)));
 			
 
 			for(int x = 1; x<10; x++){
@@ -49,6 +49,9 @@ public class CharList {
 			characters.add(new Enemy(new SpiderData(300,320,level,this)));
 			characters.add(new Enemy(new SpiderData(700,400,level,this)));
 			characters.add(new Enemy(new SpiderData(600,400,level,this)));
+			horcruxes.add(new Enemy(new RingData(299,303,level)));
+			horcruxes.add(new Enemy(new LocketData(200,200,level)));
+			
 		}
 		else if(level==3){
 			characters.add(new Magician(new HarryData(140,300,level),this));
@@ -59,6 +62,7 @@ public class CharList {
 			characters.add(new Enemy(new SpiderData(300,300,level,this)));
 			characters.add(new Enemy(new SpiderData(700,400,level,this)));
 			characters.add(new Enemy(new SpiderData(600,400,level,this)));
+			horcruxes.add(new Enemy(new CupData(299,303,level)));
 		}
 	}
 
