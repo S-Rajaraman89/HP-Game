@@ -77,6 +77,7 @@ public class Play extends BasicGameState {
 			worldMap.update(delta);
 
 			if(worldMap.isinHarm(list.getMainCharacter().getPersonalSpace())){
+				System.out.println("yes");
 				list.getMainCharacter().getHealthBar().decreaseHealthBar((float) (delta*decreaser));
 			}
 			/*Checks if game should enter new state because playableCharacter is dead or 

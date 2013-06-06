@@ -31,7 +31,7 @@ public class CharList {
 			characters.add(new Enemy(new SpiderData(300,400,level,this)));
 			horcruxes.add(new Enemy(new CupData(200,200,level)));
 			horcruxes.add(new Enemy(new DiademData(299,303,level)));
-			
+
 
 			for(int x = 1; x<10; x++){
 				// to make sure the objects don't 
@@ -42,7 +42,7 @@ public class CharList {
 			}
 		}
 		else if(level==2){
-			characters.add(new Magician(new RonData(50,300,level), this));
+			characters.add(new Magician(new RonData(25,300,level), this));
 			characters.add(new Enemy(new DementorData(450,400,level)));
 			characters.add(new Enemy(new DementorData(300,230,level)));
 			characters.add(new Enemy(new DementorData(680,259,level)));
@@ -55,8 +55,8 @@ public class CharList {
 			characters.add(new Enemy(new DementorData(300,400,level)));
 			characters.add(new Enemy(new SpiderData(300,300,level,this)));
 			characters.add(new Enemy(new SpiderData(700,400,level,this)));
-			characters.add(new Enemy(new SpiderData(600,400,level,this)));
-			characters.add(new Enemy(new SpiderData(300,300,level,this)));
+			characters.add(new Enemy(new SpiderData(250,400,level,this)));
+			characters.add(new Enemy(new SpiderData(250,300,level,this)));
 			characters.add(new Enemy(new SpiderData(700,400,level,this)));
 			characters.add(new Enemy(new SpiderData(600,400,level,this)));
 		}
@@ -123,10 +123,9 @@ public class CharList {
 				if(characters.get(x) instanceof Enemy){
 					//if the enemy intersects, then remove it.
 					if(spellBound.intersects(characters.get(x).getPersonalSpace())){
-						//TODO: Change the way Enemies die
 						if(characters.get(x).getName().equalsIgnoreCase("snake")){
-						characters.remove(x);
-						--x;
+							characters.remove(x);
+							--x;
 						}
 					}
 				}
@@ -182,11 +181,11 @@ public class CharList {
 				if(current.hasRangePower()){
 					current.getRangePower().draw(g);
 				}
-				
-				if(current.hasInvisiblePower()){
 
+				if(current.hasInvisiblePower()){
+					current.draw();
 				}
-				
+
 				if(current.hasCirlePower()){
 					current.getCirclePower().drawPowerCircle(g);
 				}

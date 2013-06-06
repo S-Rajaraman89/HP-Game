@@ -1,6 +1,8 @@
 package finalHPGame.States;
 
 
+import java.awt.Font;
+
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.*;
 import org.newdawn.slick.particles.ConfigurableEmitter;
@@ -17,6 +19,7 @@ public class WinnerPage extends BasicGameState{
 	int posX;
 	int posY;
 	ParticleSystem system;
+	TrueTypeFont font;
 
 	public WinnerPage(int winner){
 	}
@@ -49,6 +52,13 @@ public class WinnerPage extends BasicGameState{
 		nextLevel.draw(750,600);
 		menuReturn.draw(100,600);
 		system.render();
+		if(Play.playLevel==4){
+			Font f = new Font ("Garamond", Font.BOLD , 30);
+			font= new TrueTypeFont(f,false);
+			font.drawString(150,50,"Thank you for playing! Check Github.com to see any updates", Color.white);
+			font.drawString(100, 100,"Wanna see the source code or start a project based off this game?", Color.white);
+			font.drawString(100, 150,"Go to https://github.com/S-Rajaraman89/HP-Game", Color.white);
+		}
 
 	}
 

@@ -37,10 +37,15 @@ public class Enemy extends Character {
 	public Spell[] getSpells(){
 		return spells;
 	}
-	//TODO: add the draw method for the invisible power
-/*	public void draw(){
-		
-	}*/
+	
+	public void draw(){
+		if(this.hasInvisiblePower() && this.getInvisiblePower().isPowerOn()){
+			super.getAnimationHolder().drawSmall(super.getLocation());
+		}
+		else{
+			super.draw();
+		}
+	}
 	
 	public boolean hasInvisiblePower(){
 		return (spells[0]!=null);
