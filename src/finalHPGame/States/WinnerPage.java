@@ -55,9 +55,10 @@ public class WinnerPage extends BasicGameState{
 		if(Play.playLevel==4){
 			Font f = new Font ("Garamond", Font.BOLD , 30);
 			font= new TrueTypeFont(f,false);
-			font.drawString(150,50,"Thank you for playing! Check Github.com to see any updates", Color.white);
-			font.drawString(100, 100,"Wanna see the source code or start a project based off this game?", Color.white);
-			font.drawString(100, 150,"Go to https://github.com/S-Rajaraman89/HP-Game", Color.white);
+			int x = 150;
+			font.drawString(150,50+x,"Thank you for playing! Check Github.com to see any updates", Color.white);
+			font.drawString(100, 100+x,"Wanna see the source code or start a project based off this game?", Color.white);
+			font.drawString(100, 150+x,"Go to https://github.com/S-Rajaraman89/HP-Game", Color.white);
 		}
 
 	}

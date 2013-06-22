@@ -47,7 +47,7 @@ public class CharList {
 			characters.add(new Enemy(new DementorData(680,259,level)));
 			characters.add(new Enemy(new SpiderData(300,320,level,this)));
 			characters.add(new Enemy(new SpiderData(700,400,level,this)));
-			characters.add(new Enemy(new SpiderData(600,400,level,this)));
+			characters.add(new Enemy(new SpiderData(600,420,level,this)));
 			horcruxes.add(new Enemy(new RingData(299,303,level)));
 			horcruxes.add(new Enemy(new LocketData(200,200,level)));
 			
@@ -57,7 +57,7 @@ public class CharList {
 			characters.add(new Enemy(new DementorData(300,400,level)));
 			characters.add(new Enemy(new SpiderData(300,300,level,this)));
 			characters.add(new Enemy(new SpiderData(700,400,level,this)));
-			characters.add(new Enemy(new SpiderData(250,400,level,this)));
+			characters.add(new Enemy(new SpiderData(270,400,level,this)));
 			characters.add(new Enemy(new SpiderData(250,300,level,this)));
 			characters.add(new Enemy(new SpiderData(700,400,level,this)));
 			characters.add(new Enemy(new SpiderData(600,400,level,this)));
